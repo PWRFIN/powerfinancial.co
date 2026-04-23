@@ -265,54 +265,34 @@
       <div class="cta-form-wrap">
         <div class="form-title editorial">Book Your Free Call</div>
         <p class="form-sub">Takes 60 seconds. We&rsquo;ll reach out within one business day.</p>
-        <form name="consultation" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="consultation"/>
-          <div class="form-row">
-            <div class="ff"><label for="first-name">First Name</label><input type="text" id="first-name" name="first-name" placeholder="Julian" required/></div>
-            <div class="ff"><label for="last-name">Last Name</label><input type="text" id="last-name" name="last-name" placeholder="Smith" required/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@email.com" required/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(000) 000-0000"/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full">
-              <label for="goal">What's most important to you?</label>
-              <select id="goal" name="goal">
-                <option value="">Choose your top goal&hellip;</option>
-                <option>Tax-free retirement income</option>
-                <option>Life insurance &amp; family protection</option>
-                <option>Medicare coverage</option>
-                <option>Will, Trust, or estate planning</option>
-                <option>General wealth strategy</option>
-              </select>
-            </div>
-          </div>
-          <!-- SMS Opt-In Consent -->
-          <div class="sms-consent-section">
-            <label class="consent-checkbox">
-              <input type="checkbox" name="sms-transactional" value="yes"/>
-              <span class="checkmark"></span>
-              <span class="consent-text">I consent to receive transactional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
-            </label>
-            <label class="consent-checkbox">
-              <input type="checkbox" name="sms-marketing" value="yes"/>
-              <span class="checkmark"></span>
-              <span class="consent-text">I consent to receive marketing and promotional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
-            </label>
-            <p class="consent-note">By checking the box(es) above, you agree to our <a href="#">Privacy Policy</a> &amp; <a href="#">Terms of Service</a>. SMS consent is not shared with third parties. <span class="consent-real-talk">(Truthfully, we don’t like spam so you may never see correspondence like this ever — but we <em>have</em> to put the disclaimer opt-in here for legal purposes.)</span></p>
-          </div>
+        <!-- GHL FORM EMBED FOR A2P COMPLIANCE -->
+<div class="ghl-form-embed">
 
-          <button type="submit" class="btn btn-primary form-cta">Let&rsquo;s Talk, Book My Free Call</button>
-        </form>
+  <iframe
+    src="https://api.leadconnectorhq.com/widget/form/FQklruFIcLUoxC2tG2EP"
+    style="width:100%;min-height:636px;border:none;border-radius:8px"
+    id="inline-FQklruFIcLUoxC2tG2EP"
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Powerfinancial.co"
+    data-height="636"
+    data-layout-iframe-id="inline-FQklruFIcLUoxC2tG2EP"
+    data-form-id="FQklruFIcLUoxC2tG2EP"
+    title="Powerfinancial.co">
+  </iframe>
+
+</div>
         <p class="form-footnote"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Private &amp; confidential. We never sell your information.</p>
       </div>
     </div>
   </div>
 </section>
-
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <!-- ==== TESTIMONIALS ==== -->
 <section class="testimonials" id="testimonials">
   <div class="container">
@@ -506,5 +486,11 @@
 (function(){document.querySelectorAll('form[name="consultation"],form[name="guide-download"],form[name="careers"],form[name="about-contact"]').forEach(function(form){form.addEventListener("submit",function(e){e.preventDefault();var btn=form.querySelector('button[type="submit"]');var origText=btn?btn.textContent:"";if(btn){btn.disabled=true;btn.textContent="Sending...";}var fd=new FormData(form);fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fd).toString()}).then(function(r){if(r.ok){form.reset();document.getElementById("thankyou-overlay").style.display="flex";}else{alert("Something went wrong. Please try again or email operations@powerfinancial.co");}}).catch(function(){alert("Connection error. Please try again or email operations@powerfinancial.co");}).finally(function(){if(btn){btn.disabled=false;btn.textContent=origText;}});});});})();
 </script>
 <script src="js/main.js"></script>
+  <!-- GHL CHAT WIDGET START -->
+<script src="https://widgets.leadconnectorhq.com/loader.js"
+  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+  data-widget-id="69e709aa29e8467a3a57692a">
+</script>
+<!-- GHL CHAT WIDGET END -->
 </body>
 </html>
