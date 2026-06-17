@@ -8,18 +8,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
   <link rel="stylesheet" href="css/style.css"/>
-
-    <meta property="og:title" content="Power Financial"/>
-    <meta property="og:description" content="Your Future Is Not a Policy"/>
-    <meta property="og:image" content="https://powerfinancial.co/images/pwr-og-image.jpg"/>
-    <meta property="og:url" content="https://powerfinancial.co/"/>
-    <meta name="twitter:card" content="summary_large_image"/>
-    </head>
+  <!-- Layout reflow after advisor/testimonial removal: 3-up team grid, 2-up testimonial grid. Scoped, preserves existing tablet/mobile breakpoints. -->
+  <style>
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .testimonials .t-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 960px) {
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials .t-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
 <body>
 
 <!-- TOPBAR -->
-<div class="topbar">Limited consultations available this month. <a href="#cta">Book your free call &rarr;</a></div>
+<div class="topbar">Independent advice. Real strategy. <a href="#cta">A free 30-minute call &rarr;</a></div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -107,18 +114,6 @@
   </div>
 </section>
 
-<!-- ==== STATS ==== -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Families Protected</div></div>
-      <div class="stat"><div class="stat-n">4.9&#9733;</div><div class="stat-l">Verified Rating</div></div>
-      <div class="stat"><div class="stat-n">15+</div><div class="stat-l">Carrier Partners</div></div>
-      <div class="stat"><div class="stat-n">0</div><div class="stat-l">Pressure. Ever.</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ==== HOW IT WORKS ==== -->
 <section class="how" id="how">
   <div class="container">
@@ -126,7 +121,7 @@
       <div class="how-left">
         <div class="label">Simple Process</div>
         <h2 class="editorial">Getting started shouldn&rsquo;t feel like homework.</h2>
-        <p>Three steps. One conversation. Zero pressure. That&rsquo;s our whole process.</p>
+        <p>Three steps. One conversation. That&rsquo;s our whole process.</p>
         <a href="#cta" class="btn btn-primary" style="font-size:0.85rem; padding:13px 26px;">Book your free call</a>
       </div>
       <div class="how-steps">
@@ -167,8 +162,8 @@
       <p>Every service we offer exists to answer one question: what does financial security actually look like for your family?</p>
     </div>
     <div class="services-grid">
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M6 7h12l-6-4z"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01"/><path d="M15 11h.01"/></svg></div><h3>Tax-Free Retirement Income</h3><p>Strategies that go beyond the 401(k), keeping more of what you&rsquo;ve earned when it matters most.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Life Insurance That Builds Wealth</h3><p>Policies with real cash value and living benefits, protection that works while you&rsquo;re still here.</p><div class="svc-arrow">&rarr;</div></div>
+      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M6 7h12l-6-4z"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01"/><path d="M15 11h.01"/></svg></div><h3>Tax-Advantaged Retirement Income</h3><p>Strategies that go beyond the 401(k), keeping more of what you&rsquo;ve earned when it matters most.</p><div class="svc-arrow">&rarr;</div></div>
+      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Life Insurance With Living Benefits &amp; Cash Value</h3><p>Policies with real cash value and living benefits, protection that works while you&rsquo;re still here.</p><div class="svc-arrow">&rarr;</div></div>
       <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg></div><h3>Asset Protection</h3><p>Legal structures that keep what you&rsquo;ve built from creditors, lawsuits, and the unexpected.</p><div class="svc-arrow">&rarr;</div></div>
       <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Medicare Planning</h3><p>We find coverage that fits your health and your budget. Straight talk, no jargon.</p><div class="svc-arrow">&rarr;</div></div>
       <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><h3>Wills, Trusts &amp; Legacy</h3><p>Because how you leave it is as important as how you live. We handle every detail.</p><div class="svc-arrow">&rarr;</div></div>
@@ -231,17 +226,6 @@
           <div class="advisor-quote">&ldquo;His preparation made a tough time so much easier on my family.&rdquo;, Rhonda M.</div>
         </div>
       </div>
-      <div class="advisor">
-        <div class="advisor-photo">
-          <img src="https://lh3.googleusercontent.com/d/1Z394YiY7MFYqvcrMzP3fBEe-g50xDObM" alt="Shady, Wealth Protection Advisor"/>
-        </div>
-        <div class="advisor-info">
-          <div class="advisor-name">Shady</div>
-          <div class="advisor-role">Wealth Protection Advisor</div>
-          <div class="advisor-bio">Radically transparent. Explains every detail until clients feel 100% confident.</div>
-          <div class="advisor-quote">&ldquo;Don&rsquo;t let the name fool you, the most honest advisor I&rsquo;ve ever worked with.&rdquo;, Martha J.</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -251,9 +235,9 @@
   <div class="container">
     <div class="cta-grid">
       <div class="cta-left">
-        <div class="label">Free &middot; No Obligation &middot; No Pressure</div>
+        <div class="label">Free &middot; No Obligation</div>
         <h2 class="editorial">Ready to build something <em>real?</em></h2>
-        <p>In a free 30-minute call, we&rsquo;ll look at where you are, where you want to go, and show you a clear path to get there. No pitch. No script. Just a real conversation.</p>
+        <p>In a free 30-minute call, we&rsquo;ll look at where you are, where you want to go, and show you a clear path to get there. No pitch &mdash; just a real conversation.</p>
         <ul class="cta-perks">
           <li><div class="cta-check">&#10003;</div> Personalized review of your current situation</li>
           <li><div class="cta-check">&#10003;</div> Tax-free retirement options for your life</li>
@@ -265,37 +249,54 @@
       <div class="cta-form-wrap">
         <div class="form-title editorial">Book Your Free Call</div>
         <p class="form-sub">Takes 60 seconds. We&rsquo;ll reach out within one business day.</p>
-       <!-- GHL FORM TEMPORARILY REMOVED FOR A2P COMPLIANCE
-<div class="ghl-form-embed">
-  <iframe
-    src="https://api.leadconnectorhq.com/widget/form/FQklruFIcLUoxC2tG2EP"
-    style="width:100%;min-height:1200px;border:none;border-radius:8px"
-    id="inline-FQklruFIcLUoxC2tG2EP"
-    data-layout="{'id':'INLINE'}"
-    data-trigger-type="alwaysShow"
-    data-trigger-value=""
-    data-activation-type="alwaysActivated"
-    data-activation-value=""
-    data-deactivation-type="neverDeactivate"
-    data-deactivation-value=""
-    data-form-name="Powerfinancial.co"
-    data-height="820"
-    data-layout-iframe-id="inline-FQklruFIcLUoxC2tG2EP"
-    data-form-id="FQklruFIcLUoxC2tG2EP"
-    title="Powerfinancial.co">
-  </iframe>
-</div>
+        <form name="consultation" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="consultation"/>
+          <div class="form-row">
+            <div class="ff"><label for="first-name">First Name</label><input type="text" id="first-name" name="first-name" placeholder="Julian" required/></div>
+            <div class="ff"><label for="last-name">Last Name</label><input type="text" id="last-name" name="last-name" placeholder="Smith" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="ff full"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@email.com" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="ff full"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(000) 000-0000"/></div>
+          </div>
+          <div class="form-row">
+            <div class="ff full">
+              <label for="goal">What's most important to you?</label>
+              <select id="goal" name="goal">
+                <option value="">Choose your top goal&hellip;</option>
+                <option>Tax-free retirement income</option>
+                <option>Life insurance &amp; family protection</option>
+                <option>Medicare coverage</option>
+                <option>Will, Trust, or estate planning</option>
+                <option>General wealth strategy</option>
+              </select>
+            </div>
+          </div>
+          <!-- SMS Opt-In Consent -->
+          <div class="sms-consent-section">
+            <label class="consent-checkbox">
+              <input type="checkbox" name="sms-transactional" value="yes"/>
+              <span class="checkmark"></span>
+              <span class="consent-text">I consent to receive transactional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
+            </label>
+            <label class="consent-checkbox">
+              <input type="checkbox" name="sms-marketing" value="yes"/>
+              <span class="checkmark"></span>
+              <span class="consent-text">I consent to receive marketing and promotional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
+            </label>
+            <p class="consent-note">By checking the box(es) above, you agree to our <a href="#">Privacy Policy</a> &amp; <a href="#">Terms of Service</a>. SMS consent is not shared with third parties. <span class="consent-real-talk">(Truthfully, we don’t like spam so you may never see correspondence like this ever — but we <em>have</em> to put the disclaimer opt-in here for legal purposes.)</span></p>
+          </div>
 
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
-END GHL FORM -->
-
-</div>
+          <button type="submit" class="btn btn-primary form-cta">Let&rsquo;s Talk, Book My Free Call</button>
+        </form>
         <p class="form-footnote"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Private &amp; confidential. We never sell your information.</p>
       </div>
     </div>
   </div>
 </section>
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
 <!-- ==== TESTIMONIALS ==== -->
 <section class="testimonials" id="testimonials">
   <div class="container">
@@ -334,12 +335,6 @@ END GHL FORM -->
         <p class="t-body">&ldquo;When my husband passed, the policy process was seamless and respectful. Geoffrey&rsquo;s preparation made a tough time so much easier on my family.&rdquo;</p>
         <div class="t-sig">Rhonda M.</div>
         <div class="t-ctx">Life Insurance &middot; Worked with Geoffrey</div>
-      </div>
-      <div class="t-card">
-        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="t-body">&ldquo;Don&rsquo;t let the name fool you, Shady is the most honest and transparent advisor I&rsquo;ve worked with. Made sure I felt 100% confident in my coverage. Truly puts clients first.&rdquo;</p>
-        <div class="t-sig">Martha J.</div>
-        <div class="t-ctx">Life Insurance &middot; Worked with Shady</div>
       </div>
     </div>
   </div>
@@ -394,7 +389,7 @@ END GHL FORM -->
         <h3 class="editorial">Questions you probably have, answered honestly.</h3>
         <div class="faq-item">
           <div class="faq-q">Is the free consultation actually free? <span class="faq-toggle">+</span></div>
-          <div class="faq-a">Completely. No credit card, no obligation, no pressure. It&rsquo;s a conversation, nothing more unless you choose to move forward.</div>
+          <div class="faq-a">Completely. No credit card, no obligation. It&rsquo;s a conversation, nothing more unless you choose to move forward.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">Do I need a lot of money to work with you? <span class="faq-toggle">+</span></div>
@@ -476,10 +471,10 @@ END GHL FORM -->
     <div class="footer-bottom">
       <p>&copy; 2026 Power Financial. All rights reserved.</p>
       <div class="footer-links">
-  <a href="privacy.html">Privacy Policy</a>
-  <a href="terms.html">Terms</a>
-  <a href="#">Disclosures</a>
-</div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Disclosures</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -489,11 +484,5 @@ END GHL FORM -->
 (function(){document.querySelectorAll('form[name="consultation"],form[name="guide-download"],form[name="careers"],form[name="about-contact"]').forEach(function(form){form.addEventListener("submit",function(e){e.preventDefault();var btn=form.querySelector('button[type="submit"]');var origText=btn?btn.textContent:"";if(btn){btn.disabled=true;btn.textContent="Sending...";}var fd=new FormData(form);fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fd).toString()}).then(function(r){if(r.ok){form.reset();document.getElementById("thankyou-overlay").style.display="flex";}else{alert("Something went wrong. Please try again or email operations@powerfinancial.co");}}).catch(function(){alert("Connection error. Please try again or email operations@powerfinancial.co");}).finally(function(){if(btn){btn.disabled=false;btn.textContent=origText;}});});});})();
 </script>
 <script src="js/main.js"></script>
-  <!-- GHL CHAT WIDGET START -->
-<script src="https://widgets.leadconnectorhq.com/loader.js"
-  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-  data-widget-id="69e709aa29e8467a3a57692a">
-</script>
-<!-- GHL CHAT WIDGET END -->
 </body>
 </html>
