@@ -39,6 +39,22 @@
     }, { passive: true });
   }
 
+  /* ─── MANIFESTO REFRAME ─── */
+  const manifesto = document.querySelector('.manifesto');
+  if (manifesto) {
+    if ('IntersectionObserver' in window) {
+      const manifestoObserver = new IntersectionObserver(function (entries, observer) {
+        if (entries[0].isIntersecting) {
+          manifesto.classList.add('is-visible');
+          observer.disconnect();
+        }
+      }, { threshold: 0.35 });
+      manifestoObserver.observe(manifesto);
+    } else {
+      manifesto.classList.add('is-visible');
+    }
+  }
+
   /* ─── FAQ ACCORDION ─── */
   document.querySelectorAll('.faq-q').forEach(function (question) {
     question.addEventListener('click', function () {
@@ -95,6 +111,48 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  });
+
+  /* ─── CONSUMER LEAD FORMS ─── */
+  document.querySelectorAll('form[data-consumer-lead]').forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var button = form.querySelector('button[type="submit"]');
+      var originalText = button ? button.textContent : '';
+      var params = new URLSearchParams(window.location.search);
+      var formData = new FormData(form);
+
+      formData.set('page_path', window.location.pathname);
+      formData.set('landing_page', window.location.href.slice(0, 500));
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+        formData.set(key, params.get(key) || sessionStorage.getItem('pf_' + key) || '');
+      });
+
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Sending...';
+      }
+
+      fetch('/api/consumer-lead', { method: 'POST', body: formData })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Submission failed');
+          var destination = response.url && new URL(response.url).pathname;
+          window.location.assign(destination || (formData.get('form_type') === 'guide-download' ? '/guide-thank-you' : '/contact-thank-you'));
+        })
+        .catch(function () {
+          alert('We could not send your request. Please try again or call 216-483-1992.');
+          if (button) {
+            button.disabled = false;
+            button.textContent = originalText;
+          }
+        });
+    });
+  });
+
+  var currentParams = new URLSearchParams(window.location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+    var value = currentParams.get(key);
+    if (value) sessionStorage.setItem('pf_' + key, value.slice(0, 200));
   });
 
 })();

@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="/js/analytics.js"></script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Power Financial &mdash; Your Future Is Not a Policy</title>
-  <meta name="description" content="Power Financial builds real wealth strategies for real families. Tax-free retirement, life insurance, asset protection, Medicare planning, and more. Book a free consultation today."/>
+  <meta name="google-site-verification" content="5wiEijU0sC5K7DkNopkc8_v2GHz8eV6eGsTSxAOBFTU"/>
+  <title>Retirement Income &amp; Life Insurance | Power Financial</title>
+  <meta name="description" content="Power Financial helps families nationwide evaluate retirement income, IUL, annuity, life insurance, Medicare, and coordinated legacy-planning strategies."/>
+  <link rel="canonical" href="https://powerfinancial.co/"/>
+  <link rel="alternate" hreflang="en-US" href="https://powerfinancial.co/"/>
+  <link rel="alternate" hreflang="es-US" href="https://powerfinancial.co/es/"/>
+  <link rel="alternate" hreflang="x-default" href="https://powerfinancial.co/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Retirement Income &amp; Life Insurance | Power Financial"/>
+  <meta property="og:description" content="Clear insurance and retirement-income guidance for families building protection, confidence, and a lasting legacy."/>
+  <meta property="og:url" content="https://powerfinancial.co/"/>
+  <meta property="og:image" content="https://powerfinancial.co/images/pwr-og-image.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="images/favicon.png"/>
   <link rel="stylesheet" href="css/style.css"/>
-  <!-- Layout reflow after advisor/testimonial removal: 3-up team grid, 2-up testimonial grid. Scoped, preserves existing tablet/mobile breakpoints. -->
+  <!-- Testimonial grid override; team layout follows the four-person responsive grid in style.css. -->
   <style>
-    .team-grid { grid-template-columns: repeat(3, 1fr); }
     .testimonials .t-grid { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 960px) {
-      .team-grid { grid-template-columns: 1fr 1fr; }
-      .testimonials .t-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .team-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 960px) { .testimonials .t-grid { grid-template-columns: 1fr; } }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "InsuranceAgency",
+    "@id": "https://powerfinancial.co/#organization",
+    "name": "Power Financial",
+    "legalName": "PWR FIN LLC",
+    "url": "https://powerfinancial.co/",
+    "logo": "https://powerfinancial.co/images/pwr-logo-est-2019.png",
+    "email": "operations@powerfinancial.co",
+    "description": "A Black-owned independent insurance agency serving families nationwide with life, health, Medicare, annuity, and retirement-income strategies.",
+    "areaServed": "US",
+    "foundingDate": "2019"
+  }
+  </script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <!-- TOPBAR -->
-<div class="topbar">Independent advice. Real strategy. <a href="#cta">A free 30-minute call &rarr;</a></div>
+<div class="topbar">Retirement, protection, and legacy—coordinated. <a href="#cta">Start your review &rarr;</a></div>
 
 <!-- NAV -->
 <nav class="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="index.html" class="nav-brand">
-        <div class="nav-mark">Pwr</div>
+      <a class='nav-brand' href='/'>
+        <img class="brand-logo-image" src="images/pwr-logo-est-2019.png" alt="Pwr — established 2019" width="226" height="130"/>
         <span class="nav-name">Power <span>Financial</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#guide-faq">Resources</a></li>
-        <li><a href="calculators.html">Calculators</a></li>
-        <li><a href="index.html#cta">Contact</a></li>
+        <li><a class='active' href='/'>Home</a></li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/retirement-planning'>Retirement</a></li>
+        <li><a href='/life-insurance'>Life Insurance</a></li>
+        <li><a href='/iul'>IUL</a></li>
+        <li><a href='/legacy'>Legacy</a></li>
+        <li><a href='/#guide-faq'>Resources</a></li>
+        <li><a href='/calculators'>Calculators</a></li>
+        <li><a href='/#cta'>Contact</a></li>
       </ul>
       <div class="nav-right">
         <a href="#cta" class="btn btn-primary" style="font-size:0.78rem; padding:10px 20px;">Book a Free Call</a>
@@ -52,43 +77,48 @@
       </button>
     </div>
     <div class="nav-mobile">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#guide-faq">Resources</a>
-      <a href="calculators.html">Calculators</a>
-      <a href="index.html#cta">Contact</a>
-      <a href="careers.html">Careers</a>
+      <a class='active' href='/'>Home</a>
+      <a href='/about'>About</a>
+      <a href='/retirement-planning'>Retirement</a>
+      <a href='/life-insurance'>Life Insurance</a>
+      <a href='/iul'>IUL</a>
+      <a href='/legacy'>Legacy</a>
+      <a href='/#guide-faq'>Resources</a>
+      <a href='/calculators'>Calculators</a>
+      <a href='/#cta'>Contact</a>
+      <a href='/careers'>Careers</a>
       <a href="#cta" class="btn btn-primary">Book a Free Call</a>
     </div>
   </div>
 </nav>
 
+<main id="main-content">
+
 <!-- ==== HERO ==== -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow"><div class="hero-dot"></div><span>Est. 2020 &middot; Serving Families Nationwide</span></div>
+    <div class="hero-eyebrow"><div class="hero-dot"></div><span>Black-owned &middot; Licensed nationwide &middot; Est. 2019</span></div>
     <h1 class="hero-h1 editorial">
-      Your future<br/>
-      is <span class="italic">not a</span>
+      Retirement<br/>
+      should feel
       <span class="rule"></span>
-      policy.
+      <span class="italic">protected.</span>
     </h1>
-    <p class="hero-sub">Most people have coverage. Almost nobody has a plan. We're the difference &mdash; building real wealth strategies for real families, one conversation at a time.</p>
+    <p class="hero-sub">Power Financial helps families approaching retirement evaluate protected income, life insurance, annuity, and coordinated legacy strategies—with every option explained clearly.</p>
     <div class="hero-ctas">
-      <a href="#cta" class="btn btn-primary" style="font-size:0.92rem; padding:16px 32px;">Book a Free Consultation</a>
-      <a href="#how" class="btn btn-ghost" style="font-size:0.92rem; padding:16px 32px;">See How It Works</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:0.92rem; padding:16px 32px;">Start My Retirement Review</a>
+      <a class='btn btn-ghost' href='/annuities' style='font-size:0.92rem; padding:16px 32px;'>Explore Retirement Income</a>
     </div>
     <div class="hero-proof">
       <div class="proof-item"><div class="proof-num">500+</div><div class="proof-label">Families</div></div>
-      <div class="proof-item"><div class="proof-num">4.9&#9733;</div><div class="proof-label">Rating</div></div>
-      <div class="proof-item"><div class="proof-num">15+</div><div class="proof-label">Carriers</div></div>
+      <div class="proof-item"><div class="proof-num">50</div><div class="proof-label">States served</div></div>
+      <div class="proof-item"><div class="proof-num">2019</div><div class="proof-label">Established</div></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-caption">
-      <p class="hero-caption-text">&ldquo;We don&rsquo;t just plan for the what ifs. We innovate for the what&rsquo;s next.&rdquo;</p>
-      <p class="hero-caption-attr">Power Financial &middot; Est. 2020</p>
+      <p class="hero-caption-text">&ldquo;We don&rsquo;t just plan for the what-ifs. We prepare for what comes next.&rdquo;</p>
+      <p class="hero-caption-attr">Power Financial &middot; Est. 2019</p>
     </div>
   </div>
 </section>
@@ -98,18 +128,16 @@
   <div class="manifesto-bg-text">Legacy</div>
   <div class="container">
     <div class="manifesto-inner">
-      <div class="manifesto-label label">Our Point of View</div>
-      <h2 class="manifesto-h2 editorial">
-        The financial industry<br/>
-        was built for <span class="strike">everyone.</span><br/>
-        <span class="italic gold">We built this for you.</span>
+      <div class="manifesto-label label">Who We Help</div>
+      <h2 class="manifesto-h2 editorial" aria-label="A stronger financial future is for you.">
+        A stronger financial future<br/>
+        is for <span class="manifesto-reframe" aria-hidden="true"><del>the wealthy</del> <span class="manifesto-you">you.</span></span>
       </h2>
       <p class="manifesto-body">
-        Traditional financial planning was designed around a system that didn&rsquo;t always include everyone equally.
-        Generational wealth, the kind that actually passes something down, was never supposed to be complicated.
-        <strong>We make it simple. We make it yours. And we make sure it lasts.</strong>
+        We work with families approaching retirement, business owners, and working parents who want more than a collection of disconnected accounts and policies.
+        <strong>We help you see how income, protection, and legacy decisions fit together—without hiding the costs or tradeoffs.</strong>
       </p>
-      <a href="#cta" class="btn btn-dark" style="font-size:0.88rem; padding:15px 32px;">Start building your legacy &rarr;</a>
+      <a href="#cta" class="btn btn-dark" style="font-size:0.88rem; padding:15px 32px;">Start your retirement &amp; legacy review &rarr;</a>
     </div>
   </div>
 </section>
@@ -119,31 +147,31 @@
   <div class="container">
     <div class="how-grid">
       <div class="how-left">
-        <div class="label">Simple Process</div>
-        <h2 class="editorial">Getting started shouldn&rsquo;t feel like homework.</h2>
-        <p>Three steps. One conversation. That&rsquo;s our whole process.</p>
-        <a href="#cta" class="btn btn-primary" style="font-size:0.85rem; padding:13px 26px;">Book your free call</a>
+        <div class="label">The Retirement &amp; Legacy Review</div>
+        <h2 class="editorial">A recommendation should start with your life—not a product.</h2>
+        <p>Three deliberate steps. Clear options. Your decision.</p>
+        <a href="#cta" class="btn btn-primary" style="font-size:0.85rem; padding:13px 26px;">Start my review</a>
       </div>
       <div class="how-steps">
         <div class="how-step">
           <div class="step-num">01</div>
           <div class="step-content">
-            <h3>Book a Free Call</h3>
-            <p>Pick a time that works for you. 30 minutes, no commitment, by phone or video, wherever you&rsquo;re comfortable. We come to you.</p>
+            <h3>Define What Needs to Change</h3>
+            <p>We clarify your retirement timeline, income needs, family responsibilities, existing coverage, assets, and the question that brought you here now.</p>
           </div>
         </div>
         <div class="how-step">
           <div class="step-num">02</div>
           <div class="step-content">
-            <h3>We Listen First</h3>
-            <p>We ask about your life, your goals, your family, not just your bank balance. Then we show you the gaps most people never knew existed in their plan.</p>
+            <h3>Compare the Real Options</h3>
+            <p>We explain potential strategies, costs, guarantees, risks, liquidity, and alternatives in plain English. If a product does not fit, we say so.</p>
           </div>
         </div>
         <div class="how-step">
           <div class="step-num">03</div>
           <div class="step-content">
-            <h3>You Get a Real Strategy</h3>
-            <p>Not a pamphlet. Not a pitch. A personalized plan built for your situation and the knowledge to make confident decisions about your future. What you do with it is entirely yours.</p>
+            <h3>Coordinate the Next Step</h3>
+            <p>If you decide to proceed, we coordinate insurance implementation and introduce appropriately qualified investment, tax, or estate-planning professionals when needed.</p>
           </div>
         </div>
       </div>
@@ -157,17 +185,17 @@
     <div class="services-head">
       <div>
         <div class="label">What We Offer</div>
-        <h2 class="editorial">Built around your life.<br/>Not a product catalogue.</h2>
+        <h2 class="editorial">Built around your life.<br/>Not a product catalog.</h2>
       </div>
       <p>Every service we offer exists to answer one question: what does financial security actually look like for your family?</p>
     </div>
     <div class="services-grid">
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M6 7h12l-6-4z"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01"/><path d="M15 11h.01"/></svg></div><h3>Tax-Advantaged Retirement Income</h3><p>Strategies that go beyond the 401(k), keeping more of what you&rsquo;ve earned when it matters most.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Life Insurance With Living Benefits &amp; Cash Value</h3><p>Policies with real cash value and living benefits, protection that works while you&rsquo;re still here.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg></div><h3>Asset Protection</h3><p>Legal structures that keep what you&rsquo;ve built from creditors, lawsuits, and the unexpected.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Medicare Planning</h3><p>We find coverage that fits your health and your budget. Straight talk, no jargon.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><h3>Wills, Trusts &amp; Legacy</h3><p>Because how you leave it is as important as how you live. We handle every detail.</p><div class="svc-arrow">&rarr;</div></div>
-      <div class="svc"><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h3>Wealth-Building Strategy</h3><p>Forward-thinking structures that keep your capital agile and working, not sitting still.</p><div class="svc-arrow">&rarr;</div></div>
+      <a class='svc' href='/annuities'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M6 7h12l-6-4z"/><path d="M9 21v-6h6v6"/></svg></div><h3>Annuities &amp; Retirement Income</h3><p>Evaluate protected-income options, guarantees, liquidity, surrender periods, and how an annuity may—or may not—fit your retirement.</p><div class="svc-arrow">Learn more &rarr;</div></a>
+      <a class='svc' href='/iul'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Indexed Universal Life</h3><p>Understand protection, cash value, policy charges, non-guaranteed crediting, loans, and the long-term funding commitment before deciding.</p><div class="svc-arrow">Learn more &rarr;</div></a>
+      <a class='svc' href='/life-insurance'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Life Insurance &amp; Living Benefits</h3><p>Protect income, family responsibilities, and long-term goals with coverage selected around a documented need and sustainable budget.</p><div class="svc-arrow">Compare coverage options &rarr;</div></a>
+      <a class='svc' href='/#cta'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Medicare Planning</h3><p>Review Medicare coverage choices with licensed help and plain-English explanations of costs, networks, benefits, and timing.</p><div class="svc-arrow">Start a review &rarr;</div></a>
+      <a class='svc' href='/legacy'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><h3>Trust &amp; Legacy Coordination</h3><p>Coordinate beneficiary, insurance, and estate-planning decisions with trust services delivered through TrusteeFriend and participating professionals.</p><div class="svc-arrow">Learn more &rarr;</div></a>
+      <a class='svc' href='/#cta'><div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h3>Coordinated Planning</h3><p>Bring insurance decisions together with appropriately qualified investment, tax, and legal professionals when your situation calls for them.</p><div class="svc-arrow">Start a review &rarr;</div></a>
     </div>
   </div>
 </section>
@@ -190,40 +218,54 @@
     <div class="team-head">
       <div class="label" style="justify-content:center; display:flex;">The People</div>
       <h2 class="editorial">Put a face to your future.</h2>
-      <p>No call centers. No runaround. Just real advisors who know your name and your story.</p>
+      <p>No call centers. No runaround. Just licensed insurance professionals who take the time to understand your story.</p>
+      <div class="team-language-note"><a href="/es/" lang="es"><span>Atenci&oacute;n en espa&ntilde;ol</span></a> is available with Diana and Veronica for Hispanic and Spanish-speaking families.</div>
     </div>
     <div class="team-grid">
       <div class="advisor">
         <div class="advisor-photo">
-          <img src="https://lh3.googleusercontent.com/d/13ysMIDRtBqlxQgGyMdvqKKpj6djgs16c" alt="Diana, Retirement Strategist"/>
+          <img src="images/diana-retirement-strategist.jpg" alt="Diana, Retirement Strategist" loading="lazy" width="930" height="1000"/>
         </div>
         <div class="advisor-info">
           <div class="advisor-name">Diana</div>
           <div class="advisor-role">Retirement Strategist</div>
-                    <div class="advisor-bio">Expert in tax-free retirement income. Makes complex strategy feel simple.</div>
-          <div class="advisor-quote">&ldquo;She explained everything simply, no jargon, just straight talk. For the first time, my retirement plan has a solid foundation.&rdquo;, Lena T.</div>
+          <div class="advisor-languages" aria-label="Service available in English and Spanish"><span>English</span><span lang="es">Espa&ntilde;ol</span></div>
+          <div class="advisor-bio">Focused on tax-advantaged retirement strategies. Makes complex concepts feel understandable.</div>
+          <div class="advisor-quote advisor-approach"><span>Approach</span> Start with the retirement picture, explain each option in plain English, and make the costs and tradeoffs visible.</div>
         </div>
       </div>
       <div class="advisor">
         <div class="advisor-photo">
-                    <img src="images/sway-pro-photo.jpg" alt="Sway, Estate Planning Advisor"/>
+          <img src="images/sway-pro-photo.jpg" alt="Sway, Trust and Legacy Specialist" loading="lazy" width="250" height="375"/>
         </div>
         <div class="advisor-info">
           <div class="advisor-name">Sway</div>
-          <div class="advisor-role">Estate Planning Advisor</div>
+          <div class="advisor-role">Trust &amp; Legacy Specialist</div>
           <div class="advisor-bio">Patient and thorough. Gives families real peace of mind around Wills, Trusts, and legacy.</div>
-          <div class="advisor-quote">&ldquo;Incredibly patient, helped us set up a Will and Trust that gave us real peace of mind.&rdquo;, Myles F.</div>
+          <div class="advisor-quote advisor-approach"><span>Approach</span> Move patiently, organize the details, and help families turn legacy intentions into a coordinated next step.</div>
         </div>
       </div>
       <div class="advisor">
         <div class="advisor-photo">
-          <img src="https://lh3.googleusercontent.com/d/1YWQt8pRP8U9iSvS4svux6yCgzST-GIs-" alt="Geoffrey, Life Insurance Specialist"/>
+          <img src="images/veronica-life-insurance-specialist.jpg" alt="Veronica, Life Insurance Specialist" loading="lazy" width="933" height="1400"/>
+        </div>
+        <div class="advisor-info">
+          <div class="advisor-name">Veronica</div>
+          <div class="advisor-role">Life Insurance Specialist</div>
+          <div class="advisor-languages" aria-label="Service available in English and Spanish"><span>English</span><span lang="es">Espa&ntilde;ol</span></div>
+          <div class="advisor-bio">Helps families understand coverage options, protect the people they love, and choose premiums designed to remain manageable.</div>
+          <div class="advisor-quote advisor-approach"><span>Approach</span> Listen first, explain the tradeoffs clearly, and help families choose protection with confidence.</div>
+        </div>
+      </div>
+      <div class="advisor">
+        <div class="advisor-photo">
+          <img src="images/geoffrey-life-insurance-specialist.jpg" alt="Geoffrey, Life Insurance Specialist" loading="lazy" width="994" height="1000"/>
         </div>
         <div class="advisor-info">
           <div class="advisor-name">Geoffrey</div>
           <div class="advisor-role">Life Insurance Specialist</div>
           <div class="advisor-bio">Guides families through life insurance and final expense planning with care and precision.</div>
-          <div class="advisor-quote">&ldquo;His preparation made a tough time so much easier on my family.&rdquo;, Rhonda M.</div>
+          <div class="advisor-quote advisor-approach"><span>Approach</span> Identify the protection gap, prepare carefully, and recommend coverage built around the family&rsquo;s actual needs.</div>
         </div>
       </div>
     </div>
@@ -235,62 +277,28 @@
   <div class="container">
     <div class="cta-grid">
       <div class="cta-left">
-        <div class="label">Free &middot; No Obligation</div>
-        <h2 class="editorial">Ready to build something <em>real?</em></h2>
-        <p>In a free 30-minute call, we&rsquo;ll look at where you are, where you want to go, and show you a clear path to get there. No pitch &mdash; just a real conversation.</p>
+        <div class="label">Complimentary Initial Conversation</div>
+        <h2 class="editorial">Start your Retirement &amp; Legacy <em>Review.</em></h2>
+        <p>Tell us what is changing, what you have already built, and what you want retirement to provide. We&rsquo;ll determine whether a deeper review makes sense and what information would be needed next.</p>
         <ul class="cta-perks">
           <li><div class="cta-check">&#10003;</div> Personalized review of your current situation</li>
-          <li><div class="cta-check">&#10003;</div> Tax-free retirement options for your life</li>
+          <li><div class="cta-check">&#10003;</div> Retirement-income and protection options to evaluate</li>
           <li><div class="cta-check">&#10003;</div> Plain-English answers, no jargon</li>
           <li><div class="cta-check">&#10003;</div> Zero commitment, ever</li>
         </ul>
         <p style="font-size:0.85rem; color:var(--text-soft);">Prefer email? <strong style="color:var(--text)"><a href="mailto:operations@powerfinancial.co" style="color:inherit;">operations@powerfinancial.co</a></strong></p>
       </div>
       <div class="cta-form-wrap">
-        <div class="form-title editorial">Book Your Free Call</div>
-        <p class="form-sub">Takes 60 seconds. We&rsquo;ll reach out within one business day.</p>
-        <form name="consultation" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="consultation"/>
-          <div class="form-row">
-            <div class="ff"><label for="first-name">First Name</label><input type="text" id="first-name" name="first-name" placeholder="Julian" required/></div>
-            <div class="ff"><label for="last-name">Last Name</label><input type="text" id="last-name" name="last-name" placeholder="Smith" required/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@email.com" required/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(000) 000-0000"/></div>
-          </div>
-          <div class="form-row">
-            <div class="ff full">
-              <label for="goal">What's most important to you?</label>
-              <select id="goal" name="goal">
-                <option value="">Choose your top goal&hellip;</option>
-                <option>Tax-free retirement income</option>
-                <option>Life insurance &amp; family protection</option>
-                <option>Medicare coverage</option>
-                <option>Will, Trust, or estate planning</option>
-                <option>General wealth strategy</option>
-              </select>
-            </div>
-          </div>
-          <!-- SMS Opt-In Consent -->
-          <div class="sms-consent-section">
-            <label class="consent-checkbox">
-              <input type="checkbox" name="sms-transactional" value="yes"/>
-              <span class="checkmark"></span>
-              <span class="consent-text">I consent to receive transactional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
-            </label>
-            <label class="consent-checkbox">
-              <input type="checkbox" name="sms-marketing" value="yes"/>
-              <span class="checkmark"></span>
-              <span class="consent-text">I consent to receive marketing and promotional messages from <strong>Power Financial</strong> at the phone number provided. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
-            </label>
-            <p class="consent-note">By checking the box(es) above, you agree to our <a href="#">Privacy Policy</a> &amp; <a href="#">Terms of Service</a>. SMS consent is not shared with third parties. <span class="consent-real-talk">(Truthfully, we don’t like spam so you may never see correspondence like this ever — but we <em>have</em> to put the disclaimer opt-in here for legal purposes.)</span></p>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-cta">Let&rsquo;s Talk, Book My Free Call</button>
-        </form>
+        <div class="form-title editorial">Choose Your Strategy Session</div>
+        <p class="form-sub">Select a time with Julian or Diana, then answer a few brief questions so your Power Financial representative can prepare.</p>
+        <iframe
+          class="booking-calendar"
+          src="https://api.leadconnectorhq.com/widget/bookings/power-financial-strategy-session?utm_source=powerfinancial.co&amp;utm_medium=website&amp;utm_campaign=strategy_session"
+          title="Book a Power Financial Strategy Session"
+          loading="lazy"
+          scrolling="yes"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <p class="calendar-fallback">Calendar not loading? <a href="https://api.leadconnectorhq.com/widget/bookings/power-financial-strategy-session?utm_source=powerfinancial.co&amp;utm_medium=website&amp;utm_campaign=strategy_session" target="_blank" rel="noopener">Open the secure booking page</a>.</p>
         <p class="form-footnote"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Private &amp; confidential. We never sell your information.</p>
       </div>
     </div>
@@ -308,7 +316,7 @@
       <div>
         <div class="rating-bar">
           <span class="big-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="rating-txt">4.9 out of 5 &middot; Verified client reviews</span>
+          <span class="rating-txt">4.9 out of 5 &middot; Reviews collected by Power Financial</span>
         </div>
         <p style="font-size:0.92rem; color:var(--text-soft); line-height:1.75;">We don&rsquo;t ask for testimonials until we&rsquo;ve earned them. Every review here comes from a real conversation with a real family we&rsquo;ve helped.</p>
       </div>
@@ -320,7 +328,7 @@
         <div class="fq-context">Retirement Planning Client</div>
         <div class="fq-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <div class="fq-divider"></div>
-        <div class="fq-body">Worked with Diana &middot; Tax-Free Retirement Strategy</div>
+        <div class="fq-body">Worked with Diana &middot; Tax-Advantaged Retirement Strategy</div>
       </div>
     </div>
     <div class="t-grid">
@@ -374,14 +382,20 @@
           <div class="guide-overlay"><div class="guide-badge">Free Download</div></div>
         </div>
         <div class="label">Free Resource</div>
-        <h3 class="editorial">The Tax-Free Retirement Guide, on us.</h3>
-        <p>What most advisors don&rsquo;t tell you about retirement income. Written in plain English. Yours free, no strings attached.</p>
-        <form class="guide-form" name="guide-download" method="POST" data-netlify="true">
+        <h3 class="editorial">The Retirement Income Planning Guide, on us.</h3>
+        <p>What many retirement conversations leave out about income, protection, taxes, and tradeoffs. Written in plain English. Yours free, no strings attached.</p>
+        <p style="margin-top:10px"><a href='/401k-to-annuity-rollover' style='color:#755612;font-weight:700;text-decoration:underline;text-underline-offset:3px'>Considering a rollover? Read what to check before moving a 401(k) into an annuity.</a></p>
+        <form action='/api/consumer-lead' class='guide-form' data-consumer-lead method='POST' name='guide-download'>
           <input type="hidden" name="form-name" value="guide-download"/>
-          <input type="text" name="guide-name" placeholder="Your first name" required/>
-          <input type="email" name="guide-email" placeholder="Your email address" required/>
-          <button type="submit" class="btn btn-primary" style="font-size:0.85rem; padding:13px;">Send me the guide &rarr;</button>
-          <p class="guide-note"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> No spam. Unsubscribe anytime.</p>
+          <input type="hidden" name="form_type" value="guide-download"/>
+          <input type="hidden" name="service_interest" value="retirement_guide"/>
+          <input type="hidden" name="source" value="powerfinancial.co"/>
+          <p hidden><label>Do not fill this out: <input name="bot-field" autocomplete="off" tabindex="-1"/></label></p>
+          <input type="text" name="name" autocomplete="given-name" placeholder="Your first name" required/>
+          <input type="email" name="email" autocomplete="email" placeholder="Your email address" required/>
+          <input type="hidden" name="contact_consent" value="email"/>
+          <button type="submit" class="btn btn-primary" style="font-size:0.85rem; padding:13px;">Get instant access &rarr;</button>
+          <p class="guide-note"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;margin-right:3px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Instant access, plus occasional relevant follow-up. Unsubscribe anytime.</p>
         </form>
       </div>
       <div class="faq-section">
@@ -400,8 +414,8 @@
           <div class="faq-a">We&rsquo;re independent. We work for you, not for any single carrier or company. That means we find the best solution for your situation, not for our quota.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Are your advisors licensed? <span class="faq-toggle">+</span></div>
-          <div class="faq-a">Yes. All advisors are fully licensed in Life &amp; Health Insurance, operating under the Experior Financial partner network.</div>
+          <div class="faq-q">Are your insurance agents licensed? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes. Insurance recommendations are made by appropriately state-licensed Life &amp; Health insurance agents operating through the Experior Financial partner network. Investment, tax, and legal services, when needed, are provided separately by appropriately qualified third-party professionals.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">How quickly can I get started? <span class="faq-toggle">+</span></div>
@@ -418,43 +432,48 @@
     <div class="creds-inner">
       <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9 14h.01"/><path d="M15 14h.01"/></svg></div><div class="cred-txt"><strong>State Licensed</strong><span>Life &amp; Health Insurance</span></div></div>
       <div class="cred-divider"></div>
-      <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88"/><path d="m6 6 3.5 3.5"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div><div class="cred-txt"><strong>Independent Agency</strong><span>We work for you, not a carrier</span></div></div>
+      <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88"/><path d="m6 6 3.5 3.5"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div><div class="cred-txt"><strong>Independent Insurance Agency</strong><span>Access to products from multiple carriers</span></div></div>
       <div class="cred-divider"></div>
       <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg></div><div class="cred-txt"><strong>Experior Network</strong><span>Licensed Partner</span></div></div>
       <div class="cred-divider"></div>
-      <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="cred-txt"><strong>4.9-Star Rated</strong><span>Verified client reviews</span></div></div>
+      <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="cred-txt"><strong>4.9-Star Rated</strong><span>Reviews collected by Power Financial</span></div></div>
       <div class="cred-divider"></div>
       <div class="cred"><div class="cred-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="cred-txt"><strong>No-Pressure Promise</strong><span>Always your choice</span></div></div>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- ==== FOOTER ==== -->
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="fb-logo"><div class="fb-mark">Pwr</div><span class="fb-name">Power <em>Financial</em></span></div>
-        <p>Empowering individuals and families with strategic financial guidance and wealth management solutions. Independently owned and operated since 2020.</p>
-        <p class="footer-disclaimer">Power Financial is an independent insurance agency. Products and services vary by state. Insurance products are not bank deposits or FDIC insured.</p>
+        <div class="fb-logo"><img class="brand-logo-image" src="images/pwr-logo-est-2019.png" alt="Pwr — established 2019" width="226" height="130"/><span class="fb-name">Power <em>Financial</em></span></div>
+        <p>A Black-owned independent insurance agency helping families build protection, retirement confidence, and a coordinated legacy. Independently owned and operated since 2019.</p>
+        <p class="footer-disclaimer">Power Financial provides licensed insurance services. Trust, legal, tax, securities, and investment-advisory services, when needed, are provided by appropriately qualified third-party professionals under separate engagements. Products and services vary by state. Insurance products are not bank deposits or FDIC insured.</p>
       </div>
       <div class="fc">
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Tax-Free Retirement</a></li>
-          <li><a href="#services">Life Insurance</a></li>
+          <li><a href='/retirement-planning'>Retirement Planning</a></li>
+          <li><a href='/annuities'>Annuities &amp; Retirement Income</a></li>
+          <li><a href='/life-insurance'>Life Insurance &amp; Living Benefits</a></li>
+          <li><a href='/iul'>Indexed Universal Life</a></li>
           <li><a href="#services">Asset Protection</a></li>
           <li><a href="#services">Medicare Planning</a></li>
-          <li><a href="#services">Wills &amp; Trusts</a></li>
+          <li><a href='/legacy'>Trust &amp; Legacy Coordination</a></li>
         </ul>
       </div>
       <div class="fc">
         <h4>Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
+          <li><a href='/about'>About Us</a></li>
           <li><a href="#team">Meet the Team</a></li>
           <li><a href="#guide-faq">Resources</a></li>
-          <li><a href="calculators.html">Calculators</a></li>
+          <li><a href='/calculators'>Calculators</a></li>
+          <li><a href='/careers'>Agent Careers</a></li>
           <li><a href="#testimonials">Client Reviews</a></li>
           <li><a href="#cta">Book a Call</a></li>
         </ul>
@@ -471,18 +490,15 @@
     <div class="footer-bottom">
       <p>&copy; 2026 Power Financial. All rights reserved.</p>
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
-        <a href="#">Disclosures</a>
+        <a href='/privacy'>Privacy Policy</a>
+        <a href='/terms'>Terms</a>
+        <a href='/disclosures'>Disclosures</a>
       </div>
     </div>
   </div>
 </footer>
 
 <div id="thankyou-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(22,10,2,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;"><div style="background:#fff;border-radius:16px;padding:48px 40px;max-width:440px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.25);margin:24px;"><div style="width:64px;height:64px;border-radius:50%;background:#f5ecd7;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#160a02;margin:0 0 12px;">Thank You!</h3><p style="font-family:'Inter',sans-serif;font-size:1rem;color:#6b5d50;line-height:1.6;margin:0 0 24px;">Thanks for taking the time out, we'll get back to you soon...</p><button onclick="document.getElementById('thankyou-overlay').style.display='none'" style="font-family:'Inter',sans-serif;font-size:0.9rem;padding:12px 32px;background:#C9A84C;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Sounds Good</button></div></div>
-<script>
-(function(){document.querySelectorAll('form[name="consultation"],form[name="guide-download"],form[name="careers"],form[name="about-contact"]').forEach(function(form){form.addEventListener("submit",function(e){e.preventDefault();var btn=form.querySelector('button[type="submit"]');var origText=btn?btn.textContent:"";if(btn){btn.disabled=true;btn.textContent="Sending...";}var fd=new FormData(form);fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(fd).toString()}).then(function(r){if(r.ok){form.reset();document.getElementById("thankyou-overlay").style.display="flex";}else{alert("Something went wrong. Please try again or email operations@powerfinancial.co");}}).catch(function(){alert("Connection error. Please try again or email operations@powerfinancial.co");}).finally(function(){if(btn){btn.disabled=false;btn.textContent=origText;}});});});})();
-</script>
 <script src="js/main.js"></script>
 </body>
 </html>
