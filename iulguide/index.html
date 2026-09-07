@@ -28,9 +28,9 @@
 
   /* SIDEBAR */
   #sidebar {
-    width: var(--sidebar-w); min-height: 100vh; background: var(--navy2);
+    width: var(--sidebar-w); height: 100vh; background: var(--navy2);
     border-right: 1px solid var(--border); position: fixed; top: 0; left: 0; z-index: 100;
-    display: flex; flex-direction: column;
+    display: flex; flex-direction: column; overflow-y: auto;
   }
   .brand { padding: 20px 18px 16px; border-bottom: 1px solid var(--border); }
   .brand-name { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); letter-spacing: 1px; }
@@ -578,6 +578,7 @@
   <div class="form-section">
     <div class="form-label">Section 2 — Family & Dependents</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Who is financially tied to them? Who depends on them? This drives death benefit need, legacy intent, and child policy conversations.</p>
+    <div class="alert-box" style="margin-bottom:12px"><span class="alert-icon">💡</span><span><strong>If the client says "no one depends on me," "I'm single," or "I don't have family":</strong><br><br>"Who are you leaving in charge to bury you and take care of your things when you die? Who would be the default person responsible for you — your pets, your home, your personal belongings? Even if you have no dependents today, someone will have to deal with the aftermath. Life insurance puts YOU in control of that decision — not the courts."</span></div>
     <div class="form-row three">
       <div class="form-field"><label>Spouse / Partner Name</label><input type="text" placeholder="Name + age"></div>
       <div class="form-field"><label>Number of Children</label><input type="number" placeholder="0"></div>
@@ -591,6 +592,7 @@
 
   <div class="form-section">
     <div class="form-label">Section 3 — Income & Net Worth (Required for Carriers)</div>
+    <div class="alert-box" style="margin-bottom:12px"><span class="alert-icon">💡</span><span><strong>If you haven't built rapport yet, say:</strong><br><br>"You don't have to give me all of your financial specifics today — but they will be necessary if we move to an application. For the sake of running numbers for you, could you tell me how much money you have left over at the end of the month after paying everything?" Then ask: "Of the money you're spending, is any of that going into savings, a 401k or IRA, or investments?"</span></div>
     <div class="script-box">"Carriers require income and net worth information — this determines how much you're allowed to fund the policy, not what you want to fund. The policy can't look like an investment because investments are taxed differently. This protects the tax benefit."</div>
     <div class="form-row three" style="margin-top:14px">
       <div class="form-field"><label>Annual Gross Income</label><input type="text" placeholder="$"></div>
@@ -599,7 +601,20 @@
     </div>
     <div class="form-row three">
       <div class="form-field"><label>Cash / Savings</label><input type="text" placeholder="$"></div>
-      <div class="form-field"><label>Retirement Accounts</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Retirement Accounts — Type &amp; Balance</label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px">
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">401k</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">Traditional IRA</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">Roth IRA</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">SEP IRA</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">457(b)</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">403(b)</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">Pension</div>
+          <div class="checkbox-item" onclick="toggleCheck(this,event)">Other</div>
+        </div>
+        <input type="text" placeholder="Estimated balance(s) $">
+        <div style="margin-top:6px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex">✅ Max-funding every year?</div></div>
+      </div>
       <div class="form-field"><label>Real Estate Equity</label><input type="text" placeholder="$"></div>
     </div>
     <div class="form-row three">
@@ -635,6 +650,7 @@
       <div class="form-field"><label>Student Loans (monthly)</label><input type="text" placeholder="$"></div>
       <div class="form-field"><label>Business Debt (monthly)</label><input type="text" placeholder="$"></div>
       <div class="form-field"><label>Total Monthly Obligations</label><input type="text" placeholder="$ (auto-sum in your head)"></div>
+      <div class="form-field"><label>💰 Money Left Over After All Bills</label><input type="text" placeholder="$ remaining per month — this is premium capacity"></div>
     </div>
   </div>
 
@@ -694,6 +710,7 @@
 
   <div class="form-section">
     <div class="form-label">Section 6 — Current Coverage</div>
+    <div class="alert-box" style="margin-bottom:8px"><span class="alert-icon">📋</span><span><strong>Note:</strong> The coverage being discussed on this call is <strong>life insurance</strong>. This section identifies what existing life insurance coverage the client already has so you can understand whether this policy supplements, replaces, or stands alongside current coverage.</span></div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Identify gaps, inefficiencies, or replacement opportunities. Never knock existing coverage — understand its purpose first.</p>
     <div class="form-row three">
       <div class="form-field"><label>Policy Type</label><input type="text" placeholder="Term / Whole / Group / None"></div>
@@ -719,6 +736,7 @@
 
   <div class="form-section">
     <div class="form-label">Section 8 — Timeline & Milestones</div>
+    <div class="alert-box" style="margin-bottom:12px"><span class="alert-icon">💡</span><span><strong>Agent note:</strong> This section surfaces milestones the client finds most important — and reveals whether early retirement is a real goal for them. Pay attention to how they describe their timeline. If they light up talking about "getting out at 55" or "not working past 60," the IUL retirement income design (B→A) is the centerpiece of your presentation.</span></div>
     <div class="form-row single">
       <div class="form-field"><label>When do they realistically want access to cash value?</label>
         <div class="checkbox-group">
@@ -739,6 +757,7 @@
 
   <div class="form-section">
     <div class="form-label">Section 9 — Funding Direction</div>
+    <div class="alert-box" style="margin-bottom:12px"><span class="alert-icon">💡</span><span><strong>Ask the client:</strong> "How much do you think you will need to receive in monthly income when you retire?" — This anchors the illustration goal to a real number they've said out loud. It also distinguishes between clients who want supplemental income vs. those who need a primary retirement income strategy.</span></div>
     <div class="form-row two">
       <div class="form-field"><label>Planned monthly premium range</label><input type="text" placeholder="e.g., $200–$500/mo"></div>
       <div class="form-field"><label>Funding duration</label>
@@ -762,6 +781,7 @@
 
   <div class="form-section" style="border-bottom:none">
     <div class="form-label">Section 10 — Close Discovery / Next Steps</div>
+    <div class="alert-box" style="margin-bottom:12px"><span class="alert-icon">👥</span><span><strong>This section is completed with your manager.</strong> Before closing out the discovery call, loop in your manager to review findings, confirm strategy direction, and align on the next steps. Do not finalize strategy selection or commit to an illustration design without your manager's review.</span></div>
     <div class="form-row single">
       <div class="form-field"><label>Confirmed strategy (final selection)</label>
         <div class="checkbox-group">
@@ -813,7 +833,7 @@
         <span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Design</span>
         <div style="font-size:13px;margin-top:4px;color:var(--text)">Level DB (Option A) · CVAT or GPT · Lower premium · FEX structure</div>
         <div style="margin-top:10px"><span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Best carriers</span></div>
-        <div style="margin-top:4px"><span class="badge badge-gold">F&G</span> <span class="badge badge-muted">NLG</span> <span class="badge badge-muted">Transamerica</span></div>
+        <div style="margin-top:4px"><span class="badge badge-gold">F&amp;G</span> <span class="badge badge-muted">Symetra</span> <span class="badge badge-muted">Ethos</span> <span class="badge badge-muted">NLG</span> <span class="badge badge-muted">Transamerica</span></div>
       </div>
     </div>
 
@@ -833,7 +853,7 @@
         <span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Design</span>
         <div style="font-size:13px;margin-top:4px;color:var(--text)">Start Option B (Increasing) · Switch to A at distribution · GPT · Max-fund within corridor · 7-Pay structure</div>
         <div style="margin-top:10px"><span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Best carriers</span></div>
-        <div style="margin-top:4px"><span class="badge badge-gold">Allianz</span> <span class="badge badge-muted">F&G</span> <span class="badge badge-muted">NLG</span></div>
+        <div style="margin-top:4px"><span class="badge badge-gold">F&amp;G</span> <span class="badge badge-muted">Symetra</span> <span class="badge badge-muted">Ethos</span> <span class="badge badge-muted">NLG</span></div>
       </div>
     </div>
   </div>
@@ -1940,7 +1960,7 @@
             </div>
             <div class="card-sm">
               <strong style="color:var(--gold)">Carrier's Built-In System</strong>
-              <p style="font-size:12px;color:var(--muted);margin-top:4px">Most major carriers (F&G, Allianz, NLG, Transamerica) have their own e-signature capture built into the application portal. Preferred when available — no separate DocuSign certificate needed.</p>
+              <p style="font-size:12px;color:var(--muted);margin-top:4px">Most major carriers (F&G, NLG, Transamerica) have their own e-signature capture built into the application portal. Preferred when available — no separate DocuSign certificate needed.</p>
             </div>
           </div>
           <p style="font-size:13px;color:var(--muted);margin-top:10px">Send signature request to client via <strong style="color:var(--text)">text or email</strong>. They can sign from their phone. You'll receive confirmation when complete.</p>
@@ -1994,77 +2014,103 @@
   </div>
 
   <div class="card card-gold" style="margin-bottom:20px">
-    <div class="card-title gold">Index + Cash Value Growth Ranking (Best to Worst)</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-      <div style="background:var(--navy);border:1px solid var(--gold);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--gold)">1</div><div style="font-size:13px;font-weight:600;margin-top:2px">Allianz</div></div>
-      <div style="background:var(--navy);border:1px solid rgba(201,162,39,0.5);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--gold2)">2</div><div style="font-size:13px;font-weight:600;margin-top:2px">F&G</div></div>
-      <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--muted)">3</div><div style="font-size:13px;font-weight:600;margin-top:2px">Columbus</div></div>
-      <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--muted)">4</div><div style="font-size:13px;font-weight:600;margin-top:2px">Transamerica</div></div>
-      <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--muted)">5</div><div style="font-size:13px;font-weight:600;margin-top:2px">NLG</div></div>
-      <div style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center"><div style="font-size:20px;font-weight:700;color:var(--muted)">6</div><div style="font-size:13px;font-weight:600;margin-top:2px">Symetra</div></div>
+    <div class="card-title gold">📊 IUL Premium Minimums by Strategy</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Use these ranges to set realistic premium expectations during discovery. Strategy B requires more premium — the policy needs enough funding to make cash value accumulation meaningful.</p>
+    <div class="two-col" style="gap:16px">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:6px">Strategy A — Death Benefit Focus</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <tr style="color:var(--muted)"><th style="text-align:left;padding:4px 6px">Age</th><th style="text-align:left;padding:4px 6px">Monthly Premium</th></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">0–25</td><td style="padding:5px 6px;color:var(--gold2)">~$20 – $30/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">26–40</td><td style="padding:5px 6px;color:var(--gold2)">~$45 – $125/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">41–55</td><td style="padding:5px 6px;color:var(--gold2)">~$125 – $200/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">55–62</td><td style="padding:5px 6px;color:var(--gold2)">~$200 – $250/mo</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--gold2);margin-bottom:10px;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:6px">Strategy B — Cash Value / Living Benefits</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <tr style="color:var(--muted)"><th style="text-align:left;padding:4px 6px">Age</th><th style="text-align:left;padding:4px 6px">Monthly Premium</th></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">0–18</td><td style="padding:5px 6px;color:var(--gold2)">~$25 – $75/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">19–25</td><td style="padding:5px 6px;color:var(--gold2)">~$75 – $100/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">26–35</td><td style="padding:5px 6px;color:var(--gold2)">~$125 – $200/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">36–40</td><td style="padding:5px 6px;color:var(--gold2)">~$200 – $225/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">41–45</td><td style="padding:5px 6px;color:var(--gold2)">~$225 – $250/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">46–50</td><td style="padding:5px 6px;color:var(--gold2)">~$250 – $300/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">51–55</td><td style="padding:5px 6px;color:var(--gold2)">~$500+/mo</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="padding:5px 6px;color:var(--text)">56–57</td><td style="padding:5px 6px;color:var(--gold2)">~$700/mo</td></tr>
+        </table>
+      </div>
     </div>
     <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,162,39,0.2)">
-      <strong style="color:var(--gold)">Best for FEX / Budget-Conscious Structure:</strong>
-      <span style="font-size:13px;color:var(--text);margin-left:8px">1. F&G &nbsp;→&nbsp; 2. NLG &nbsp;→&nbsp; 3. Transamerica</span>
+      <strong style="color:var(--gold)">FEX / Budget Structure (Option A):</strong>
+      <span style="font-size:13px;color:var(--text);margin-left:8px">F&amp;G &nbsp;→&nbsp; NLG &nbsp;→&nbsp; Transamerica</span>
     </div>
   </div>
 
   <div style="font-size:14px;font-weight:600;color:var(--text);margin:20px 0 12px">👶 Child Policies (Ages 9 days – 17)</div>
   <div class="carrier-grid">
-    <div class="carrier-card">
-      <div class="carrier-name">Allianz</div>
-      <div class="carrier-stat"><span class="label">Min. Monthly Premium</span><span class="value">$100/mo</span></div>
-      <div class="carrier-stat"><span class="label">Double Coverage</span><span class="value">After $249,999 DB</span></div>
-      <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value">Both parents need 2x coverage</span></div>
-      <div class="rank-badge">Best CV Growth</div>
-    </div>
+    
     <div class="carrier-card">
       <div class="carrier-name">F&G</div>
-      <div class="carrier-stat"><span class="label">Min. Monthly Premium</span><span class="value">$50/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$50/mo</span></div>
       <div class="carrier-stat"><span class="label">Double Coverage</span><span class="value">After $249,999 DB</span></div>
       <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value">Both parents need 2x coverage</span></div>
       <div class="rank-badge">Best Value</div>
     </div>
     <div class="carrier-card">
+      <div class="carrier-name">Symetra</div>
+      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$100,000</span></div>
+      <div class="carrier-stat"><span class="label">Rating</span><span class="value">⭐⭐⭐⭐</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value">Mid-range budgets, Option A &amp; B</span></div>
+    </div>
+    <div class="carrier-card">
+      <div class="carrier-name">Ethos</div>
+      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">Varies</span></div>
+      <div class="carrier-stat"><span class="label">Rating</span><span class="value">⭐⭐⭐½</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value">Simplified issue, limited qualify options</span></div>
+    </div>
+    <div class="carrier-card">
       <div class="carrier-name">NLG</div>
-      <div class="carrier-stat"><span class="label">Min. Monthly Premium</span><span class="value">$25/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$30/mo</span></div>
       <div class="carrier-stat"><span class="label">Double Coverage</span><span class="value">After $500,000 DB</span></div>
       <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value">Both parents need 2x coverage after $500k</span></div>
       <div class="rank-badge">Most Accessible</div>
     </div>
     <div class="carrier-card">
       <div class="carrier-name">Transamerica</div>
-      <div class="carrier-stat"><span class="label">Min. Monthly Premium</span><span class="value">$25/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$25/mo</span></div>
       <div class="carrier-stat"><span class="label">Double Coverage</span><span class="value">Regardless of DB</span></div>
       <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value">Both parents require 2x always</span></div>
       <div class="rank-badge">Budget Option</div>
     </div>
   </div>
+  <div class="card-sm" style="margin:10px 0;background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.3)">
+    <strong style="color:#f87171">⚠️ Symetra does not sell child / juvenile policies.</strong> For child policies use: F&amp;G · NLG · Transamerica
+  </div>
 
   <div style="font-size:14px;font-weight:600;color:var(--text);margin:24px 0 12px">👤 Adult Policies — Minimum Face Amount</div>
   <div class="carrier-grid">
-    <div class="carrier-card">
-      <div class="carrier-name">Allianz</div>
-      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$100,000</span></div>
-      <div class="carrier-stat"><span class="label">Index Growth</span><span class="value">⭐⭐⭐⭐⭐</span></div>
-      <div class="carrier-stat"><span class="label">Best For</span><span class="value">High CV, complex design</span></div>
-    </div>
+    
     <div class="carrier-card">
       <div class="carrier-name">F&G</div>
       <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$50,000</span></div>
-      <div class="carrier-stat"><span class="label">Index Growth</span><span class="value">⭐⭐⭐⭐</span></div>
-      <div class="carrier-stat"><span class="label">Best For</span><span class="value">FEX structure, all-around</span></div>
+      <div class="carrier-stat"><span class="label">Rating</span><span class="value">⭐⭐⭐⭐⭐</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value">FEX structure, all-around, Option A & B</span></div>
     </div>
     <div class="carrier-card">
       <div class="carrier-name">NLG</div>
       <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$50,000</span></div>
-      <div class="carrier-stat"><span class="label">Index Growth</span><span class="value">⭐⭐⭐</span></div>
+      <div class="carrier-stat"><span class="label">Rating</span><span class="value">⭐⭐⭐½</span></div>
       <div class="carrier-stat"><span class="label">Best For</span><span class="value">Budget-conscious, FEX</span></div>
     </div>
     <div class="carrier-card">
       <div class="carrier-name">Transamerica</div>
       <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$25,000</span></div>
-      <div class="carrier-stat"><span class="label">Index Growth</span><span class="value">⭐⭐</span></div>
+      <div class="carrier-stat"><span class="label">Rating</span><span class="value">⭐⭐⭐</span></div>
       <div class="carrier-stat"><span class="label">Best For</span><span class="value">Lowest entry, budget clients</span></div>
     </div>
   </div>
@@ -2073,11 +2119,11 @@
     <div class="card-title">🔄 Carrier Selection Logic — Quick Decision</div>
     <table class="col-table" style="margin-top:12px">
       <tr><th>Situation</th><th>Recommended Carrier</th><th>Reason</th></tr>
-      <tr><td>Client wants maximum CV growth / best index performance</td><td style="color:var(--gold);font-weight:600">Allianz</td><td style="color:var(--muted)">Strongest index growth, innovative index options, best long-term CV</td></tr>
+      <tr><td>Client wants maximum CV growth / best index performance</td><td style="color:var(--gold);font-weight:600">F&amp;G</td><td style="color:var(--muted)">Strongest index growth, best overall cash value</td></tr>
       <tr><td>Client wants strong CV + budget-friendly structure</td><td style="color:var(--gold);font-weight:600">F&G</td><td style="color:var(--muted)">Best balance of growth + affordability, FEX structure available</td></tr>
       <tr><td>Budget-conscious client, lower DB minimum needed</td><td style="color:var(--gold2);font-weight:600">NLG or Transamerica</td><td style="color:var(--muted)">Lower minimums, accessible for smaller premiums</td></tr>
-      <tr><td>Child policy with lowest monthly entry point</td><td style="color:var(--gold2);font-weight:600">NLG or Transamerica</td><td style="color:var(--muted)">$25/month minimum vs $50–100 for F&G and Allianz</td></tr>
-      <tr><td>Child policy with strongest long-term growth</td><td style="color:var(--gold);font-weight:600">Allianz or F&G</td><td style="color:var(--muted)">Higher min but superior CV accumulation over 18+ year horizon</td></tr>
+      <tr><td>Child policy with lowest monthly entry point</td><td style="color:var(--gold2);font-weight:600">NLG or Transamerica</td><td style="color:var(--muted)">$25/month minimum vs $50–100 for F&G</td></tr>
+      <tr><td>Child policy with strongest long-term growth</td><td style="color:var(--gold);font-weight:600">F&amp;G</td><td style="color:var(--muted)">Best balance of CV accumulation and affordability</td></tr>
     </table>
   </div>
 </div>
@@ -2132,11 +2178,6 @@
       <div class="card-sm"><strong style="color:var(--gold)">📞 Client Services / Help Desk</strong><div style="font-size:12px;margin-top:2px">OPT 3 &middot; Help Desk: 800-333-5356</div></div>
     </div>
     <div class="card">
-      <div style="font-size:17px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:10px">Allianz</div>
-      <div class="card-sm" style="margin-bottom:6px"><strong style="color:var(--gold)">📞 Life Case Design Team</strong><div style="font-size:12px;margin-top:2px">800-950-7372</div><div style="font-size:12px;color:var(--muted)">Illustrations, case design, strategy support</div></div>
-      <div class="card-sm"><strong style="color:var(--gold)">📞 General / Sales Support</strong><div style="font-size:12px;margin-top:2px">800-950-1962 &middot; allianzlife.com</div></div>
-    </div>
-    <div class="card">
       <div style="font-size:17px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:10px">Symetra</div>
       <div class="card-sm" style="margin-bottom:6px"><strong style="color:var(--gold)">Nate Kohl</strong>, RVP<div style="font-size:12px;margin-top:2px">801-946-6953 &middot; <a href="mailto:nate.kohl@symetra.com" style="color:var(--accent)">nate.kohl@symetra.com</a></div></div>
       <div class="card-sm" style="margin-bottom:6px"><strong style="color:var(--gold)">James Lau</strong>, RVP<div style="font-size:12px;margin-top:2px">949-519-5420 &middot; <a href="mailto:james.lau@symetra.com" style="color:var(--accent)">james.lau@symetra.com</a></div></div>
@@ -2161,34 +2202,18 @@
     <div class="section-desc">Not about bashing carriers — about knowing product limitations and protecting your clients. Know before you go.</div>
   </div>
   <div class="card card-gold" style="margin-bottom:20px"><div class="card-title gold">Guiding Principle</div><p style="font-size:13px;line-height:1.7">Every carrier can serve a purpose in the right situation. The goal here is ensuring you understand limitations before placing business. A product placed incorrectly hurts the client, your reputation, and the industry.</p></div>
-  <div class="card card-red" style="margin-bottom:16px">
-    <div class="card-title" style="color:#f87171">⚠️ Ethos Life Insurance</div>
-    <div class="two-col" style="margin-top:12px">
-      <div class="card-sm" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2)">
-        <strong style="color:#f87171">What Ethos Is</strong>
-        <p style="font-size:12px;color:#fca5a5;margin-top:4px">A direct-to-consumer digital platform offering term and simplified issue whole life. Heavy online/employer marketing. Simplified issue means higher internal costs passed to consumers who may qualify for better fully-underwritten rates. Not designed for agent distribution.</p>
-        <ul style="list-style:none;margin-top:8px">
-          <li style="font-size:12px;color:#fca5a5;padding:2px 0">→ Limited product depth compared to F&amp;G, Allianz, NLG</li>
-          <li style="font-size:12px;color:#fca5a5;padding:2px 0">→ When client says "I have Ethos" — evaluate re-proposal with fully underwritten coverage</li>
-          <li style="font-size:12px;color:#fca5a5;padding:2px 0">→ Do not lead with Ethos. Do not default to Ethos for any client who qualifies for traditional underwriting</li>
-        </ul>
-      </div>
-      <div class="card-sm" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2)">
-        <strong style="color:#f87171">When It Might Make Sense</strong>
-        <p style="font-size:12px;color:#fca5a5;margin-top:4px">Clients who genuinely cannot qualify for fully underwritten coverage — simplified issue fills a gap. Evaluate case by case, never as a default. Always pursue standard underwriting first. If a client has Ethos and their health has improved, explore replacement with a better product.</p>
-      </div>
-    </div>
+  
   </div>
   <div class="card card-red" style="margin-bottom:16px">
     <div class="card-title" style="color:#f87171">⚠️ Mutual of Omaha — IULE &amp; Child Policies</div>
     <div class="two-col" style="margin-top:12px">
       <div class="card-sm" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2)">
         <strong style="color:#f87171">The IULE Product</strong>
-        <p style="font-size:12px;color:#fca5a5;margin-top:4px">Simplified issue IUL — faster approval, but higher internal costs and lower illustrated returns compared to fully underwritten F&amp;G, Allianz, or NLG products. Convenient for some situations but not optimal for cash value strategies or Option B designs.</p>
+        <p style="font-size:12px;color:#fca5a5;margin-top:4px">Simplified issue IUL — faster approval, but higher internal costs and lower illustrated returns compared to fully underwritten F&amp;G, or NLG products. Convenient for some situations but not optimal for cash value strategies or Option B designs.</p>
       </div>
       <div class="card-sm" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.2)">
         <strong style="color:#f87171">MoO Child Policies</strong>
-        <p style="font-size:12px;color:#fca5a5;margin-top:4px">Less competitive cash value growth for juvenile strategies. For Million Dollar Baby / family banking designs, preferred carriers are Allianz (best CV growth) and F&amp;G (best balance). MoO child products are serviceable but not the first recommendation for CV-focused juvenile cases.</p>
+        <p style="font-size:12px;color:#fca5a5;margin-top:4px">Less competitive cash value growth for juvenile strategies. For Million Dollar Baby / family banking designs, preferred carrier is F&amp;G (best CV growth and balance). MoO child products are serviceable but not the first recommendation for CV-focused juvenile cases.</p>
       </div>
     </div>
     <div class="alert-box" style="margin-top:12px;background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.3)"><span class="alert-icon">📌</span><span style="color:#fca5a5">Always run illustrations and compare. Products and rates change. Use the Carrier Contacts section to get current illustrations before placing or avoiding business.</span></div>
@@ -2263,13 +2288,13 @@
 
     <div class="glossary-letter">A</div>
     <div class="glossary-item"><div class="glossary-term">Accumulated Value</div><div class="glossary-def">The total cash accumulation component of the policy after all charges and credits — before surrender charges or loans. This is the "account balance" inside the policy.</div></div>
-    <div class="glossary-item"><div class="glossary-term">Accumulation Value (Allianz)</div><div class="glossary-def">Equal to the greater of the current value or the guaranteed accumulation value. The working "account balance" of the policy before any surrender charges or loan adjustments.</div></div>
+    
     <div class="glossary-item"><div class="glossary-term">Actuarial Guidelines (AG49 / AG49-A)</div><div class="glossary-def">Regulations issued by the National Association of Insurance Commissioners (NAIC) that govern how IUL policies can be illustrated to consumers. AG49 (2015) capped the maximum illustrated crediting rate based on historical index performance. AG49-A (2020) added further restrictions on multiplier bonuses and illustrated loan arbitrage. The result: illustrations must be conservative enough to reflect realistic outcomes. When clients ask why the illustration 'looks conservative,' AG49-A is the reason — it was designed to prevent carriers from overpromising returns. Any illustration you run is already AG49-A compliant if produced by the carrier's software.</div></div>
     <div class="glossary-item"><div class="glossary-term">AML (Anti-Money Laundering)</div><div class="glossary-def">Federal compliance requirement. Insurance companies must verify that premiums come from legitimate sources. You'll need income, net worth, and employer info from every applicant.</div></div>
-    <div class="glossary-item"><div class="glossary-term">Asset Charge</div><div class="glossary-def">A carrier-specific charge (Allianz) that covers costs and expenses associated with the Select Indexed allocation. Listed separately from the monthly COI and policy fee.</div></div>
+    
 
     <div class="glossary-letter">B</div>
-    <div class="glossary-item"><div class="glossary-term">Base Premium (Allianz)</div><div class="glossary-def">During policy year 1, the greater of the planned premium or any premium paid within the planned premium period. In later years, the lesser of the planned premium and the prior year's actual amount paid. Premiums equal to or below base go into current allocations; amounts above go to the interim account.</div></div>
+    
 
     <div class="glossary-letter">C</div>
     <div class="glossary-item"><div class="glossary-term">Cap Rate</div><div class="glossary-def">The maximum interest rate that can be credited to a policy in a given segment period. If the index grows 15% but the cap is 10%, you receive 10%. Set by the carrier and can change annually (though the change takes effect at the start of a new segment).</div></div>
@@ -2278,13 +2303,13 @@
     <div class="glossary-item"><div class="glossary-term">COI (Cost of Insurance)</div><div class="glossary-def">The monthly charge for the pure insurance protection component. Based on age, gender, health class, and net amount at risk (NAR). Increases as the insured gets older.</div></div>
     <div class="glossary-item"><div class="glossary-term">Compound Interest</div><div class="glossary-def">Interest calculated on the original principal AND all previously accumulated interest. The formula is: A = P(1 + r)^t. This is how IUL cash value grows — each year's interest becomes part of next year's base. At 7% compound over 30 years, $10,000 becomes ~$76,000. At 3% simple interest over the same period, it stays ~$19,000. The gap between compound and simple interest is the single most powerful concept in financial education. IULs use compound interest. Most bank accounts do not.</div></div>
     <div class="glossary-item"><div class="glossary-term">Corridor</div><div class="glossary-def">IRS-required minimum gap between the death benefit and the cash value. If cash value grows large enough to violate the corridor, the carrier automatically increases the death benefit. This keeps the policy classified as life insurance (not an investment).</div></div>
-    <div class="glossary-item"><div class="glossary-term">Current Value (Allianz)</div><div class="glossary-def">Reflects money put into the policy (less premium charges) plus any Interest Bonus, plus fixed/indexed interest earned, minus money taken out (surrenders, policy charges). Based on non-guaranteed current rates — can change throughout the policy life.</div></div>
+    
     <div class="glossary-item"><div class="glossary-term">CVAT (Cash Value Accumulation Test)</div><div class="glossary-def">One of two IRS tests for qualifying as life insurance. Allows more premium early on. Often used for single-premium or short-pay designs. Usually paired with Option A death benefit.</div></div>
 
     <div class="glossary-letter">D</div>
     <div class="glossary-item"><div class="glossary-term">Death Benefit Option A (Level)</div><div class="glossary-def">Death benefit stays at the stated face amount. Lower cost of insurance since NAR decreases as cash value grows. Used during distribution phase or for protection-focused designs.</div></div>
     <div class="glossary-item"><div class="glossary-term">Death Benefit Option B (Increasing)</div><div class="glossary-def">Death benefit = face amount PLUS accumulated cash value. Higher COI (since NAR stays consistent) but allows more premium to flow in under GPT. Used during accumulation phase for cash value designs. Switch to Option A when distributions begin.</div></div>
-    <div class="glossary-item"><div class="glossary-term">Death Benefit Option C (Allianz)</div><div class="glossary-def">Allianz-specific option: equals the specified policy amount PLUS the total premium paid to date, minus any outstanding loans. Offers a return-of-premium style death benefit. Less common — used in specific legacy/return-of-premium designs.</div></div>
+    
     <div class="glossary-item"><div class="glossary-term">DEFRA (Deficit Reduction Act, 1984)</div><div class="glossary-def">The federal legislation that established the formal definition of 'life insurance' under IRS Section 7702, introducing the GPT (Guideline Premium Test) and CVAT (Cash Value Accumulation Test) as the two qualifying tests. DEFRA followed TEFRA (1982) and created the modern framework under which all IUL policies are designed. Knowing DEFRA helps agents explain to clients that the tax advantages of an IUL aren't a loophole — they were explicitly created and codified by Congress.</div></div>
     <div class="glossary-item"><div class="glossary-term">DIFF Column</div><div class="glossary-def">In the illustration spreadsheet — the difference between what a client is paying and the maximum allowed premium. Shows how much room they have to increase contributions without becoming a MEC.</div></div>
 
@@ -2323,7 +2348,7 @@
     <div class="glossary-letter">M</div>
     <div class="glossary-item"><div class="glossary-term">MEC (Modified Endowment Contract)</div><div class="glossary-def">A policy that has been overfunded beyond IRS limits in the first 7 years. Once a MEC, all distributions (loans and withdrawals) are taxed as ordinary income and subject to 10% penalty before age 59½. Avoidance of MEC status is critical for tax-free income strategy.</div></div>
     <div class="glossary-item"><div class="glossary-term">MIB (Medical Information Bureau)</div><div class="glossary-def">A shared database used by insurance carriers to check an applicant's prior medical and insurance application history. Any previously disclosed medical conditions or prior applications show up here. Honesty in applications is essential — discrepancies are flagged.</div></div>
-    <div class="glossary-item"><div class="glossary-term">Midpoint Scenario (Allianz)</div><div class="glossary-def">An illustration scenario using the average of current interest rates and 0%, along with the average of current and guaranteed charges. Represents a middle-ground projection — more conservative than current but less conservative than guaranteed. Use to show clients a realistic range of outcomes.</div></div>
+    
 
     <div class="glossary-letter">N</div>
     <div class="glossary-item"><div class="glossary-term">NAR (Net Amount at Risk)</div><div class="glossary-def">The difference between the current death benefit and the current accumulated value. The insurance company is "at risk" for this amount. As cash value grows, NAR decreases (Option A). As cash value grows with Option B (increasing DB), NAR stays roughly constant, which means higher ongoing COI.</div></div>
@@ -2335,7 +2360,7 @@
     <div class="glossary-item"><div class="glossary-term">Participating Loan / Wash Loan</div><div class="glossary-def">A loan where the policy credits interest on the collateral at the same rate (or near the same rate) charged on the loan — resulting in a near-zero net cost of borrowing. In policy years 11+, many carriers offer true "wash loans" where net interest cost = 0%.</div></div>
     <div class="glossary-item"><div class="glossary-term">Participation Rate</div><div class="glossary-def">The percentage of index growth that is credited to your policy. A 100% participation rate means you receive 100% of the (capped) index growth. Some carriers offer >100% participation rates on certain indexes as an alternative to a cap.</div></div>
     <div class="glossary-item"><div class="glossary-term">Per Unit Charge</div><div class="glossary-def">Known as the Monthly Expense Charge — a per-$1,000 of death benefit fee that covers underwriting, distributing, and issuing costs. Varies by age, gender, health class, and face amount band. Listed separately in the illustration charges.</div></div>
-    <div class="glossary-item"><div class="glossary-term">Planned Premium (Allianz)</div><div class="glossary-def">The amount of premium the policyholder plans to pay each policy year. Used to project values in the illustration. Actual payments can vary — the policy is flexible — but the illustration assumes this planned amount.</div></div>
+    
     <div class="glossary-item"><div class="glossary-term">Point-to-Point Crediting</div><div class="glossary-def">The most common crediting method. Interest is calculated by comparing the index value at the START of the segment to the value at the END (one year later). Only the change over the full year is used — intra-year volatility is ignored.</div></div>
     <div class="glossary-item"><div class="glossary-term">Policy Maturity</div><div class="glossary-def">The date when the insurance contract ends and the full accumulated value is paid to the policyholder. For modern IULs, this is age 120 or 121 (per updated IRC Section 7702 effective 2021). Older policies sometimes matured at age 100 or 105 — creating "maturity risk" where clients could outlive coverage. Modern IUL maturity dates effectively eliminate this concern for all practical planning purposes.</div></div>
     <div class="glossary-item"><div class="glossary-term">Premium Call</div><div class="glossary-def">A notice from the carrier that additional premium is required to keep the policy in force. Occurs when cash value can no longer cover monthly charges — typically due to underfunding, prolonged low index credits, or increasing COI. If ignored, the policy lapses. A premium call on a policy with outstanding loans can trigger a taxable event. A well-designed, adequately funded IUL should rarely if ever produce a premium call. This is why funding level matters.</div></div>
@@ -2365,7 +2390,7 @@
     <div class="glossary-item"><div class="glossary-term">Total Charges</div><div class="glossary-def">The sum of all monthly deductions and premium deductions shown in the illustration. Includes COI, policy fee, per unit charge, rider charges, and asset charges. Use to show clients what the "cost of the insurance wrapper" is relative to the growth they receive.</div></div>
 
     <div class="glossary-letter">U</div>
-    <div class="glossary-item"><div class="glossary-term">UA / Ultimate Amount (Allianz)</div><div class="glossary-def">The death benefit used to determine both internal and reinsurance capacity. Autobind limits, jumbo limits, and underwriting requirements are based on this amount. Shown in the illustration header — relevant for large-face-amount policies that may require additional underwriting.</div></div>
+    
 
     <div class="glossary-letter">V</div>
     <div class="glossary-item"><div class="glossary-term">Variable Universal Life (VUL)</div><div class="glossary-def">A permanent life insurance policy where cash value is invested directly in sub-accounts (like mutual funds) — with FULL market exposure. Unlike an IUL, a VUL has NO floor: a 40% market drop means 40% loss of cash value. Requires a securities license (Series 6 or 7) to sell. VULs can outperform IULs in prolonged bull markets but can devastate accumulation in downturns. Key client line: "In an IUL, you participate in market growth but are protected from market losses. In a VUL, you take on full market risk — both up and down."</div></div>
@@ -2406,7 +2431,7 @@
   function toggleObj(el) {
     const body = el.nextElementSibling;
     const arrow = el.querySelector('.obj-arrow');
-    if (body) body.classList.toggle('active');
+    if (body) body.classList.toggle('open');
     if (arrow) arrow.classList.toggle('open');
   }
 
@@ -2490,6 +2515,11 @@
   let sectionProgress = new Set();
 
   function showSection(id) {
+    // Reset education topic content (prevents overlay bleed into other sections)
+    document.querySelectorAll('.topic-content').forEach(t => t.classList.remove('active'));
+    // Reset all open objections
+    document.querySelectorAll('.objection-body.open').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.obj-arrow.open').forEach(a => a.classList.remove('open'));
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     const sec = document.getElementById('sec-' + id);
