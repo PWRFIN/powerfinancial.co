@@ -470,9 +470,10 @@ color: var(--warm-white);
 }
 
 .day-date {
-font-size: 0.85rem;
-color: rgba(254,243,226,0.35);
-font-weight: 500;
+font-size: 1.15rem;
+color: rgba(254,243,226,0.62);
+font-weight: 700;
+letter-spacing: 0.01em;
 }
 
 .day-toggle {
@@ -712,7 +713,7 @@ text-align: left;
 
 .weekly-totals {
 display: grid;
-grid-template-columns: repeat(2, minmax(0, 220px));
+grid-template-columns: repeat(2, minmax(0, 280px));
 justify-content: center;
 gap: 16px;
 margin-top: 36px;
@@ -728,7 +729,9 @@ background: rgba(255,159,28,0.05);
 .weekly-total strong {
 display: block;
 font-family: 'Dela Gothic One', sans-serif;
-font-size: clamp(1.5rem, 4vw, 2rem);
+font-size: clamp(1.3rem, 3.4vw, 1.7rem);
+letter-spacing: -0.02em;
+white-space: nowrap;
 color: var(--flame);
 }
 
@@ -895,6 +898,49 @@ box-shadow: 0 8px 40px rgba(255,107,53,0.4);
 }
 
 .btn-fire:hover::before { left: 100%; }
+
+/* ========== WEEKLY RECAP CARDS ========== */
+.recap-card {
+display: block;
+color: inherit;
+text-decoration: none;
+position: relative;
+overflow: hidden;
+transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), background 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+
+.recap-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,190,11,0.12), transparent);
+transition: left 0.6s;
+pointer-events: none;
+}
+
+.recap-card:hover::before { left: 100%; }
+
+.recap-card:hover {
+transform: translateY(-6px);
+background: rgba(255,107,53,0.09);
+border-color: rgba(255,107,53,0.45);
+box-shadow: 0 14px 34px rgba(255,107,53,0.18);
+}
+
+.recap-card span { transition: color 0.35s, letter-spacing 0.35s; }
+
+.recap-card:hover span {
+color: var(--glow);
+letter-spacing: 0.22em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+.recap-card, .recap-card::before, .recap-card span { transition: none; }
+.recap-card:hover { transform: none; }
+}
 
 /* ========== FOOTER ========== */
 footer {
@@ -1109,7 +1155,7 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 
 <div class="day-card open">
 <div class="day-header" onclick="toggleDay(this)" role="button" tabindex="0" aria-expanded="true">
-<div class="day-name"><span>Monday</span> <span style="color:#ff6b35;">(Pay Day!!)</span></div>
+<div class="day-name"><span>Monday</span></div>
 <div class="day-date">Aug 31</div>
 <div class="day-toggle">+</div>
 </div>
@@ -1122,7 +1168,7 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 
 <div class="day-card">
 <div class="day-header" onclick="toggleDay(this)" role="button" tabindex="0" aria-expanded="false">
-<div class="day-name"><span>Tuesday</span></div>
+<div class="day-name"><span>Tuesday</span> <span style="color:#ff6b35;">(Pay Day!!)</span></div>
 <div class="day-date">Sep 1</div>
 <div class="day-toggle">+</div>
 </div>
@@ -1211,6 +1257,8 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 <h2 class="section-title">Please <span class="accent">Welcome</span></h2>
 <div class="welcome-grid">
 <div class="welcome-card">Nichole B.</div>
+<div class="welcome-card">Daisy R.</div>
+<div class="welcome-card">Leslie L.</div>
 </div>
 </div>
 </section>
@@ -1242,6 +1290,7 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 <div class="spotlight-type">&#127775; Top Producer</div>
 <div class="spotlight-name">Diana</div>
 <div class="spotlight-title">$57,400 AP</div>
+<div class="spotlight-policies">1 Term &bull; 1 Annuity</div>
 </div>
 <div class="spotlight-card reveal">
 <div class="spotlight-type">Producer Spotlight</div>
@@ -1266,12 +1315,12 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 <h2 class="training-title">Weekly <span class="accent">Recap</span></h2>
 <p class="training-desc">Find your team below and submit your recap for the week.</p>
 <div class="welcome-grid">
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/0B0bpiTmTf4enJYVkSTM" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Diana<span>Submit Recap</span></a>
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/PYaDhbKFVwB5cghhrbZv" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Geoffrey<span>Submit Recap</span></a>
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/GUgHoQ4JMD66HIZhg3lG" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Julian<span>Submit Recap</span></a>
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/hJhkj41BrGr2eYPgqqEx" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Laura<span>Submit Recap</span></a>
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/ltM0tY9t6PzuvXg6M0k3" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Sway<span>Submit Recap</span></a>
-<a class="welcome-card" href="https://links.powerfinancial.co/widget/form/PrpcPMiagieKacdCYgBQ" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Team Veronica<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/0B0bpiTmTf4enJYVkSTM" target="_blank" rel="noopener">Team Diana<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/PYaDhbKFVwB5cghhrbZv" target="_blank" rel="noopener">Team Geoffrey<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/GUgHoQ4JMD66HIZhg3lG" target="_blank" rel="noopener">Team Julian<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/hJhkj41BrGr2eYPgqqEx" target="_blank" rel="noopener">Team Laura<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/ltM0tY9t6PzuvXg6M0k3" target="_blank" rel="noopener">Team Sway<span>Submit Recap</span></a>
+<a class="welcome-card recap-card" href="https://links.powerfinancial.co/widget/form/PrpcPMiagieKacdCYgBQ" target="_blank" rel="noopener">Team Veronica<span>Submit Recap</span></a>
 </div>
 <p class="training-desc" style="margin-top:56px; margin-bottom:28px;">Need E&amp;O coverage? Request it here.</p>
 <a class="btn-fire" href="https://links.powerfinancial.co/widget/form/aqL2H2ka70bSACpPyUWl" target="_blank" rel="noopener">Request E&amp;O</a>
