@@ -602,7 +602,11 @@ box-shadow: 0 24px 70px rgba(0,0,0,0.45), 0 0 45px rgba(255,107,53,0.1);
 .birthday-name, .promotion-name { font-family: 'Dela Gothic One', sans-serif; font-size: clamp(1.5rem, 4vw, 2.25rem); color: var(--warm-white); }
 .birthday-date { font-family: 'Caveat', cursive; font-size: 2rem; font-weight: 700; color: var(--flame); margin-top: 8px; }
 .welcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.welcome-card { padding: 24px 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,107,53,0.1); border-radius: 16px; font-family: 'Dela Gothic One', sans-serif; font-size: 1rem; }
+.welcome-card { padding: 24px 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,107,53,0.1); border-radius: 16px; font-family: 'Dela Gothic One', sans-serif; font-size: 1rem; position: relative; overflow: hidden; transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), background 0.35s, border-color 0.35s, box-shadow 0.35s; }
+.welcome-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,190,11,0.12), transparent); transition: left 0.6s; pointer-events: none; }
+.welcome-card:hover::before { left: 100%; }
+.welcome-card:hover { transform: translateY(-6px); background: rgba(255,107,53,0.09); border-color: rgba(255,107,53,0.45); box-shadow: 0 14px 34px rgba(255,107,53,0.18); }
+.welcome-card:hover span { color: var(--glow); letter-spacing: 0.22em; }
 .welcome-card span { display: block; font: inherit; font-size: 0.72rem; letter-spacing: 0.16em; color: var(--flame); margin-top: 8px; }
 
 /* ========== CONVENTION ========== */
@@ -904,42 +908,106 @@ box-shadow: 0 8px 40px rgba(255,107,53,0.4);
 display: block;
 color: inherit;
 text-decoration: none;
-position: relative;
-overflow: hidden;
-transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), background 0.35s, border-color 0.35s, box-shadow 0.35s;
 }
 
-.recap-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,190,11,0.12), transparent);
-transition: left 0.6s;
-pointer-events: none;
-}
-
-.recap-card:hover::before { left: 100%; }
-
-.recap-card:hover {
-transform: translateY(-6px);
-background: rgba(255,107,53,0.09);
-border-color: rgba(255,107,53,0.45);
-box-shadow: 0 14px 34px rgba(255,107,53,0.18);
-}
-
-.recap-card span { transition: color 0.35s, letter-spacing 0.35s; }
-
-.recap-card:hover span {
-color: var(--glow);
-letter-spacing: 0.22em;
-}
+.welcome-card span { transition: color 0.35s, letter-spacing 0.35s; }
 
 @media (prefers-reduced-motion: reduce) {
-.recap-card, .recap-card::before, .recap-card span { transition: none; }
-.recap-card:hover { transform: none; }
+.welcome-card, .welcome-card::before, .welcome-card span { transition: none; }
+.welcome-card:hover { transform: none; }
+}
+
+/* ========== LEGAL MODAL ========== */
+.legal-modal {
+position: fixed;
+inset: 0;
+z-index: 10000;
+display: grid;
+place-items: center;
+padding: 24px;
+background: rgba(10,7,5,0.82);
+}
+.legal-modal[hidden] { display: none; }
+
+.legal-panel {
+width: min(100%, 880px);
+max-height: 86vh;
+display: flex;
+flex-direction: column;
+background: var(--smoke);
+border: 1px solid rgba(255,159,28,0.28);
+border-radius: 20px;
+box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+overflow: hidden;
+}
+
+.legal-head {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 16px;
+padding: 26px 30px 18px;
+border-bottom: 1px solid rgba(255,107,53,0.14);
+text-align: left;
+}
+
+.legal-head h2 {
+font-family: 'Dela Gothic One', sans-serif;
+font-size: clamp(1.15rem, 3vw, 1.55rem);
+line-height: 1.2;
+}
+
+.legal-eff { margin-top: 8px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(254,243,226,0.45); }
+
+.legal-close {
+flex: none;
+width: 38px;
+height: 38px;
+border: 1px solid rgba(255,107,53,0.3);
+border-radius: 50%;
+background: rgba(255,107,53,0.1);
+color: var(--ember);
+font-family: 'DM Sans', sans-serif;
+font-size: 1.25rem;
+line-height: 1;
+cursor: pointer;
+transition: all 0.3s;
+}
+.legal-close:hover { background: var(--ember); color: var(--charcoal); transform: rotate(90deg); }
+
+.legal-body {
+padding: 26px 30px 34px;
+overflow-y: auto;
+text-align: left;
+color: rgba(254,243,226,0.72);
+font-size: 0.93rem;
+line-height: 1.75;
+}
+.legal-body h3 {
+margin: 30px 0 10px;
+font-family: 'Dela Gothic One', sans-serif;
+font-size: 0.95rem;
+color: var(--flame);
+}
+.legal-body h3:first-child { margin-top: 0; }
+.legal-body h4 { margin: 18px 0 8px; font-size: 0.9rem; color: var(--warm-white); }
+.legal-body p { margin-bottom: 12px; }
+.legal-body ul { margin: 0 0 14px 20px; }
+.legal-body li { margin-bottom: 6px; }
+.legal-body strong { color: var(--warm-white); }
+.legal-body a { color: var(--flame); }
+.legal-note {
+margin-top: 24px;
+padding: 16px 18px;
+border: 1px solid rgba(255,107,53,0.2);
+border-radius: 12px;
+background: rgba(255,107,53,0.06);
+font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+.legal-head { padding: 20px 20px 14px; }
+.legal-body { padding: 20px 20px 28px; }
 }
 
 /* ========== FOOTER ========== */
@@ -1371,8 +1439,8 @@ fill="#d4a418" stroke="#c8960c" stroke-width="2" stroke-linejoin="round"/>
 <div class="footer-bottom">
 <span>&copy; 2026 Power Financial. All rights reserved.</span>
 <div>
-<a href="#">Privacy Policy</a>
-<a href="#">Terms</a>
+<a href="#" onclick="openLegal('privacy-modal'); return false;">Privacy Policy</a>
+<a href="#" onclick="openLegal('terms-modal'); return false;">Terms</a>
 <a href="#">Disclosures</a>
 </div>
 </div>
@@ -1499,7 +1567,452 @@ entry.target.classList.add('visible');
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ========== LEGAL MODALS ==========
+function openLegal(id) {
+const modal = document.getElementById(id);
+if (!modal) return;
+modal.hidden = false;
+document.body.style.overflow = 'hidden';
+const closeBtn = modal.querySelector('.legal-close');
+if (closeBtn) closeBtn.focus();
+}
+
+function closeLegal(id) {
+const modal = document.getElementById(id);
+if (!modal) return;
+modal.hidden = true;
+modal.querySelector('.legal-body').scrollTop = 0;
+document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.legal-modal').forEach(function (modal) {
+modal.addEventListener('click', function (event) {
+if (event.target === modal) closeLegal(modal.id);
+});
+});
+
+document.addEventListener('keydown', function (event) {
+if (event.key !== 'Escape') return;
+document.querySelectorAll('.legal-modal:not([hidden])').forEach(function (modal) { closeLegal(modal.id); });
+});
+
 </script>
+
+<!-- LEGAL MODALS -->
+<div class="legal-modal" id="privacy-modal" hidden role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+<div class="legal-panel">
+<div class="legal-head">
+<div>
+<h2 id="privacy-modal-title">Privacy Policy</h2>
+<div class="legal-eff">Effective September 8, 2026 &bull; Last updated September 8, 2026</div>
+</div>
+<button type="button" class="legal-close" onclick="closeLegal('privacy-modal')" aria-label="Close">&times;</button>
+</div>
+<div class="legal-body">
+<p>PWRFIN LLC, doing business as Power Financial Consultants and Ciervo Wealth Management (&ldquo;PWRFIN,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), respects your privacy and is committed to protecting the personal information you provide to us.</p>
+<p>This Privacy Policy explains how we collect, use, disclose, and protect information when you visit or interact with our websites, landing pages, forms, applications, communications, and other online services that link to this Privacy Policy (collectively, the &ldquo;Services&rdquo;).</p>
+<p>PWRFIN LLC is based in Cleveland, Ohio.</p>
+<p>By accessing or using our Services, you acknowledge the practices described in this Privacy Policy.</p>
+
+<h3>1. Information We Collect</h3>
+<p>Depending on how you interact with us, we may collect information directly from you, automatically through your use of our Services, or from third parties.</p>
+<h4>A. Information You Provide to Us</h4>
+<p>You may provide personal information when you:</p>
+<ul>
+<li>Submit a contact or consultation request;</li>
+<li>Request information about life insurance, health insurance, annuities, financial products, or related services;</li>
+<li>Complete a quote, questionnaire, survey, or lead form;</li>
+<li>Schedule an appointment;</li>
+<li>Communicate with us by email, telephone, text message, or other means;</li>
+<li>Apply to become an agent or representative;</li>
+<li>Submit information through an employment, contracting, onboarding, or business-related form;</li>
+<li>Subscribe to communications or marketing materials; or</li>
+<li>Otherwise voluntarily provide information to us.</li>
+</ul>
+<p>Depending on the service or interaction, this information may include:</p>
+<ul>
+<li>Name;</li>
+<li>Mailing address;</li>
+<li>Email address;</li>
+<li>Telephone number;</li>
+<li>Date of birth;</li>
+<li>State of residence;</li>
+<li>Employment or business information;</li>
+<li>Insurance-related information;</li>
+<li>Financial information;</li>
+<li>Information concerning your insurance needs and preferences;</li>
+<li>Information you voluntarily provide concerning your health or other circumstances relevant to an insurance inquiry or application; and</li>
+<li>Other information you choose to provide.</li>
+</ul>
+<p>You should not submit sensitive personal information through a general website contact form unless specifically requested and the form is intended to collect that information.</p>
+<h4>B. Information Collected Automatically</h4>
+<p>When you visit our website, certain information may be collected automatically, including:</p>
+<ul>
+<li>IP address;</li>
+<li>Browser type and version;</li>
+<li>Device type;</li>
+<li>Operating system;</li>
+<li>Approximate geographic location;</li>
+<li>Pages visited;</li>
+<li>Referring website or source;</li>
+<li>Date and time of visits;</li>
+<li>Website interactions; and</li>
+<li>Other technical information concerning your use of the Services.</li>
+</ul>
+<p>We may collect this information through cookies, pixels, tags, analytics tools, log files, and similar technologies.</p>
+
+<h3>2. Cookies and Tracking Technologies</h3>
+<p>Our Services may use cookies and similar technologies to operate the website, remember preferences, understand website usage, measure advertising performance, and improve our Services.</p>
+<p>These technologies may be provided by us or by third-party service providers.</p>
+<p>Depending on your browser and device settings, you may be able to block or delete cookies. Disabling certain cookies may affect the functionality of portions of our Services.</p>
+<p>Third-party analytics and advertising providers may use cookies or similar technologies to collect information about your activity across websites or services for purposes such as analytics, advertising, attribution, and audience measurement.</p>
+
+<h3>3. How We Use Personal Information</h3>
+<p>We may use personal information for legitimate business purposes, including to:</p>
+<ul>
+<li>Respond to inquiries and requests;</li>
+<li>Provide requested information or services;</li>
+<li>Contact you regarding insurance or financial products and services;</li>
+<li>Schedule appointments;</li>
+<li>Provide quotes or facilitate insurance-related services;</li>
+<li>Connect you with an appropriately licensed insurance or financial professional;</li>
+<li>Process applications or requests;</li>
+<li>Communicate with you regarding your relationship with us;</li>
+<li>Send service-related communications;</li>
+<li>Send marketing communications where permitted by law;</li>
+<li>Improve our website, products, and services;</li>
+<li>Analyze website usage and marketing performance;</li>
+<li>Prevent fraud, abuse, unauthorized activity, or other unlawful conduct;</li>
+<li>Maintain business and security records;</li>
+<li>Comply with applicable laws, regulations, legal processes, and regulatory requirements;</li>
+<li>Protect our rights, property, and users; and</li>
+<li>Carry out other purposes disclosed at the time information is collected or with your consent where required.</li>
+</ul>
+
+<h3>4. Insurance and Financial Services Information</h3>
+<p>If you request insurance, annuity, financial, or related services, the information you provide may be used to evaluate your needs and facilitate communication with insurance carriers, financial institutions, licensed professionals, agencies, marketing organizations, or other parties involved in providing the requested service.</p>
+<p>Information collected as part of an insurance or financial transaction may be subject to additional privacy notices, disclosures, agreements, or legal requirements applicable to that transaction.</p>
+<p>For example, information collected during an insurance application or financial services relationship may be governed by applicable federal and state privacy laws and by the privacy practices of the applicable insurance carrier or financial institution.</p>
+<p>This website Privacy Policy does not replace any privacy notice provided by an insurance carrier, financial institution, or other third party in connection with a specific product or transaction.</p>
+
+<h3>5. How We Share Personal Information</h3>
+<p>We may disclose personal information to third parties when reasonably necessary to operate our business, provide requested services, or fulfill the purposes described in this Privacy Policy.</p>
+<p>These parties may include:</p>
+<ul>
+<li>Insurance carriers and product providers;</li>
+<li>Financial institutions and service providers;</li>
+<li>Licensed insurance agents, advisors, representatives, or other professionals;</li>
+<li>Agencies, brokerages, marketing organizations, or distribution partners;</li>
+<li>Lead providers and lead-generation partners;</li>
+<li>Customer relationship management and communication platforms;</li>
+<li>Website hosting and technology providers;</li>
+<li>Scheduling and appointment platforms;</li>
+<li>Email, telephone, and text-message service providers;</li>
+<li>Analytics providers;</li>
+<li>Advertising and marketing providers;</li>
+<li>Payment processors, where applicable;</li>
+<li>Professional advisors, including attorneys, accountants, and consultants;</li>
+<li>Regulators, governmental authorities, or law enforcement where required or permitted by law; and</li>
+<li>Other service providers acting on our behalf.</li>
+</ul>
+<p>We may also disclose information when necessary to comply with a legal obligation, enforce our agreements, protect our rights or property, prevent fraud or other unlawful activity, or protect the safety of our users or others.</p>
+<h4>We Do Not Sell Personal Information</h4>
+<p>PWRFIN does not sell your personal information for monetary consideration.</p>
+<p>However, certain website technologies, advertising arrangements, lead-generation arrangements, or analytics services may constitute &ldquo;sharing&rdquo; or other regulated disclosures under certain state privacy laws. Where applicable law provides you with rights concerning such activities, we will honor those rights as required.</p>
+
+<h3>6. Lead Generation and Third-Party Sources</h3>
+<p>We may receive personal information from third-party lead providers, marketing partners, referral sources, advertising platforms, or other business partners.</p>
+<p>If you submit your information to another company and that company provides your information to us, the privacy practices of that company may also apply to the information it collected.</p>
+<p>Similarly, when you click an advertisement, link, or other third-party service, you may be directed to a website or platform that is not controlled by PWRFIN.</p>
+<p>We encourage you to review the privacy policies of third parties before providing them with personal information.</p>
+
+<h3>7. Telephone and Text Message Communications</h3>
+<p>If you provide a telephone number and consent to receive communications from us, we may contact you by telephone call or text message regarding your inquiry, requested services, appointments, insurance or financial products, or other communications for which you have provided consent.</p>
+<p>Message and data rates may apply.</p>
+<p>Consent to receive marketing text messages is not a condition of purchasing any product or service.</p>
+<p>You may opt out of marketing text messages by replying STOP to a message, where supported. You may also contact us directly to request that marketing communications be discontinued.</p>
+<p>Please understand that opting out of certain communications may affect our ability to provide requested services or respond to your inquiry.</p>
+
+<h3>8. Email Communications</h3>
+<p>If you provide your email address, we may use it to respond to inquiries, provide requested information, communicate about appointments or services, and, where permitted, send marketing or informational communications.</p>
+<p>You may unsubscribe from marketing emails by following the unsubscribe instructions contained in the applicable email.</p>
+<p>Even if you opt out of marketing communications, we may continue sending transactional, administrative, security, or other communications that are necessary to provide services or maintain our business relationship with you.</p>
+
+<h3>9. Third-Party Websites and Services</h3>
+<p>Our Services may contain links to websites, applications, social media platforms, or other services operated by third parties.</p>
+<p>We are not responsible for the privacy practices, content, security, or policies of third-party websites or services.</p>
+<p>Your interactions with third-party services are governed by the privacy policies and terms of those third parties.</p>
+
+<h3>10. Data Security</h3>
+<p>We use reasonable administrative, technical, and organizational safeguards designed to protect personal information from unauthorized access, disclosure, alteration, or destruction.</p>
+<p>However, no website, electronic transmission, database, or storage system can be guaranteed to be completely secure.</p>
+<p>Accordingly, we cannot guarantee absolute security of information transmitted to or stored by us.</p>
+
+<h3>11. Data Retention</h3>
+<p>We retain personal information for as long as reasonably necessary to fulfill the purposes for which it was collected, maintain our business and legal records, comply with applicable laws and regulatory requirements, resolve disputes, enforce agreements, prevent fraud, and protect our legitimate business interests.</p>
+<p>The length of time information is retained may vary depending on the type of information and the purpose for which it was collected.</p>
+
+<h3>12. Your Privacy Rights</h3>
+<p>Depending on where you live and applicable law, you may have certain rights concerning your personal information.</p>
+<p>These rights may include the right to:</p>
+<ul>
+<li>Request access to personal information we maintain about you;</li>
+<li>Request correction of inaccurate information;</li>
+<li>Request deletion of personal information, subject to applicable exceptions;</li>
+<li>Opt out of certain forms of targeted advertising or other regulated data sharing;</li>
+<li>Opt out of certain marketing communications;</li>
+<li>Receive information about how personal information is collected and used; and</li>
+<li>Exercise other rights provided by applicable state or federal law.</li>
+</ul>
+<p>We may need to verify your identity before completing certain requests.</p>
+<p>Some information may be exempt from deletion or other requests because of legal, regulatory, security, contractual, or other permitted exceptions.</p>
+<p>To submit a privacy-related request, contact us using the information provided in the Contact Us section below.</p>
+
+<h3>13. Children&rsquo;s Privacy</h3>
+<p>Our Services are not directed toward children under the age of 13, and we do not knowingly collect personal information from children under 13 through our website.</p>
+<p>If we become aware that we have collected personal information from a child under 13 without appropriate authorization, we will take reasonable steps to delete the information.</p>
+
+<h3>14. Do-Not-Track Signals</h3>
+<p>Some web browsers offer a &ldquo;Do Not Track&rdquo; setting. Because there is not currently a universally accepted standard for responding to Do Not Track signals, our Services may not respond to such signals unless required by applicable law.</p>
+
+<h3>15. Business Transfers</h3>
+<p>If PWRFIN LLC undergoes a merger, acquisition, reorganization, financing, sale of assets, or other business transaction, personal information may be transferred as part of that transaction, subject to applicable law.</p>
+
+<h3>16. Changes to This Privacy Policy</h3>
+<p>We may update this Privacy Policy from time to time to reflect changes in our business, Services, technology, legal requirements, or privacy practices.</p>
+<p>When we make changes, we will update the &ldquo;Last Updated&rdquo; date at the top of this Privacy Policy.</p>
+<p>Your continued use of the Services after an updated Privacy Policy becomes effective constitutes acknowledgment of the updated policy, to the extent permitted by law.</p>
+
+<h3>17. Contact Us</h3>
+<p>If you have questions about this Privacy Policy or wish to submit a privacy-related request, please contact:</p>
+<p><strong>PWRFIN LLC</strong><br>
+DBA Power Financial Consultants<br>
+DBA Ciervo Wealth Management<br>
+Cleveland, Ohio, USA<br>
+Email: <a href="mailto:operations@powerfinancial.co">operations@powerfinancial.co</a><br>
+Website: Powerfinancial.co<br>
+Telephone: [INSERT BUSINESS PHONE NUMBER]</p>
+
+<div class="legal-note"><strong>Important notice:</strong> This Privacy Policy is intended to describe general website privacy practices and does not constitute legal advice. Because PWRFIN LLC operates in insurance and financial services and may collect information that is subject to federal and state privacy regulations, this policy should be reviewed by qualified legal counsel before publication.</div>
+</div>
+</div>
+</div>
+
+<div class="legal-modal" id="terms-modal" hidden role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+<div class="legal-panel">
+<div class="legal-head">
+<div>
+<h2 id="terms-modal-title">Terms &amp; Conditions</h2>
+<div class="legal-eff">Effective September 8, 2026 &bull; Last updated September 8, 2026</div>
+</div>
+<button type="button" class="legal-close" onclick="closeLegal('terms-modal')" aria-label="Close">&times;</button>
+</div>
+<div class="legal-body">
+<p>Welcome to the websites and online services operated by PWRFIN LLC, doing business as Power Financial Consultants and Ciervo Wealth Management (&ldquo;PWRFIN,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;).</p>
+<p>These Terms and Conditions (&ldquo;Terms&rdquo;) govern your access to and use of our websites, landing pages, forms, scheduling tools, online content, communications, and other online services that link to these Terms (collectively, the &ldquo;Services&rdquo;).</p>
+<p>PWRFIN LLC is based in Cleveland, Ohio.</p>
+<p><strong>BY ACCESSING OR USING OUR SERVICES, YOU AGREE TO BE BOUND BY THESE TERMS. IF YOU DO NOT AGREE TO THESE TERMS, YOU SHOULD NOT USE OUR SERVICES.</strong></p>
+
+<h3>1. Purpose of Our Services</h3>
+<p>PWRFIN provides insurance and financial-services-related information, resources, education, consultations, and related services.</p>
+<p>Depending on the circumstances, our Services may facilitate connections between consumers and licensed insurance professionals, insurance carriers, financial institutions, agencies, or other third-party providers.</p>
+<p>The information available through our website is intended to provide general information and facilitate communication. It should not be interpreted as a guarantee that any particular insurance product, financial product, coverage, rate, premium, benefit, underwriting decision, or financial outcome will be available to you.</p>
+
+<h3>2. No Guarantee of Coverage or Approval</h3>
+<p>Submitting a form, requesting information, scheduling an appointment, receiving a quote, or communicating with PWRFIN does not constitute approval for insurance or financial products.</p>
+<p>Insurance coverage is subject to applicable underwriting requirements, carrier rules, policy terms, exclusions, limitations, and applicable law.</p>
+<p>Actual premiums, benefits, eligibility, coverage amounts, rates, commissions, and other terms may vary based on individual circumstances and the applicable insurance carrier or financial institution.</p>
+<p>No representation made through the website should be interpreted as a guarantee that you will qualify for or receive any particular product.</p>
+
+<h3>3. Insurance and Financial Information</h3>
+<p>Information presented on our Services may relate to life insurance, health insurance, annuities, retirement planning, financial products, or related subjects.</p>
+<p>Such information is provided for general educational and informational purposes and may not be appropriate for your particular circumstances.</p>
+<p>Nothing on the website should be interpreted as individualized financial, tax, accounting, legal, or investment advice unless expressly stated and provided within an appropriate professional relationship.</p>
+<p>You should consult an appropriately qualified professional regarding your individual legal, tax, financial, or insurance circumstances.</p>
+
+<h3>4. Licensed Professionals</h3>
+<p>Insurance products and services may only be offered or sold by individuals who are properly licensed and authorized to conduct the applicable business in the relevant jurisdiction.</p>
+<p>The availability of a product or service through our website does not necessarily mean that the product, service, or representative is available in every state.</p>
+<p>State-specific licensing, appointment, underwriting, and regulatory requirements may apply.</p>
+
+<h3>5. Third-Party Insurance Carriers and Providers</h3>
+<p>PWRFIN may work with or provide access to products and services offered by third-party insurance carriers, financial institutions, marketing organizations, agencies, and other providers.</p>
+<p>Those third parties maintain their own policies, contracts, underwriting requirements, terms, privacy practices, and procedures.</p>
+<p>PWRFIN does not control the underwriting, claims, policy administration, financial strength, rates, benefits, or business practices of third-party providers.</p>
+<p>Where an insurance policy or financial product is issued by a third party, the terms of that policy or contract&mdash;not information contained on our website&mdash;control the rights and obligations of the parties.</p>
+
+<h3>6. Website Information Is Not a Contract</h3>
+<p>Information contained on our website, including descriptions of products, services, benefits, compensation, promotions, educational materials, illustrations, examples, testimonials, and other content, is provided for informational purposes.</p>
+<p>Website content does not create a contract, insurance policy, offer of coverage, guarantee of eligibility, or guarantee of future results.</p>
+<p>The applicable written insurance policy, application, contract, agreement, or other governing document controls where there is a conflict between website content and such document.</p>
+
+<h3>7. Quotes and Estimates</h3>
+<p>Any quote, premium estimate, illustration, example, rate, calculation, or other numerical information displayed or communicated through our Services is subject to change and may not reflect the final terms available to you.</p>
+<p>Final pricing, eligibility, benefits, and coverage are determined by the applicable carrier or provider based on its underwriting standards and other applicable requirements.</p>
+<p>A quote is not a binding offer of insurance unless expressly stated otherwise by the applicable carrier.</p>
+
+<h3>8. User-Submitted Information</h3>
+<p>You agree that information you provide through our Services is accurate, complete, and current to the best of your knowledge.</p>
+<p>You agree not to knowingly provide false, misleading, fraudulent, or materially incomplete information.</p>
+<p>You are responsible for reviewing information you submit before submitting it.</p>
+<p>We may rely on information provided by you when responding to inquiries, preparing requests, facilitating insurance-related services, or communicating with third parties.</p>
+<p>If you discover that information you provided is inaccurate, you should promptly notify us.</p>
+
+<h3>9. Fraudulent or Misleading Information</h3>
+<p>You may not use our Services to:</p>
+<ul>
+<li>Provide false, fraudulent, or misleading information;</li>
+<li>Impersonate another person;</li>
+<li>Submit information without authorization;</li>
+<li>Attempt to obtain insurance or financial products through deception;</li>
+<li>Misrepresent your identity, health, financial circumstances, or other material information;</li>
+<li>Interfere with the operation or security of our Services;</li>
+<li>Use our Services for unlawful purposes; or</li>
+<li>Engage in conduct that violates applicable law or regulation.</li>
+</ul>
+<p>We reserve the right to refuse, restrict, suspend, or terminate access to our Services when we reasonably believe that a user has engaged in fraudulent, abusive, unlawful, or otherwise prohibited conduct.</p>
+
+<h3>10. Appointments and Consultations</h3>
+<p>If you schedule an appointment with PWRFIN or one of its representatives, you agree to provide accurate contact information and attend the appointment at the scheduled time.</p>
+<p>Appointment availability is not guaranteed.</p>
+<p>We reserve the right to reschedule, cancel, or modify appointments when necessary.</p>
+<p>Scheduling an appointment does not create an insurance policy, financial advisory relationship, fiduciary relationship, or other contractual relationship unless separately established through appropriate documentation.</p>
+
+<h3>11. Electronic Communications</h3>
+<p>By using our Services or voluntarily providing your contact information, you agree that we may communicate with you electronically regarding your inquiry, appointment, requested services, account, application, or other legitimate business matters.</p>
+<p>Where you provide the legally required consent, we may also send marketing communications by email, telephone, or text message.</p>
+<p>You may opt out of marketing communications as described in the applicable communication or our Privacy Policy.</p>
+
+<h3>12. Text Message Terms</h3>
+<p>If you expressly opt in to receive text messages from PWRFIN or a participating representative, you consent to receive text messages concerning your inquiry, appointments, requested services, and, where applicable, marketing communications.</p>
+<p>Message frequency may vary. Message and data rates may apply.</p>
+<p>You may opt out of marketing text messages by replying STOP, where supported.</p>
+<p>For assistance, you may reply HELP, where supported, or contact us using the contact information provided on our website.</p>
+<p>Consent to receive marketing text messages is not a condition of purchasing insurance or any other product or service.</p>
+
+<h3>13. Privacy</h3>
+<p>Your use of our Services is also governed by our Privacy Policy, which describes how we collect, use, disclose, and protect personal information.</p>
+<p>Our Privacy Policy is incorporated into these Terms by reference.</p>
+
+<h3>14. Third-Party Links and Services</h3>
+<p>Our Services may contain links to third-party websites, applications, platforms, insurance carriers, financial institutions, social media services, lead providers, or other resources.</p>
+<p>These links are provided for convenience and informational purposes.</p>
+<p>PWRFIN does not necessarily endorse or control third-party websites or services.</p>
+<p>Your use of third-party websites and services is governed by the terms and privacy policies of those third parties.</p>
+<p>PWRFIN is not responsible for the content, availability, security, privacy practices, products, services, or actions of third parties.</p>
+
+<h3>15. Intellectual Property</h3>
+<p>Unless otherwise indicated, the content contained on our Services&mdash;including text, graphics, logos, trademarks, service marks, photographs, videos, designs, documents, educational materials, software, and other content&mdash;is owned by or licensed to PWRFIN LLC and is protected by applicable intellectual property laws.</p>
+<p>Power Financial Consultants, Ciervo Wealth Management, and associated logos, branding, designs, and materials may constitute trademarks or other proprietary property of PWRFIN or their respective owners.</p>
+<p>You may access and use website content for your personal, non-commercial purposes.</p>
+<p>You may not, without our prior written permission:</p>
+<ul>
+<li>Copy or reproduce substantial portions of our content;</li>
+<li>Republish our materials;</li>
+<li>Sell or commercially exploit our content;</li>
+<li>Modify or create derivative works from our materials;</li>
+<li>Remove proprietary notices;</li>
+<li>Use our trademarks or branding in a misleading manner; or</li>
+<li>Represent our materials as your own.</li>
+</ul>
+
+<h3>16. User Content</h3>
+<p>If you voluntarily submit reviews, testimonials, comments, photographs, feedback, questions, or other content to us, you represent that you have the right to provide such content.</p>
+<p>You grant PWRFIN a non-exclusive, worldwide, royalty-free license to use, reproduce, display, distribute, and publish such content for legitimate business and marketing purposes, subject to applicable law and any separate agreement governing your submission.</p>
+<p>We reserve the right to remove content that we determine is inappropriate, unlawful, misleading, defamatory, or otherwise objectionable.</p>
+
+<h3>17. Testimonials and Results</h3>
+<p>Testimonials, reviews, examples, case studies, or statements appearing on our Services represent the experiences or opinions of the individuals providing them.</p>
+<p>Individual results vary. Past results do not guarantee future results.</p>
+<p>No testimonial should be interpreted as a representation that you will experience the same or similar outcome.</p>
+
+<h3>18. Educational Content</h3>
+<p>Articles, videos, guides, calculators, social media content, newsletters, webinars, and other educational materials provided through our Services are intended for general informational purposes.</p>
+<p>Financial, insurance, tax, legal, and other regulations and circumstances can change.</p>
+<p>We do not guarantee that educational content is complete, current, or applicable to your specific situation.</p>
+<p>You should independently evaluate information and obtain appropriate professional advice before making financial, insurance, legal, or tax decisions.</p>
+
+<h3>19. Artificial Intelligence and Automated Tools</h3>
+<p>We may use technology, including artificial intelligence, automation, analytics, or other software tools, to assist with website functionality, communications, scheduling, customer service, marketing, or other business operations.</p>
+<p>Automated tools may provide general information or assist with administrative functions.</p>
+<p>Such tools are not a substitute for advice from an appropriately licensed or qualified professional.</p>
+<p>Where applicable, final insurance, underwriting, financial, or product decisions are made by the applicable licensed professional, carrier, financial institution, or other authorized decision-maker.</p>
+
+<h3>20. Disclaimer of Warranties</h3>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR SERVICES AND WEBSITE CONTENT ARE PROVIDED ON AN &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; BASIS.</p>
+<p>PWRFIN LLC DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AVAILABILITY, NON-INFRINGEMENT, AND RELIABILITY, EXCEPT TO THE EXTENT THAT SUCH WARRANTIES CANNOT LAWFULLY BE DISCLAIMED.</p>
+<p>WE DO NOT WARRANT THAT:</p>
+<ul>
+<li>THE WEBSITE WILL ALWAYS BE AVAILABLE;</li>
+<li>THE WEBSITE WILL BE ERROR-FREE;</li>
+<li>INFORMATION WILL ALWAYS BE COMPLETE OR CURRENT;</li>
+<li>DEFECTS WILL BE CORRECTED;</li>
+<li>THE WEBSITE WILL BE FREE FROM VIRUSES OR OTHER HARMFUL COMPONENTS; OR</li>
+<li>ANY PARTICULAR INSURANCE OR FINANCIAL RESULT WILL BE ACHIEVED.</li>
+</ul>
+
+<h3>21. Limitation of Liability</h3>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, PWRFIN LLC AND ITS OWNERS, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, REPRESENTATIVES, CONTRACTORS, AFFILIATES, AND SERVICE PROVIDERS SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO YOUR USE OF, OR INABILITY TO USE, THE SERVICES.</p>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, PWRFIN&rsquo;S TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATING TO YOUR USE OF THE SERVICES SHALL NOT EXCEED THE GREATER OF:</p>
+<p>(A) THE AMOUNT YOU PAID DIRECTLY TO PWRFIN FOR THE SPECIFIC SERVICE GIVING RISE TO THE CLAIM DURING THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM; OR<br>
+(B) ONE HUNDRED U.S. DOLLARS (US $100).</p>
+<p>Nothing in these Terms is intended to exclude or limit liability that cannot legally be excluded or limited under applicable law.</p>
+
+<h3>22. Indemnification</h3>
+<p>To the maximum extent permitted by law, you agree to defend, indemnify, and hold harmless PWRFIN LLC and its owners, officers, directors, employees, agents, representatives, contractors, affiliates, and service providers from and against claims, liabilities, damages, losses, costs, and expenses&mdash;including reasonable attorneys&rsquo; fees&mdash;arising out of or relating to:</p>
+<ul>
+<li>Your violation of these Terms;</li>
+<li>Your misuse of the Services;</li>
+<li>Information you knowingly provide that is false, fraudulent, or misleading;</li>
+<li>Your violation of applicable law or the rights of another person; or</li>
+<li>Your unauthorized use of website content or intellectual property.</li>
+</ul>
+
+<h3>23. Termination or Restriction of Access</h3>
+<p>We reserve the right to modify, suspend, restrict, or terminate access to any portion of the Services at any time, with or without notice, where permitted by law.</p>
+<p>This may include circumstances involving suspected fraud, abuse, unlawful activity, security concerns, violation of these Terms, or operational requirements.</p>
+<p>Provisions that by their nature should survive termination&mdash;including intellectual property, disclaimers, limitations of liability, indemnification, and governing law&mdash;will survive termination.</p>
+
+<h3>24. Changes to the Services</h3>
+<p>We may modify, discontinue, replace, or update any portion of our Services at any time.</p>
+<p>We do not guarantee that any particular website feature, product, service, content, carrier relationship, or functionality will remain available.</p>
+
+<h3>25. Governing Law</h3>
+<p>These Terms shall be governed by and interpreted in accordance with the laws of the State of Ohio, without regard to conflict-of-law principles, except to the extent that applicable federal or state law requires otherwise.</p>
+
+<h3>26. Dispute Resolution</h3>
+<p>Before initiating formal legal proceedings concerning a dispute arising from or relating to these Terms or the Services, the parties agree to make a good-faith effort to resolve the dispute informally.</p>
+<p>A party seeking to resolve a dispute should provide written notice describing the nature of the dispute and the requested resolution.</p>
+<p>Nothing in this provision prevents a party from seeking immediate relief when necessary to protect intellectual property, confidential information, security, or other rights for which immediate judicial relief may be appropriate.</p>
+
+<h3>27. Venue</h3>
+<p>To the extent permitted by applicable law, any legal action or proceeding arising out of or relating to these Terms or the Services shall be brought in a state or federal court located in or serving Cuyahoga County, Ohio, and the parties consent to the jurisdiction of such courts.</p>
+
+<h3>28. Severability</h3>
+<p>If any provision of these Terms is determined to be invalid, unlawful, or unenforceable, that provision shall be enforced to the maximum extent permitted by law, and the remaining provisions shall remain in full force and effect.</p>
+
+<h3>29. No Waiver</h3>
+<p>Our failure to enforce any provision of these Terms does not constitute a waiver of our right to enforce that provision or any other provision in the future.</p>
+
+<h3>30. Entire Agreement</h3>
+<p>These Terms, together with our Privacy Policy and any other agreements or disclosures expressly incorporated by reference, constitute the agreement governing your use of the Services, except where a separate written agreement applies to a particular product or service.</p>
+<p>If there is a conflict between these Terms and a separate written contract, insurance policy, application, carrier agreement, or other governing document, the applicable document will control with respect to that particular relationship or transaction.</p>
+
+<h3>31. Contact Information</h3>
+<p>Questions concerning these Terms may be directed to:</p>
+<p><strong>PWRFIN LLC</strong><br>
+DBA Power Financial Consultants<br>
+DBA Ciervo Wealth Management<br>
+Cleveland, Ohio, USA<br>
+Email: <a href="mailto:operations@powerfinancial.co">operations@powerfinancial.co</a><br>
+Website: Powerfinancial.co<br>
+Telephone: [INSERT BUSINESS PHONE NUMBER]</p>
+
+<div class="legal-note"><strong>Important notice:</strong> These Terms and Conditions are intended as a general website terms framework and are not legal advice. Because PWRFIN LLC operates in the insurance and financial-services industry and may conduct business across multiple states, these Terms should be reviewed by qualified legal counsel before publication.</div>
+</div>
+</div>
+</div>
 
 </body>
 </html>
