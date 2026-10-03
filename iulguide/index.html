@@ -6,6 +6,7 @@
 <title>PWRFIN — IUL Agent Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="/css/agent-gate.css" rel="stylesheet">
 <style>
   :root {
     --navy: #0d1b2a;
@@ -358,7 +359,20 @@
   }
 </style>
 </head>
-<body>
+<body class="locked">
+<section class="access-gate" id="accessGate" aria-labelledby="accessTitle">
+  <div class="access-card">
+    <div class="access-mark" aria-hidden="true">PWRFIN</div>
+    <h1 id="accessTitle">IUL Agent Field Guide</h1>
+    <p>Power Financial agents: enter the team password to access this guide.</p>
+    <form class="access-form" id="accessForm" data-error="That password is not correct. Please try again.">
+      <label for="accessPassword" class="sr-only">Team password</label>
+      <input id="accessPassword" name="password" type="password" autocomplete="current-password" placeholder="Team password" required autofocus>
+      <button type="submit">Enter Guide</button>
+      <p class="access-error" id="accessError" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
 <!-- HAMBURGER BUTTON (mobile only) -->
 <button id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
@@ -2569,5 +2583,6 @@
   });
 </script>
 
+<script src="/js/agent-gate.js"></script>
 </body>
 </html>
