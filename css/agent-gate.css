@@ -1,0 +1,58 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.locked { overflow: hidden; }
+body.locked > :not(.access-gate):not(script) { display: none !important; }
+
+.access-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 20%, rgba(201,162,39,0.18), transparent 38%), linear-gradient(145deg, #0d1b2a, #132336);
+}
+.access-gate[hidden] { display: none; }
+.access-card {
+  width: min(100%, 440px);
+  padding: 38px 34px;
+  border: 1px solid rgba(201,162,39,0.38);
+  border-radius: 20px;
+  background: rgba(13,27,42,0.96);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+  text-align: center;
+}
+.access-mark { margin-bottom: 18px; color: #c9a227; font: 800 1.15rem 'Playfair Display', serif; letter-spacing: 0.12em; }
+.access-card h1 { margin-bottom: 10px; color: #e8edf2; font: 800 clamp(1.7rem, 5vw, 2.3rem) 'Playfair Display', serif; }
+.access-card p { margin-bottom: 24px; color: #8fa3b8; line-height: 1.6; }
+.access-form { display: grid; gap: 12px; }
+.access-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  color: #e8edf2;
+  font: inherit;
+}
+.access-form input:focus { outline: 2px solid #c9a227; outline-offset: 2px; }
+.access-form button {
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c9a227, #e8c44a);
+  color: #0d1b2a;
+  font: 700 1rem 'Sora', sans-serif;
+  cursor: pointer;
+}
+.access-error { min-height: 20px; margin: 2px 0 0 !important; color: #ff9b8c !important; font-size: 0.9rem; }
