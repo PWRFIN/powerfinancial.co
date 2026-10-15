@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PWRFIN — IUL Agent Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Power Financial Custom Palette */
     --navy: #f0e8dd; /* Main Background */
-    --navy2: rgba(240, 232, 221, 0.98); /* Sidebar Background */
-    --card: rgba(255, 255, 255, 0.92); /* Card background */
+    --navy2: rgba(240, 232, 221, 0.95); /* Sidebar Background */
+    --card: #ffffff; /* Card background */
+    --card2: #fbf8f3; /* Card hover/secondary */
     --gold: #834925; /* Important text/links/accents */
     --gold2: #b99f6e; /* Box outlines / secondary accent */
     --goldlight: rgba(131, 73, 37, 0.08); /* Light accent background */
@@ -21,11 +22,9 @@
     --green: #16a34a;
     --red: #dc2626;
     --border: #b99f6e; /* Box outlines */
-    --sidebar-w: 260px;
+    --sidebar-w: 240px;
   }
-  
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
   body { 
     background-color: var(--navy); 
     background-image: url('PowerBackground.jpeg');
@@ -43,51 +42,1904 @@
   /* SIDEBAR */
   #sidebar {
     width: var(--sidebar-w); height: 100vh; background: var(--navy2);
-    border-right: 2px solid var(--border); position: fixed; top: 0; left: 0; z-index: 100;
+    border-right: 1px solid var(--border); position: fixed; top: 0; left: 0; z-index: 100;
     display: flex; flex-direction: column; overflow-y: auto;
-    box-shadow: 4px 0 15px rgba(131, 73, 37, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
   }
-  .brand { padding: 30px 20px 20px; border-bottom: 2px solid var(--border); text-align: center; background: #ffffff; }
-  .brand-sub { font-size: 13px; color: var(--text); letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; font-weight: 800; }
-  
-  .nav { flex: 1; padding: 20px 0; overflow-y: auto; }
-  .nav-section { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold2); padding: 14px 24px 6px; font-weight: 800; }
+  .brand { padding: 24px 18px 16px; border-bottom: 1px solid var(--border); text-align: center; }
+  .brand-sub { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; font-weight: 700; }
+  .nav { flex: 1; padding: 12px 0; overflow-y: auto; }
+  .nav-section { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold2); padding: 14px 18px 6px; font-weight: 700; }
   .nav-item {
-    display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin: 4px 16px;
-    cursor: pointer; color: var(--text); font-size: 14px; font-weight: 600;
-    border-radius: 8px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; align-items: center; gap: 10px; padding: 10px 18px;
+    cursor: pointer; color: var(--muted); font-size: 13px; font-weight: 500;
+    border-left: 4px solid transparent; transition: all 0.2s;
   }
-  .nav-item:hover { color: var(--gold); background: var(--goldlight); transform: translateX(4px); }
-  .nav-item.active { color: #ffffff; background-color: var(--gold); box-shadow: 0 4px 12px rgba(131, 73, 37, 0.3); font-weight: 700; transform: scale(1.02); }
-  .nav-item .icon { width: 20px; text-align: center; font-size: 16px; }
-  
-  .progress-bar { padding: 16px 20px; border-top: 2px solid var(--border); background: #ffffff; }
-  .progress-label { font-size: 11px; color: var(--gold); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; text-align: center; }
-  .progress-track { background: rgba(185, 159, 110, 0.3); border-radius: 6px; height: 8px; overflow: hidden; }
-  .progress-fill { background: var(--gold); height: 8px; border-radius: 6px; width: 0%; transition: width 0.4s ease; }
+  .nav-item:hover { color: var(--gold); background: rgba(131, 73, 37, 0.04); }
+  .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: var(--goldlight); font-weight: 700; }
+  .nav-item .icon { width: 18px; text-align: center; font-size: 15px; }
+  .progress-bar { padding: 14px 18px; border-top: 1px solid var(--border); background: var(--navy2); }
+  .progress-label { font-size: 10px; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .progress-track { background: rgba(185, 159, 110, 0.3); border-radius: 4px; height: 6px; }
+  .progress-fill { background: var(--gold); height: 6px; border-radius: 4px; width: 0%; transition: width 0.3s; }
 
   /* MAIN */
   #main { margin-left: var(--sidebar-w); flex: 1; padding: 0; }
-  .section { display: none; padding: 40px 44px; max-width: 1050px; margin: 0 auto; }
-  .section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  
-  .section-header { margin-bottom: 32px; background: rgba(255,255,255,0.85); padding: 24px; border-radius: 12px; border: 2px solid var(--border); box-shadow: 0 4px 15px rgba(131, 73, 37, 0.08); backdrop-filter: blur(5px); }
-  .section-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold2); margin-bottom: 8px; font-weight: 800; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); line-height: 1.2; font-weight: 800; }
-  .section-desc { color: var(--text); margin-top: 10px; font-size: 15px; max-width: 800px; font-weight: 500; }
+  .section { display: none; padding: 40px 44px; max-width: 1050px; }
+  .section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  .section-header { margin-bottom: 32px; }
+  .section-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold2); margin-bottom: 8px; font-weight: 700; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 34px; color: var(--gold); line-height: 1.2; font-weight: 800; }
+  .section-desc { color: var(--text); margin-top: 8px; font-size: 15px; max-width: 680px; }
 
   /* CARDS & DYNAMIC BOXES */
-  .card { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 6px 16px rgba(131, 73, 37, 0.06); transition: transform 0.2s, box-shadow 0.2s; backdrop-filter: blur(8px); }
-  .card:hover { box-shadow: 0 10px 24px rgba(131, 73, 37, 0.12); border-color: var(--gold); }
-  .card-sm { background: #ffffff; border: 2px solid var(--border); border-radius: 10px; padding: 18px 22px; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.04); transition: transform 0.2s; }
-  .card-sm:hover { transform: translateY(-2px); border-color: var(--gold); }
-  .card-gold { border: 3px solid var(--gold2); background: #ffffff; box-shadow: 0 8px 20px rgba(131, 73, 37, 0.08); }
-  .card-red { border-color: rgba(220,38,38,0.5); background: rgba(220,38,38,0.04); }
-  .card-green { border-color: rgba(22,163,74,0.5); background: rgba(22,163,74,0.04); }
-  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 12px; color: var(--gold); }
+  .card { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 6px 16px rgba(131, 73, 37, 0.06); transition: transform 0.2s, box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 8px 24px rgba(131, 73, 37, 0.1); }
+  .card-sm { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.04); }
+  .card-gold { border: 2px solid var(--gold2); background: #faf6f0; }
+  .card-red { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.03); }
+  .card-green { border-color: rgba(22,163,74,0.4); background: rgba(22,163,74,0.03); }
+  .card-title { font-weight: 700; font-size: 16px; margin-bottom: 12px; color: var(--gold); }
   
-  /* FLOW STEPS */
-  .flow { display: flex; gap: 16px; margin: 32px 0; flex-wrap: wrap; }
-  .flow-step { flex: 1; min-width: 180px; background: #ffffff; border: 2px solid var(--border); border-radius: 12px; padding: 24px 20px; position:
+  /* FLOW STEPS (Updated to look like Screenshot 13) */
+  .flow { display: flex; gap: 16px; margin: 28px 0; flex-wrap: wrap; }
+  .flow-step { flex: 1; min-width: 180px; background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 20px; position: relative; box-shadow: 0 4px 12px rgba(131, 73, 37, 0.08); display: flex; flex-direction: column; }
+  .flow-step:not(:last-child)::after {
+    content: '▶'; position: absolute; right: -22px; top: 50%; transform: translateY(-50%);
+    color: var(--gold2); font-size: 18px; z-index: 2;
+  }
+  .flow-num { font-size: 11px; color: var(--gold2); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .flow-name { font-weight: 800; font-size: 18px; color: var(--gold); margin-bottom: 10px; }
+  .flow-tag { font-size: 11px; background: #f4ede4; border: 1px solid var(--border); color: var(--gold); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; font-weight: 600; align-self: flex-start; }
+  .flow-time { font-size: 11px; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+  .flow-desc { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+  /* STRATEGY CARDS */
+  .strategy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+  .strategy-card { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 24px; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 12px rgba(131, 73, 37, 0.06); }
+  .strategy-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(131, 73, 37, 0.12); }
+  .strategy-card.selected { border-color: var(--gold); background: var(--goldlight); }
+  .strategy-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold2); margin-bottom: 6px; font-weight: 700; }
+  .strategy-name { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); margin-bottom: 12px; font-weight: 800; }
+  .strategy-desc { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .strategy-bullets { list-style: none; margin-top: 14px; }
+  .strategy-bullets li { font-size: 13px; color: var(--text); padding: 4px 0; padding-left: 18px; position: relative; font-weight: 500; }
+  .strategy-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 14px; font-weight: 700; }
+
+  /* DISCOVERY FORM */
+  .form-section { border-bottom: 2px solid rgba(185, 159, 110, 0.3); padding-bottom: 24px; margin-bottom: 24px; }
+  .form-section:last-child { border-bottom: none; }
+  .form-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 16px; font-weight: 800; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+  .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label { font-size: 11px; color: var(--gold2); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .form-field input, .form-field textarea, .form-field select {
+    background: #faf8f5; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-family: 'Sora', sans-serif; font-size: 14px;
+    transition: all 0.2s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus { outline: none; border-color: var(--gold); background: #ffffff; box-shadow: 0 0 0 3px rgba(131, 73, 37, 0.1); }
+  .form-field textarea { min-height: 80px; resize: vertical; }
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .checkbox-item { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: #faf8f5; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; font-weight: 500; }
+  .checkbox-item:hover { border-color: var(--gold); background: #fff; }
+  .checkbox-item input { display: none; }
+  .checkbox-item.checked { background: var(--gold); border-color: var(--gold); color: #ffffff; }
+  .alert-box { background: #faf6f0; border: 1px solid var(--gold2); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text); margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.05); }
+  .alert-box .alert-icon { font-size: 20px; flex-shrink: 0; }
+
+  /* ILLUSTRATION COLUMNS */
+  .col-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .col-table th { background: #f4ede4; color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); font-weight: 800; }
+  .col-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; background: var(--card); }
+  .col-table tr:last-child td { border-bottom: none; }
+  .col-table tr:hover td { background: #faf8f5; }
+  .col-table .col-name { font-weight: 700; color: var(--gold); min-width: 180px; }
+  .col-table .col-purpose { color: var(--text); }
+  .col-table .tag { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+  .tag-show { background: rgba(22,163,74,0.1); color: var(--green); border: 1px solid rgba(22,163,74,0.2); }
+  .tag-hide { background: rgba(220,38,38,0.1); color: var(--red); border: 1px solid rgba(220,38,38,0.2); }
+  .tag-key { background: var(--goldlight); color: var(--gold); border: 1px solid rgba(131,73,37,0.2); }
+
+  /* EDUCATION DROPS */
+  .topic-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .topic-tab { padding: 10px 20px; border-radius: 24px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; box-shadow: 0 2px 6px rgba(131, 73, 37, 0.05); }
+  .topic-tab:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .topic-tab.active { background: var(--gold); border-color: var(--gold); color: #fff; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.2); }
+  .topic-content { display: none; }
+  .topic-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+  .script-box { background: #faf6f0; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 16px 0; font-size: 14px; line-height: 1.7; color: var(--text); font-style: italic; font-weight: 500; box-shadow: 0 2px 8px rgba(131, 73, 37, 0.05); }
+  .trigger-questions { margin-top: 16px; }
+  .trigger-q { background: #fffdfa; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; font-size: 14px; color: var(--gold); font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+  .trigger-q::before { content: '?  '; color: var(--gold2); font-weight: 800; font-size: 16px; }
+  .stat-highlight { display: inline-block; background: var(--goldlight); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; color: var(--gold); font-weight: 800; font-size: 15px; margin: 4px 4px; }
+
+  /* OBJECTIONS */
+  .objection-item { border: 2px solid var(--border); border-radius: 12px; margin-bottom: 14px; overflow: hidden; background: var(--card); box-shadow: 0 4px 10px rgba(131, 73, 37, 0.04); transition: all 0.2s; }
+  .objection-item:hover { border-color: var(--gold2); }
+  .objection-trigger { padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--card); transition: background 0.2s; }
+  .objection-trigger:hover { background: #faf8f5; }
+  .objection-q { font-weight: 700; font-size: 15px; color: var(--gold); }
+  .objection-q::before { content: '"'; color: var(--gold2); }
+  .objection-q::after { content: '"'; color: var(--gold2); }
+  .objection-arrow { color: var(--gold2); transition: transform 0.2s; font-size: 14px; font-weight: 800; }
+  .objection-arrow.open { transform: rotate(90deg); color: var(--gold); }
+  .objection-body { display: none; padding: 20px 24px; border-top: 1px solid var(--border); background: #faf6f0; }
+  .objection-body.open { display: block; animation: fadeIn 0.2s ease-in-out; }
+  .response-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold2); margin-bottom: 10px; font-weight: 800; }
+  .response-text { font-size: 14px; line-height: 1.7; color: var(--text); }
+
+  /* APPLICATION STEPS */
+  .app-steps { margin-top: 20px; }
+  .app-step { display: flex; gap: 20px; margin-bottom: 28px; position: relative; }
+  .app-step:not(:last-child)::after {
+    content: ''; position: absolute; left: 19px; top: 44px; bottom: -20px;
+    width: 2px; background: var(--border);
+  }
+  .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); border: 3px solid #f4ede4; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; color: #fff; flex-shrink: 0; box-shadow: 0 4px 8px rgba(131, 73, 37, 0.2); z-index: 2; }
+  .step-content { flex: 1; padding-top: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(131, 73, 37, 0.05); }
+  .step-title { font-weight: 800; font-size: 16px; margin-bottom: 8px; color: var(--gold); }
+  .step-body { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .file-name { display: inline-block; background: #fff; border: 1px dashed var(--gold); border-radius: 6px; padding: 8px 16px; font-family: monospace; font-size: 13px; color: var(--gold); margin: 8px 0; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .info-item { background: #faf8f5; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+  .info-item strong { display: block; color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 800; }
+
+  /* CARRIER TABLE (Dynamic UI Update) */
+  .carrier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+  .dynamic-carrier-card { background: var(--card); border: 1px solid var(--border); border-top: 4px solid var(--gold); border-radius: 12px; padding: 24px; box-shadow: 0 6px 16px rgba(131, 73, 37, 0.08); transition: transform 0.2s; }
+  .dynamic-carrier-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(131, 73, 37, 0.15); }
+  .carrier-name { font-weight: 800; font-size: 20px; color: var(--gold); margin-bottom: 16px; letter-spacing: 0.5px; }
+  .carrier-stat { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px solid rgba(185, 159, 110, 0.2); padding-bottom: 8px; }
+  .carrier-stat:last-child { border-bottom: none; }
+  .carrier-stat .label { color: var(--muted); font-weight: 600; }
+  .carrier-stat .value { font-weight: 700; color: var(--text); }
+  .rank-badge { display: inline-block; background: var(--gold); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 800; color: #fff; margin-top: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* DYNAMIC PREMIUM TIERS */
+  .premium-tier { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: 0 6px 16px rgba(131, 73, 37, 0.06); }
+  .premium-tier-header { font-size: 16px; font-weight: 800; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); }
+  .premium-tier-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(185, 159, 110, 0.2); font-size: 14px; }
+  .premium-tier-row:last-child { border-bottom: none; }
+  .tier-a-color { color: var(--text); font-weight: 700; }
+  .tier-b-color { color: var(--gold); font-weight: 700; }
+
+  /* GLOSSARY */
+  .glossary-search { background: #fff; border: 2px solid var(--border); border-radius: 8px; padding: 14px 20px; width: 100%; color: var(--text); font-family: 'Sora', sans-serif; font-size: 15px; margin-bottom: 24px; transition: all 0.2s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+  .glossary-search:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(131, 73, 37, 0.1); }
+  .glossary-letter { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin: 24px 0 10px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 4px; }
+  .glossary-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(131, 73, 37, 0.04); }
+  .glossary-term { font-weight: 800; font-size: 16px; color: var(--gold); }
+  .glossary-def { font-size: 14px; color: var(--text); margin-top: 6px; line-height: 1.6; }
+  .glossary-item.hidden { display: none; }
+
+  /* BADGES / MISC */
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .badge-gold { background: var(--gold); color: #fff; border: 1px solid var(--gold); }
+  .badge-muted { background: #faf8f5; color: var(--muted); border: 1px solid var(--border); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
+  .btn-gold { background: var(--gold); color: #fff; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.2); }
+  .btn-gold:hover { background: #6b3a1b; transform: translateY(-2px); }
+  .btn-outline { background: #fff; border: 2px solid var(--gold); color: var(--gold); }
+  .btn-outline:hover { background: #faf6f0; }
+  .divider { border: none; border-top: 2px solid var(--border); margin: 24px 0; }
+  .highlight { color: var(--gold); font-weight: 700; }
+  ul.checklist { list-style: none; margin: 12px 0; }
+  ul.checklist li { padding: 6px 0; padding-left: 24px; position: relative; font-size: 14px; color: var(--text); font-weight: 500; }
+  ul.checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 800; font-size: 16px; }
+  p.note { font-size: 13px; color: var(--gold2); margin-top: 10px; font-style: italic; font-weight: 600; }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold2); }
+
+  .save-bar { background: #fff; border: 2px solid var(--border); border-radius: 12px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 16px; box-shadow: 0 4px 12px rgba(131, 73, 37, 0.05); }
+  .save-bar-text { font-size: 14px; color: var(--text); }
+  .save-bar-text strong { color: var(--gold); font-weight: 800; }
+  .save-btns { display: flex; gap: 12px; flex-shrink: 0; }
+  .ext-link-card { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; margin-bottom: 16px; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.05); }
+  .ext-link-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(131, 73, 37, 0.1); }
+  .ext-link-icon { font-size: 28px; flex-shrink: 0; }
+  .ext-link-title { font-weight: 800; font-size: 16px; color: var(--gold); margin-bottom: 4px; }
+  .ext-link-desc { font-size: 13px; color: var(--text); line-height: 1.5; }
+
+  /* ── HAMBURGER BUTTON ── */
+  #hamburger {
+    display: none;
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 300;
+    background: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    width: 44px; height: 44px;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(131, 73, 37, 0.15);
+    transition: background 0.2s;
+  }
+  #hamburger:hover { background: var(--goldlight); }
+  #hamburger .bar {
+    width: 22px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.25s;
+    display: block;
+  }
+  #hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  #hamburger.open .bar:nth-child(2) { opacity: 0; }
+  #hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── SIDEBAR OVERLAY ── */
+  #sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(81, 76, 53, 0.6);
+    z-index: 150;
+    backdrop-filter: blur(3px);
+  }
+  #sidebar-overlay.active { display: block; }
+
+  /* ── MOBILE BREAKPOINT ── */
+  @media (max-width: 768px) {
+    #hamburger { display: flex; }
+    #mobile-topbar { display: flex !important; }
+
+    #sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 200;
+      width: 280px;
+      overflow-y: auto;
+    }
+    #sidebar.mobile-open { transform: translateX(0); }
+    #main { margin-left: 0; padding-top: 56px; }
+    .section { padding: 24px 20px; }
+    .section-title { font-size: 26px !important; }
+    .flow { flex-direction: column; gap: 12px; }
+    .flow-step::after { display: none; }
+    .carrier-grid { grid-template-columns: 1fr; gap: 16px; }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .two-col, .info-grid, .three-col { grid-template-columns: 1fr; }
+    .topic-tabs { flex-wrap: nowrap !important; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+    .topic-tabs::-webkit-scrollbar { display: none; }
+    .topic-tab { white-space: nowrap; flex-shrink: 0; }
+    .app-step { flex-direction: column; gap: 12px; }
+    .step-num { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+    .form-row.two, .form-row.three { grid-template-columns: 1fr; }
+    .save-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .save-btns { width: 100%; display: flex; gap: 8px; }
+    .save-btns button { flex: 1; font-size: 12px; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<button id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="brand">
+    <div style="width:120px; margin:0 auto 10px;">
+      <img src="PowerLogo.jpeg" alt="Power Logo" style="width:100%; height:auto; border-radius:8px; display:block; box-shadow: 0 4px 10px rgba(131, 73, 37, 0.15);">
+    </div>
+    <div class="brand-sub">IUL Agent Field Guide</div>
+  </div>
+  <div class="nav">
+    <div class="nav-section">Process</div>
+    <div class="nav-item active" onclick="showSection('overview')"><span class="icon">🗺</span> Sales Overview</div>
+    <div class="nav-item" onclick="showSection('discovery')"><span class="icon">📋</span> Discovery Call</div>
+    <div class="nav-item" onclick="showSection('strategy')"><span class="icon">⚡</span> Strategy Decision</div>
+    <div class="nav-section">Preparation</div>
+    <div class="nav-item" onclick="showSection('illustration')"><span class="icon">📊</span> Illustration Guide</div>
+    <div class="nav-item" onclick="showSection('presentation')"><span class="icon">🎯</span> Presentation Playbook</div>
+    <div class="nav-section">Selling Tools</div>
+    <div class="nav-item" onclick="showSection('education')"><span class="icon">💡</span> Education Drops</div>
+    <div class="nav-item" onclick="showSection('objections')"><span class="icon">🛡</span> Objections</div>
+    <div class="nav-section">Close</div>
+    <div class="nav-item" onclick="showSection('application')"><span class="icon">📝</span> Application Process</div>
+    <div class="nav-section">Reference</div>
+    <div class="nav-item" onclick="showSection('carriers')"><span class="icon">🏦</span> Carrier Quick Ref</div>
+    <div class="nav-item" onclick="showSection('contacts')"><span class="icon">📞</span> Carrier Contacts</div>
+    <div class="nav-item" onclick="showSection('books')"><span class="icon">📚</span> Recommended Reading</div>
+    <div class="nav-item" onclick="showSection('glossary')"><span class="icon">📖</span> Glossary</div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-label">Guide Progress</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</nav>
+
+<main id="main">
+  <div id="mobile-topbar" style="display:none;position:fixed;top:0;left:0;right:0;height:56px;background:var(--navy2);border-bottom:1px solid var(--border);z-index:100;align-items:center;padding:0 16px 0 64px;backdrop-filter:blur(8px);">
+    <span style="font-family:'Playfair Display',serif;font-size:16px;color:var(--gold);letter-spacing:1px;font-weight:800;">PWRFIN</span>
+    <span style="font-size:10px;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;margin-left:8px;margin-top:3px;font-weight:700;">Field Guide</span>
+  </div>
+
+<!-- ====== SECTION: OVERVIEW ====== -->
+<div class="section active" id="sec-overview">
+  <div class="section-header">
+    <div class="section-tag">Section 01</div>
+    <div class="section-title">The IUL Sales Process</div>
+    <div class="section-desc">A full IUL sale is typically 2–3 hours across 2–3 touchpoints. It is NOT a one-call close — though it can be. Know the flow before you get on the phone.</div>
+  </div>
+
+  <div class="card card-gold">
+    <div class="card-title gold">⚡ Golden Rule Before We Start</div>
+    <p style="font-size:14px;line-height:1.7">Discovery = <strong>qualification</strong>, not persuasion. Strategy comes <strong>before</strong> illustrations. Numbers come <strong>after</strong> strategy. If you reverse this order, you will lose the sale — and you may end up with a policy that's wrong for the client.</p>
+  </div>
+
+  <div class="card" style="margin-top:24px;border-left:4px solid var(--gold)">
+    <div class="card-title">💰 How Commission Works on IUL Policies</div>
+    <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px">Understanding how you get paid helps you design better policies and manage client conversations around premium.</p>
+    <div class="two-col">
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:13px;">The Two Numbers: Target vs. AP</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px">Commission is based on the <strong style="color:var(--gold)">lower</strong> of two amounts: the <strong style="color:var(--gold)">Target Premium</strong> or the <strong style="color:var(--gold)">Annualized Premium (AP)</strong>.</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px"><strong style="color:var(--gold)">Target Premium</strong> — a carrier-set amount based on the client's age and the death benefit amount. It's the "sweet spot" premium the carrier uses as their commission baseline.</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px"><strong style="color:var(--gold)">AP (Annualized Premium)</strong> — what the client actually pays annually (monthly × 12).</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px">Commission is calculated on whichever is lower. In most cases, commission is paid on the Target.</p>
+      </div>
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:13px;">How Target Is Calculated</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px">Target premium is set by the carrier based on: <strong style="color:var(--gold)">(1) Client's age</strong> + <strong style="color:var(--gold)">(2) Death benefit amount</strong>. Older clients = higher target. Higher death benefit = higher target.</p>
+        <p style="font-size:13px;color:var(--text);margin-top:8px">You can see the Target column in the illustration spreadsheet. <strong style="color:var(--red)">Never show this column to a client.</strong> It is an internal reference only.</p>
+        <div class="alert-box" style="margin-top:12px;background:#fff;border-color:var(--border);"><span class="alert-icon">📌</span><span style="font-size:13px;color:var(--text);font-weight:600;">If a client is underfunding (paying less than Target), you earn less commission than the max. Max commission = AP ≥ Target. This is why funding level matters — for the client AND for you.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">Step 01</div>
+      <div class="flow-name">Discovery Call</div>
+      <div class="flow-tag">📞 With client</div>
+      <div class="flow-time">⏱ 60–90 min</div>
+      <div class="flow-desc">Qualify the client. Gather goals, health, finances. Determine if IUL is even possible. Select strategy direction.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">Step 02</div>
+      <div class="flow-name">Your Homework</div>
+      <div class="flow-tag">💻 On your own</div>
+      <div class="flow-time">⏱ Before next call</div>
+      <div class="flow-desc">Fill in the strategy spreadsheet. Run illustrations for 2–3 options. Select best carrier fit. Build Gamma presentation.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">Step 03</div>
+      <div class="flow-name">Strategy Presentation</div>
+      <div class="flow-tag">📊 With client</div>
+      <div class="flow-time">⏱ 60–90 min</div>
+      <div class="flow-desc">Recap what they told you. Walk through the numbers. Let silence land. Get a decision — or adjust on the spot.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">Step 04</div>
+      <div class="flow-name">Application</div>
+      <div class="flow-tag">📝 With client</div>
+      <div class="flow-time">⏱ 30–60 min</div>
+      <div class="flow-desc">Complete together. Medical info, financial info, beneficiary. Sign digitally. Submit. Await underwriting.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">Step 05</div>
+      <div class="flow-name">Underwriting Follow-Up</div>
+      <div class="flow-tag">💻 On your own</div>
+      <div class="flow-time">⏱ 2 weeks – 1 month</div>
+      <div class="flow-desc">Monitor email for underwriting requests. Respond promptly. Help obtain physician statements, clarify MIB flags.</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:32px">
+    <div class="card">
+      <div class="card-title">✅ What Agents Do Right</div>
+      <ul class="checklist">
+        <li>Ask before presenting</li>
+        <li>Mirror goals back before numbers</li>
+        <li>Strategy first, carrier second</li>
+        <li>Show only columns relevant to client</li>
+        <li>Handle health before running illustrations</li>
+        <li>Always have a pivot plan if declined</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <div class="card-title" style="color:var(--red)">🚫 What Tanks the Sale</div>
+      <ul style="list-style:none;margin:12px 0 0 0">
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Showing illustrations before discovery</li>
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Quoting premiums before goals are clear</li>
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Skipping health screening</li>
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Showing the TARGET column</li>
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Using jargon before building trust</li>
+        <li style="padding:6px 0;padding-left:24px;position:relative;font-size:14px;color:var(--text);font-weight:500;"><span style="position:absolute;left:0;color:var(--red);font-weight:800;font-size:16px;">✗</span> Pushing past a clear no without pivoting</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: DISCOVERY ====== -->
+<div class="section" id="sec-discovery">
+  <div class="section-header">
+    <div class="section-tag">Section 02</div>
+    <div class="section-title">Discovery Call Guide</div>
+    <div class="section-desc">Work through every section during the call. Your notes here become your illustration inputs and strategy selection. Missing anything here causes problems later.</div>
+  </div>
+
+  <div class="save-bar">
+    <div class="save-bar-text"><strong>💾 Save Your Notes</strong> — Type during your call, then export before ending. Notes are not auto-saved between sessions.</div>
+    <div class="save-btns">
+      <button class="btn btn-outline" onclick="copyNotes()">📋 Copy All Notes</button>
+      <button class="btn btn-gold" onclick="downloadNotes()">⬇ Download .txt</button>
+    </div>
+  </div>
+
+  <div class="card card-gold" style="margin-bottom:24px">
+    <b>Opening frame to set expectations:</b>
+    <div class="script-box" style="margin-top:10px">"Today is a discovery call. I'm going to ask questions about your goals, finances, and health so we can determine what strategies even make sense — before we ever look at numbers. Some of these questions feel personal — they're required by carriers, not by me. Everything you share is confidential."</div>
+    <p style="font-size:13px;color:var(--text);margin-top:12px;font-weight:500;">Then explain the 4-step process at a high level. Do NOT tell them how long it takes yet.</p>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 1 — Client Snapshot & Intent</div>
+    <p class="note" style="margin-bottom:12px;">🧠 Their answer to "what would it do for you?" is the single most important thing in this call. It tells you Strategy A vs B before anything else.</p>
+    <div class="form-row single">
+      <div class="form-field"><label>Primary reason for the call (in their words)</label><textarea placeholder="Why did they book this call?"></textarea></div>
+    </div>
+    <div class="form-row three">
+      <div class="form-field"><label>Client Name</label><input type="text" placeholder="Full name"></div>
+      <div class="form-field"><label>Date of Birth</label><input type="date"></div>
+      <div class="form-field"><label>Age</label><input type="number" placeholder="Age"></div>
+    </div>
+    <div class="form-row three">
+      <div class="form-field"><label>Marital Status</label>
+        <select><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select>
+      </div>
+      <div class="form-field"><label>State of Residence</label><input type="text" placeholder="State"></div>
+      <div class="form-field"><label>Occupation</label><input type="text" placeholder="Job title / industry"></div>
+    </div>
+    <div class="form-row single">
+      <div class="form-field"><label>Tax ID Type ⚠️</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">SSN (Social Security Number)</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)" style="border-color:var(--gold2)">ITIN (Individual Taxpayer Identification Number)</div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box" style="background:#fff;border-color:var(--border);">
+      <span class="alert-icon">⭐</span>
+      <div style="font-size:13px;line-height:1.7;color:var(--text);">
+        <strong style="color:var(--gold)">ITIN Clients — Important Requirements:</strong>
+        <ul style="list-style:none;margin-top:8px">
+          <li style="padding:2px 0">→ <strong style="color:var(--gold)">Transamerica:</strong> Requires a wet (physical) signature — no e-signature accepted for ITIN clients</li>
+          <li style="padding:2px 0">→ <strong style="color:var(--gold)">All other carriers:</strong> Require a signed written statement confirming the USA is the client's full-time primary residence and they have no plans to leave permanently</li>
+          <li style="padding:2px 0">→ <strong style="color:var(--gold)">Paramed exam:</strong> Some carriers trigger a paramedical exam for ITIN clients depending on the death benefit requested</li>
+          <li style="padding:2px 0">→ <strong style="color:var(--gold)">Coverage limits:</strong> Carriers may impose maximum DB limits on ITIN clients — call the carrier directly for current limits before running illustrations</li>
+          <li style="padding:2px 0">→ <strong style="color:var(--gold)">Always call the carrier before submitting an ITIN application — rules change and vary significantly.</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-row single" style="margin-top:16px;">
+      <div class="form-field"><label>Business Owner?</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">No</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Yes — Solo/LLC</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Yes — Partnership</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Yes — S-Corp/C-Corp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 2 — Family & Dependents</div>
+    <p style="font-size:14px;color:var(--text);margin-bottom:16px">Who is financially tied to them? Who depends on them? This drives death benefit need, legacy intent, and child policy conversations.</p>
+    
+    <div class="alert-box" style="margin-bottom:16px"><span class="alert-icon">💡</span><span style="color:var(--text)"><strong>If the client says "no one depends on me," "I'm single," or "I don't have family":</strong><br><br>"Who are you leaving in charge to bury you and take care of your things when you die? Who would be the default person responsible for you — your pets, your home, your personal belongings? Even if you have no dependents today, someone will have to deal with the aftermath. Life insurance puts YOU in control of that decision — not the courts."</span></div>
+
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Spouse / Partner</div>
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1fr 2fr;">
+       <div class="form-field"><label>Name</label><input type="text" placeholder="Name"></div>
+       <div class="form-field"><label>Age</label><input type="number" placeholder="Age"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Gender</label><input type="text" placeholder="Gender"></div>
+       <div class="form-field"><label>Ins. Coverage?</label><input type="text" placeholder="Yes/No, amount"></div>
+    </div>
+    <div class="form-row single"><div class="form-field"><label>Spouse Notes</label><input type="text" placeholder="Health concerns, coverage needs..."></div></div>
+
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-top:24px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Children</div>
+    <div class="alert-box" style="margin-bottom:16px"><span class="alert-icon">💡</span><span style="color:var(--text)"><strong>Agent Note:</strong> If children are mentioned — especially under 18 — always explore a child policy conversation. The compounding on a child policy over 18+ years is one of the most powerful things you can show.</span></div>
+    
+    <!-- Child 1 -->
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;">
+       <div class="form-field"><label>Child 1 Name</label><input type="text"></div>
+       <div class="form-field"><label>Gender</label><input type="text"></div>
+       <div class="form-field"><label>Age</label><input type="number"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Notes</label><input type="text"></div>
+    </div>
+    <!-- Child 2 -->
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;">
+       <div class="form-field"><label>Child 2 Name</label><input type="text"></div>
+       <div class="form-field"><label>Gender</label><input type="text"></div>
+       <div class="form-field"><label>Age</label><input type="number"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Notes</label><input type="text"></div>
+    </div>
+    <!-- Child 3 -->
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;">
+       <div class="form-field"><label>Child 3 Name</label><input type="text"></div>
+       <div class="form-field"><label>Gender</label><input type="text"></div>
+       <div class="form-field"><label>Age</label><input type="number"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Notes</label><input type="text"></div>
+    </div>
+    <!-- Child 4 -->
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;">
+       <div class="form-field"><label>Child 4 Name</label><input type="text"></div>
+       <div class="form-field"><label>Gender</label><input type="text"></div>
+       <div class="form-field"><label>Age</label><input type="number"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Notes</label><input type="text"></div>
+    </div>
+    <!-- Child 5 -->
+    <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;">
+       <div class="form-field"><label>Child 5 Name</label><input type="text"></div>
+       <div class="form-field"><label>Gender</label><input type="text"></div>
+       <div class="form-field"><label>Age</label><input type="number"></div>
+       <div class="form-field"><label>DOB</label><input type="date"></div>
+       <div class="form-field"><label>Notes</label><input type="text"></div>
+    </div>
+
+    <div class="form-row single" style="margin-top:16px;">
+      <div class="form-field"><label>Other dependents (parents, business partners, etc.)</label><textarea placeholder="Note names, relationships, ages, and level of financial dependency"></textarea></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 3 — Income & Net Worth (Required for Carriers)</div>
+    
+    <div class="alert-box" style="margin-bottom:16px"><span class="alert-icon">💡</span><span style="color:var(--text)"><strong>If you haven't built rapport yet, say:</strong><br><br>"You don't have to give me all of your financial specifics today — but they will be necessary if we move to an application. For the sake of running numbers for you, could you tell me how much money you have left over at the end of the month after paying everything?" Then ask: "Of the money you're spending, is any of that going into savings, a 401k or IRA, or investments?"</span></div>
+    
+    <div class="script-box">"Carriers require income and net worth information — this determines how much you're allowed to fund the policy, not what you want to fund. The policy can't look like an investment because investments are taxed differently. This protects the tax benefit."</div>
+    
+    <div class="form-row three" style="margin-top:20px">
+      <div class="form-field"><label>Annual Gross Income</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Household Income</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Estimated Net Worth</label><input type="text" placeholder="$"></div>
+    </div>
+    <div class="form-row three">
+      <div class="form-field"><label>Cash / Savings</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Business Value</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Real Estate Equity</label><input type="text" placeholder="$"></div>
+    </div>
+    <div class="form-row two">
+      <div class="form-field"><label>Income Source</label>
+        <select><option>W-2 Employee</option><option>1099 / Self-Employed</option><option>Mixed</option><option>Retirement Account</option><option>Other</option></select>
+      </div>
+      <div class="form-field"><label>💰 Money Left Over After All Bills</label><input type="text" placeholder="$ remaining per month — this is premium capacity"></div>
+    </div>
+
+    <div class="form-field" style="margin-top:20px"><label>Retirement Accounts — Check All That Apply</label>
+      <div style="overflow-x:auto;margin-top:10px;border:1px solid var(--border);border-radius:10px;background:#faf8f5;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead><tr style="color:var(--gold);border-bottom:2px solid var(--border);background:#f4ede4;">
+            <th style="text-align:left;padding:10px 14px;width:30%;font-weight:800;">Account Type</th>
+            <th style="text-align:left;padding:10px 14px;width:30%;font-weight:800;">Balance</th>
+            <th style="text-align:center;padding:10px 14px;font-weight:800;">Max Funded?</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">401k</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">Traditional IRA</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">Roth IRA</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">SEP IRA</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">457(b)</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">403(b)</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">FERS (Federal)</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">Pension</div></td><td style="padding:10px 14px"><input type="text" placeholder="$" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+            <tr><td style="padding:10px 14px"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="display:inline-flex;background:#fff;">Other</div></td><td style="padding:10px 14px"><input type="text" placeholder="Type + $" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px"></td><td style="text-align:center;padding:10px 14px"><div style="display:flex;gap:8px;justify-content:center"><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">Yes</div><div class="checkbox-item" onclick="toggleCheck(this,event)" style="font-size:11px;padding:6px 12px;background:#fff;">No</div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <textarea placeholder="Retirement accounts notes — rollover opportunities, RMD concerns, max funding status, 401k match..." style="margin-top:10px"></textarea>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 4 — Liabilities & Debt</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Mortgage / Rent (monthly)</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Auto Loans (monthly)</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Credit Cards (monthly)</label><input type="text" placeholder="$"><input type="text" placeholder="Total Credit Card Debt ($)" style="margin-top:6px;"></div>
+    </div>
+    <div class="form-row three">
+      <div class="form-field"><label>Student Loans (monthly)</label><input type="text" placeholder="$"><input type="text" placeholder="Total Student Loan Debt ($)" style="margin-top:6px;"></div>
+      <div class="form-field"><label>Other Liabilities and Loans</label><textarea placeholder="Personal loans, IRS debt, business loans..."></textarea></div>
+      <div class="form-field"><label>Total Monthly Bills</label><input type="text" placeholder="$ Total of all obligations"></div>
+    </div>
+    <div class="form-row single" style="margin-top:12px;">
+      <div class="form-field"><label>Section 4 Notes</label><textarea placeholder="Debt consolidation opportunities, urgent payoffs, cash flow pressure..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 5 — Health & Underwriting 🚨 Critical</div>
+    <div class="script-box">"IULs are fully underwritten. These questions are not optional — they determine whether we move forward, pivot to a different strategy, or need to restructure who we insure. I need honest answers so I don't waste your time."</div>
+    <div class="form-row two" style="margin-top:14px">
+      <div class="form-field"><label>Height</label><input type="text" placeholder="ft / in"></div>
+      <div class="form-field"><label>Weight</label><input type="text" placeholder="lbs"></div>
+    </div>
+    
+    <div class="form-row single" style="margin-top:10px">
+      <div class="form-field"><label>Have you seen a medical provider in the last 2 years?</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Yes</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">No</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row two" style="margin-top:10px">
+      <div class="form-field"><label>Tobacco / Nicotine Use (past 12–36 months)?</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">None</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Cigarettes</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Vape / E-cig</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Cigars (occasional)</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Chewing tobacco / Dip</div>
+        </div>
+      </div>
+      <div class="form-field"><label>Cannabis / Marijuana Use?</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">No use</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Occasional recreational</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Regular use</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Medical card holder</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-row single" style="margin-top:14px">
+      <div class="form-field"><label>Diagnosed Conditions</label><textarea placeholder="List any diagnosed conditions..."></textarea></div>
+      <div class="form-field"><label>Current Medications</label><textarea placeholder="List ALL medications prescribed..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 6 — Current Coverage</div>
+    
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Existing Policy 1</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Carrier Name</label><input type="text" placeholder="Carrier (e.g. MetLife)"></div>
+      <div class="form-field"><label>Coverage Amount</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Policy Type</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Term</div><div class="checkbox-item" onclick="toggleCheck(this, event)">IUL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Annuity</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">WL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">FEX</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Other</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-top:16px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Existing Policy 2</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Carrier Name</label><input type="text" placeholder="Carrier"></div>
+      <div class="form-field"><label>Coverage Amount</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Policy Type</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Term</div><div class="checkbox-item" onclick="toggleCheck(this, event)">IUL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Annuity</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">WL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">FEX</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Other</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-top:16px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Existing Policy 3</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Carrier Name</label><input type="text" placeholder="Carrier"></div>
+      <div class="form-field"><label>Coverage Amount</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Policy Type</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Term</div><div class="checkbox-item" onclick="toggleCheck(this, event)">IUL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Annuity</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">WL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">FEX</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-top:16px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Existing Policy 4</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Carrier Name</label><input type="text" placeholder="Carrier"></div>
+      <div class="form-field"><label>Coverage Amount</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Policy Type</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Term</div><div class="checkbox-item" onclick="toggleCheck(this, event)">IUL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Annuity</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">WL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">FEX</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin-top:16px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);padding-bottom:4px;">Existing Policy 5</div>
+    <div class="form-row three">
+      <div class="form-field"><label>Carrier Name</label><input type="text" placeholder="Carrier"></div>
+      <div class="form-field"><label>Coverage Amount</label><input type="text" placeholder="$"></div>
+      <div class="form-field"><label>Policy Type</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Term</div><div class="checkbox-item" onclick="toggleCheck(this, event)">IUL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Annuity</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">WL</div><div class="checkbox-item" onclick="toggleCheck(this, event)">FEX</div><div class="checkbox-item" onclick="toggleCheck(this, event)">Other</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 7 — Timeline & Milestones</div>
+    <div class="form-row two">
+      <div class="form-field"><label>Target retirement age</label><input type="text" placeholder="Age"></div>
+      <div class="form-field"><label>Major life events to plan around</label><input type="text" placeholder="Wedding, college, business sale, etc."></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-label">Section 8 — Funding Direction</div>
+    <div class="form-row two">
+      <div class="form-field"><label>Planned monthly premium range</label><input type="text" placeholder="e.g., $200–$500/mo"></div>
+      <div class="form-field"><label>Funding duration</label>
+        <select>
+          <option>Short-term (5–10 years)</option>
+          <option>Level pay (20–30 years)</option>
+          <option>7-Pay (max fund to MEC limit)</option>
+          <option>To age 65 (retirement)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section" style="border-bottom:none">
+    <div class="form-label">Section 9 — Strategy Direction</div>
+    <div class="form-row single">
+      <div class="form-field"><label>Confirmed strategy (final selection)</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Strategy A</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Strategy B</div>
+          <div class="checkbox-item" onclick="toggleCheck(this, event)">Strategy B-A</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box" style="background:var(--goldlight);border-color:var(--gold2);margin-top:16px">
+    <span class="alert-icon">✅</span>
+    <span style="color:var(--text)"><strong>This concludes the Discovery Call.</strong> You now have what you need to put quotes and visuals together. You will work on this with your manager, then present the completed plan to the client. Let the client know: <em>"I have everything I need. I am going to put some numbers and visuals together for you and we will schedule time to review everything together."</em></span>
+  </div>
+</div>
+
+<!-- ====== SECTION: STRATEGY ====== -->
+<div class="section" id="sec-strategy">
+  <div class="section-header">
+    <div class="section-tag">Section 03</div>
+    <div class="section-title">Strategy Decision Logic</div>
+    <div class="section-desc">Two options. One question decides it: Does the client primarily want death benefit coverage, or do they want to grow / access / leverage money?</div>
+  </div>
+
+  <div class="card card-gold" style="margin-bottom:24px">
+    <div class="card-title gold">The Single Question That Decides Strategy</div>
+    <p style="font-size:16px;font-weight:700;margin:12px 0;color:var(--gold);">"What matters more to you right now: <span style="color:var(--text)">protecting your family if you die</span>, or <span style="color:var(--text)">building a living asset you can use while you're alive</span>?"</p>
+    <p style="font-size:14px;color:var(--muted);font-weight:500;">If they say protection → Option A. If they say living asset / growth / retirement / banking → Option B. If both → Hybrid, lean B with A-style face amount discussion.</p>
+  </div>
+
+  <div class="strategy-grid">
+    <div class="strategy-card" onclick="selectStrategy(this)">
+      <div class="strategy-label">Option A</div>
+      <div class="strategy-name">Death Benefit Focus</div>
+      <div class="strategy-desc">Designed to maximize the death benefit per dollar of premium. Protection-first design. Lower cash value growth. Good for income replacement, mortgage protection, estate planning, or FEX-style budget-conscious coverage.</div>
+      <ul class="strategy-bullets">
+        <li>Client wants maximum DB per dollar</li>
+        <li>Legacy / wealth transfer is #1 goal</li>
+        <li>Mortgage protection</li>
+        <li>Budget-conscious — lower premium</li>
+      </ul>
+    </div>
+    <div class="strategy-card" onclick="selectStrategy(this)">
+      <div class="strategy-label">Option B — Cash Value / Retirement Income</div>
+      <div class="strategy-name">Living Benefits Focus</div>
+      <div class="strategy-desc">Designed to maximize cash value accumulation and tax-free access. This is the IUL as a financial vehicle — "be your own banker," supplement retirement income, "million dollar baby" child policies, borrowing power, college funding.</div>
+      <ul class="strategy-bullets">
+        <li>Build wealth / grow money tax-deferred</li>
+        <li>Tax-free retirement income (age 65–90)</li>
+        <li>"Be your own banker" / borrowing power</li>
+        <li>Million Dollar Baby (child policy)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: ILLUSTRATION ====== -->
+<div class="section" id="sec-illustration">
+  <div class="section-header">
+    <div class="section-tag">Section 04</div>
+    <div class="section-title">Illustration Spreadsheet Guide</div>
+    <div class="section-desc">The spreadsheet is your homework — it shows the carrier illustration numbers in a client-friendly format. Customize visible columns based on what the client cares about. Never show irrelevant columns.</div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:20px">
+    <a href="https://docs.google.com/spreadsheets/d/1YbWpZ2Oa_IdwG2yva_89oUqeHstIHRPrDiSchSrSGS4/edit?usp=drive_link" target="_blank" class="ext-link-card">
+      <div class="ext-link-icon">📊</div>
+      <div><div class="ext-link-title">PWRFIN Illustration Spreadsheet</div><div class="ext-link-desc">Open the master spreadsheet to fill in carrier illustrations. Use this to compare options before presenting.</div></div>
+    </a>
+    <a href="http://gamma.app/docs/j52t0h21drof912" target="_blank" class="ext-link-card">
+      <div class="ext-link-icon">🎨</div>
+      <div><div class="ext-link-title">Sample Gamma Presentation</div><div class="ext-link-desc">View a completed Gamma.ai presentation to see how spreadsheet numbers translate into a client-ready deck.</div></div>
+    </a>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">📊 Column Reference — All Available Columns</div>
+    <table class="col-table" style="margin-top:12px">
+      <tr><th>Column</th><th>Purpose</th><th>Show When</th></tr>
+      <tr><td class="col-name">Monthly Premium</td><td class="col-purpose">What the client pays each month</td><td><span class="tag tag-show">Always</span></td></tr>
+      <tr><td class="col-name">Death Benefit (Increases)</td><td class="col-purpose">Current DB — note if Option A (level) or B (increases over time)</td><td><span class="tag tag-show">Always</span></td></tr>
+      <tr><td class="col-name">Max Allowed / 7yr Pay</td><td class="col-purpose">Guideline Level Premium (GPT) — max annual premium before MEC.</td><td><span class="tag tag-key">Key Column</span></td></tr>
+      <tr><td class="col-name">Monthly Income (ages 65–90)</td><td class="col-purpose">Annual income ÷ 12. More relatable for clients.</td><td><span class="tag tag-key">Retirement focus only</span></td></tr>
+      <tr><td class="col-name" style="color:var(--red)">TARGET</td><td class="col-purpose" style="color:var(--red);font-weight:600;">Internal reference column. Never share, never explain, never show to clients.</td><td><span class="tag tag-hide">NEVER SHOW</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">🎬 Coming Soon — Carrier Illustration Tutorials</div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:14px">Step-by-step video walkthroughs for running illustrations on each carrier system. Click a button when videos are live.</p>
+    <div class="three-col" style="gap:16px">
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:15px;">F&amp;G</strong>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option A — Coming Soon</button>
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option B — Coming Soon</button>
+        </div>
+      </div>
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:15px;">NLG</strong>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option A — Coming Soon</button>
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option B — Coming Soon</button>
+        </div>
+      </div>
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:15px;">Transamerica</strong>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option A — Coming Soon</button>
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option B — Coming Soon</button>
+        </div>
+      </div>
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:15px;">Symetra</strong>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option A — Coming Soon</button>
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option B — Coming Soon</button>
+        </div>
+      </div>
+      <div class="card-sm">
+        <strong style="color:var(--gold);font-size:15px;">Ethos</strong>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option A — Coming Soon</button>
+          <button style="background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Option B — Coming Soon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: PRESENTATION ====== -->
+<div class="section" id="sec-presentation">
+  <div class="section-header">
+    <div class="section-tag">Section 05</div>
+    <div class="section-title">Presentation Playbook</div>
+    <div class="section-desc">This call starts with your recap of what they told you — not with numbers. Mirror first, present second. Get verbal confirmation before moving forward.</div>
+  </div>
+
+  <div class="app-steps">
+    <div class="app-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Set the Frame</div>
+        <div class="step-body">
+          <div class="script-box">"Today is about confirming whether the strategy we discussed actually works with real numbers for your situation."</div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Mirror Their Words Back (Recap)</div>
+        <div class="step-body">
+          <div class="script-box">"Let me recap what <em>you</em> said was important so we're on the same page..."</div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">High-Level "Why IUL"</div>
+        <div class="step-body">Only cover the concepts relevant to what they care about.</div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Walk the Spreadsheet / Presentation</div>
+        <div class="step-body">
+          <div class="script-box">"This spreadsheet is my homework — it compares the options I built based on what you told me."</div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">Carrier Comparison</div>
+        <div class="step-body">
+          <div class="script-box">"Different carriers are better at different things. It's not that one is better than the other — it depends on what you want the policy to do."</div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-title">The Decision Moment</div>
+        <div class="step-body">
+          <div class="script-box">"Which of these feels like it aligns most with what you want to do?"</div>
+          <div class="alert-box" style="margin-top:10px;background:#fff;border-color:var(--border);"><span class="alert-icon">🔑</span><span style="color:var(--text)"><strong>Silence is your tool.</strong> After showing the total in vs. total out, stop talking. The numbers speak. Don't explain away the reaction — let them sit with it.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <div class="step-title">Transition to Application</div>
+        <div class="step-body">
+          <div class="script-box">"If you're comfortable moving forward, the next step is the application — we'll do it together, it takes about 30–60 minutes. Underwriting typically takes 2–4 weeks."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;margin-top:30px">
+    <div class="card-title" style="font-size:18px;">🎨 How to Build a Gamma Presentation — Step by Step</div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px">Once your illustration spreadsheet is filled in, turn those numbers into a polished client-ready presentation in minutes using <a href="https://gamma.app/signup?r=eqrihnnd1mdmqrl" target="_blank" style="color:var(--accent);font-weight:700;">gamma.app</a>.</p>
+    <div class="app-steps">
+      <div class="app-step">
+        <div class="step-num">1</div>
+        <div class="step-content"><div class="step-title">Go to Gamma.ai</div><div class="step-body">Visit <a href="https://gamma.app/signup?r=eqrihnnd1mdmqrl" target="_blank" style="color:var(--accent);font-weight:700;">gamma.app</a>, sign in, click <strong>Create New</strong> → <strong>Generate with AI</strong> → <strong>Presentation</strong>.</div></div>
+      </div>
+      <div class="app-step">
+        <div class="step-num">2</div>
+        <div class="step-content"><div class="step-title">Use This Prompt Template</div><div class="step-body">
+          Copy, fill in the brackets, and paste into Gamma:
+          <div class="card card-gold" style="margin-top:14px;padding:16px 20px">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:10px;font-weight:800;">📋 Gamma AI Prompt — Copy &amp; Customize</div>
+            <div style="background:#fff;border-radius:8px;padding:16px;font-size:13px;line-height:1.8;color:var(--text);font-family:monospace;border:1px solid var(--border);">
+              My name is <span style="color:var(--gold);font-weight:700;">[Your Name]</span>. I am a life insurance agent and I need you to create a professional presentation for my clients named <span style="color:var(--gold);font-weight:700;">[Client Name(s)]</span>.<br><br>
+              They are looking at an IUL to <span style="color:var(--gold);font-weight:700;">[insert primary goal]</span>.<br><br>
+              Here is the information from their illustration:<br>
+              • Aseguradora / Carrier: <span style="color:var(--gold);font-weight:700;">[Carrier Name]</span><br>
+              • Prima Mensual / Monthly Premium: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br>
+              • Beneficio por Fallecimiento / Death Benefit: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br>
+              • Valor en Efectivo año 10 / Cash Value Year 10: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br>
+              • Valor en Efectivo a los 65 / Cash Value at 65: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br>
+              • Total Pagado / Total Out of Pocket: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br>
+              • Ingreso Mensual a los 65 / Monthly Income at 65: <span style="color:var(--gold);font-weight:700;">$[amount]</span><br><br>
+              Please include a slide explaining what an IUL is, how indexed interest crediting works (floor and cap), and key benefits. Keep the tone professional but easy to understand. Make it visually clean and compelling.
+            </div>
+          </div>
+        </div></div>
+      </div>
+      <div class="app-step">
+        <div class="step-num">3</div>
+        <div class="step-content"><div class="step-title">Add Client-Specific Details</div><div class="step-body">Pull numbers directly from the illustration spreadsheet. Only include columns relevant to this client's strategy.</div></div>
+      </div>
+      <div class="app-step">
+        <div class="step-num">4</div>
+        <div class="step-content"><div class="step-title">Generate &amp; Review</div><div class="step-body">Gamma produces a full deck in 30–60 seconds. Check every number against your spreadsheet before presenting. AI can round or reformat numbers.</div></div>
+      </div>
+      <div class="app-step">
+        <div class="step-num">5</div>
+        <div class="step-content"><div class="step-title">Customize Branding (Optional)</div><div class="step-body">Adjust colors and add your logo in Gamma. Keep it clean and professional.</div></div>
+      </div>
+      <div class="app-step">
+        <div class="step-num">6</div>
+        <div class="step-content"><div class="step-title">Share or Present</div><div class="step-body">Share as a link, export as PDF, or present full-screen directly from your browser. For video calls, share your screen with the Gamma tab open.</div></div>
+      </div>
+    </div>
+    <div class="alert-box" style="margin-top:16px;background:#fff;border-color:var(--border);"><span class="alert-icon">⚠️</span><span style="color:var(--text)">Gamma presentations are <strong>marketing and education tools</strong> — not compliant illustrations. Always present the actual carrier illustration alongside the Gamma deck. The signed illustration is what goes with the application.</span></div>
+  </div>
+</div>
+
+<!-- ====== SECTION: EDUCATION ====== -->
+<div class="section" id="sec-education">
+  <div class="section-header">
+    <div class="section-tag">Section 06</div>
+    <div class="section-title">Education Drops</div>
+    <div class="section-desc">Pre-built scripts and talking points for each trigger scenario. Only use the ones relevant to this client's situation. Don't dump every education drop on every call.</div>
+  </div>
+
+  <div class="topic-tabs">
+    <div class="topic-tab active" onclick="showTopic('401k')">401k / 403b</div>
+    <div class="topic-tab" onclick="showTopic('roth')">Roth IRA</div>
+    <div class="topic-tab" onclick="showTopic('ira')">IRA / SEP</div>
+    <div class="topic-tab" onclick="showTopic('savings')">Savings / CD</div>
+    <div class="topic-tab" onclick="showTopic('workinsurance')">Work Insurance</div>
+    <div class="topic-tab" onclick="showTopic('outliving')">Outliving Retirement</div>
+    <div class="topic-tab" onclick="showTopic('debt')">Debt Strategy</div>
+    <div class="topic-tab" onclick="showTopic('mortgage')">Mortgage Protection</div>
+    <div class="topic-tab" onclick="showTopic('college')">College Funding</div>
+    <div class="topic-tab" onclick="showTopic('family')">Family Planning</div>
+    <div class="topic-tab" onclick="showTopic('juvenile')" style="border-color:var(--border);color:var(--gold)">👶 Juvenile Policies</div>
+    <div class="topic-tab" onclick="showTopic('investment')" style="border-color:var(--border);color:var(--gold)">📈 Investment Apps</div>
+  </div>
+
+  <!-- ROTH -->
+  <div class="topic-content" id="topic-roth">
+    <div class="card">
+      <div class="card-title">Trigger: Client says "I have a Roth" or "I'll just use a Roth IRA"</div>
+      <div class="script-box">"Roth is great — it grows tax-free and comes out tax-free. I respect that. But here's what it can't do: you can only put in $7,000 a year ($8,000 if you're over 50). And there are income limits — if you make over $161,000 single or $240,000 married, you can't even contribute directly. Plus, you can't borrow against it."</div>
+      <div style="margin:16px 0">
+        <span class="stat-highlight">$7,000/yr</span> Roth IRA contribution limit (2026)
+        <span class="stat-highlight">$161k+</span> income limit (single) — phaseout begins
+        <span class="stat-highlight">No borrowing</span> against Roth cash value
+        <span class="stat-highlight">No floor</span> — market can drop, value falls
+      </div>
+    </div>
+  </div>
+
+  <!-- IRA / SEP -->
+  <div class="topic-content" id="topic-ira">
+    <div class="card">
+      <div class="card-title">Trigger: Client has a Traditional IRA or SEP IRA (self-employed)</div>
+      <div class="script-box">"A traditional IRA gives you a deduction now but you pay taxes later — on everything, including all the growth. If your tax rate is higher when you retire (which it often is), you end up paying more. A SEP is powerful for self-employed people — up to $69,000 a year — but it follows the same rule: every dollar coming out is taxed."</div>
+      <div class="script-box">"Traditional IRAs and many retirement plans require minimum distributions beginning at age 73 or 75, depending on your birth year, regardless of whether you need the income. These withdrawals are generally taxable. A properly structured Indexed Universal Life (IUL) policy offers an alternative approach to supplemental retirement income. Unlike traditional tax-deferred retirement accounts, IUL policies have no required minimum distributions, allowing policyholders greater flexibility over when and how they access available cash value through withdrawals or policy loans, subject to policy terms and tax rules."</div>
+    </div>
+  </div>
+
+  <!-- OUTLIVING RETIREMENT -->
+  <div class="topic-content" id="topic-outliving">
+    <div class="card">
+      <div class="card-title">Trigger: Client doesn't have a retirement plan, or is worried about running out of money</div>
+      <div class="script-box">"The biggest financial risk most Americans face today isn't dying too soon — it's living too long. The average retirement now lasts 20–30 years. Social Security was never designed to be a primary income source, and most people's 401k balance will run out in years, not decades."</div>
+      <div class="script-box">"A 40% market loss doesn't take 40% to recover — it takes about 67%. If your portfolio drops 40% the year before you retire, you need a 67% gain just to break even. With an IUL, when markets go down, you don't. Your floor is 0%. Your upside is capped — but your downside is eliminated. Someone who retired during the 2008 financial crisis could have needed approximately 4–6 years for their stock portfolio to recover, assuming they remained invested and didn't withdraw money. But there's a major distinction between the stock market recovering and a retiree's portfolio recovering. For someone who retired in 2008 and immediately began withdrawing income, recovery could have taken considerably longer—or might never have happened. This is one of the most important concepts in retirement planning: sequence-of-returns risk."</div>
+    </div>
+  </div>
+
+  <!-- DEBT -->
+  <div class="topic-content" id="topic-debt">
+    <div class="card">
+      <div class="card-title">Trigger: Client carries significant debt or is interested in the "banking" concept</div>
+      <div class="script-box">"Think about a traditional bank: if you have $100,000 and withdraw $40,000, only the remaining $60,000 continues earning interest. With an IUL using participating loans, you can borrow against your cash value while the full $100,000 may remain eligible to earn indexed interest. However, policy loans are not free withdrawals. The insurance company charges interest on the borrowed amount, and the outstanding loan reduces your available net cash value and death benefit. If not properly managed, loans can also jeopardize the policy. The advantage is that you may access funds while your underlying cash value continues working for you, subject to policy terms and charges."</div>
+    </div>
+  </div>
+
+  <!-- MORTGAGE PROTECTION -->
+  <div class="topic-content" id="topic-mortgage">
+    <div class="card">
+      <div class="card-title">Trigger: Client has a mortgage, new homeowner, or mentions wanting to protect their home</div>
+      <div class="script-box">"Most people think about mortgage protection as a simple term policy — it pays off the house if you die. That's it. An IUL does all of that AND builds an asset you can access while you're alive. So instead of paying for protection that expires in 20 years with zero residual value, you're paying for protection that grows into a financial resource. Furthermore, you can leverage the cash value in an IUL to help pay for the mortgage when you can't, or you can use it to pay the house off sooner, saving thousands in interest."</div>
+    </div>
+  </div>
+
+  <!-- FAMILY PLANNING -->
+  <div class="topic-content" id="topic-family">
+    <div class="card">
+      <div class="card-title">Trigger: Client has a growing family, dependents, or is actively planning their family's financial security</div>
+      <div class="card-sm card-gold" style="margin-bottom:16px">
+        <strong style="color:var(--gold);font-size:14px;">Problem: Protecting Your Family's Financial Future</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;line-height:1.7">Raising a family comes with growing financial responsibilities—mortgages, childcare, education, and everyday expenses. If a parent passes away unexpectedly, their family could lose essential income, leaving loved ones struggling to maintain their lifestyle and meet long-term financial goals.</p>
+      </div>
+      <div class="card-sm card-gold">
+        <strong style="color:var(--gold);font-size:14px;">IUL Solution: Protection Today, Flexibility for Tomorrow</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;line-height:1.7">An Indexed Universal Life (IUL) policy provides a death benefit to help protect your family's financial security while offering the potential to accumulate cash value over time. That cash value may be accessed through withdrawals or policy loans to help fund future needs, such as education, emergencies, or major family expenses. It's life insurance designed to provide protection today with potential financial flexibility for tomorrow, subject to policy terms, costs, and loan risks.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUVENILE POLICIES -->
+  <div class="topic-content" id="topic-juvenile">
+    <div class="card">
+      <div class="card-title">Trigger: Client has a child under 18 / wants to set their child up for financial success</div>
+      <div class="script-box">"The most powerful financial gift a parent can give a child isn't a savings account or a 529 — it's locking in permanent life insurance while they're young, healthy, and before any medical history develops. This is called a juvenile policy, and it does something no other tool can: it guarantees insurability for life."</div>
+      <div style="margin:16px 0">
+        <span class="stat-highlight">9 days old</span> earliest most carriers will insure
+        <span class="stat-highlight">$25–$100/mo</span> typical starting premium range
+        <span class="stat-highlight">Usually a higher DB</span> than adults start with
+        <span class="stat-highlight">Locked in forever</span> — no new underwriting ever needed
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT APPS -->
+  <div class="topic-content" id="topic-investment">
+    <div class="card">
+      <div class="card-title">Trigger: Client actively uses Robinhood, Acorns, Webull, or similar retail investing apps</div>
+      <div class="card-sm card-gold" style="margin-bottom:16px">
+        <strong style="color:var(--gold);font-size:14px;">Problem: Investing Without Financial Protection</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;line-height:1.7">Many people use apps like Robinhood to invest in stocks, ETFs, and other securities, hoping to build wealth over time. While these platforms offer opportunities for growth, investments are exposed to market volatility and potential losses. A significant market downturn could reduce their savings just when they need them most. Additionally, a brokerage account generally doesn't provide life insurance protection.</p>
+      </div>
+      <div class="card-sm card-gold">
+        <strong style="color:var(--gold);font-size:14px;">IUL Solution: Growth Potential With Downside Protection</strong>
+        <p style="font-size:13px;color:var(--text);margin-top:8px;line-height:1.7">An Indexed Universal Life (IUL) policy can complement traditional investments by providing life insurance protection while offering the potential for cash value accumulation linked to market index performance. Unlike directly investing in stocks, IUL indexed accounts generally offer a 0% floor against negative index returns, although policy charges can still reduce cash value. This allows clients to diversify their financial strategies, protect their loved ones, and build a potential source of supplemental income without directly exposing their indexed cash value to stock market losses.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== SECTION: OBJECTIONS ====== -->
+<div class="section" id="sec-objections">
+  <div class="section-header">
+    <div class="section-tag">Section 07</div>
+    <div class="section-title">Objection Responses</div>
+    <div class="section-desc">Mirror the objection — never argue. Validate the concern, then redirect with facts. Numbers over emotion. Stay calm. Silence is fine.</div>
+  </div>
+
+  <div id="objections-list">
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I already have life insurance through work</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">That's a great benefit — I'd never take that away from you. But here's what employer coverage can't do: it's not yours. It follows your job. If you switch employers, get laid off, or retire, it can disappear overnight. It also typically only covers 1–2x salary — which is often less than one year of your family's income. And it builds zero cash value you can access while you're alive. This is about complementing what you have, not replacing it.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I can't afford it right now</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">I understand — that's the same thing I thought before I understood it. But let me show you the cost of waiting. Every year you delay is a year of compounding you can never recover. At 30, $200/month builds dramatically more than the same $200 at 40 — not a little more, dramatically more. There are options starting at $25–50/month. What's a number that does feel possible right now? Let me show you what even a small amount looks like over time.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I'll just invest in the stock market / index funds</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">Index funds are a great tool — I won't argue with that. But here's the difference: (1) Your index fund is fully exposed to losses — when the market drops 40%, your account drops 40%. A 40% loss requires a 67% gain just to break even. The IUL has a 0% floor — you don't participate in losses. (2) Your gains in a brokerage account are taxable — capital gains, dividends, all of it. IUL growth is tax-deferred, and distributions through policy loans are tax-free. (3) Your investment has no death benefit. It builds no protection. This isn't either/or — it's both. But the IUL covers risks your index fund doesn't.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">What if I lose money in it?</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">That's actually one of the biggest misunderstandings about IUL — and it's a fair concern. Your cash value cannot decrease because of index performance. The floor is 0%. In a year when the market drops 30%, your policy credits 0% — not -30%. You don't participate in the loss. Monthly charges are still deducted — so the cash value can dip slightly from fees in very early years — but you are never exposed to market downturns. What you lose, you lose only to the ceiling (cap) on the upside. What you don't lose is the downside.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I heard IULs are complicated and have hidden fees</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">That's fair — and there are agents who overcomplicate this. My job is to make it simple. At its core: you pay a premium, a portion goes to insurance cost, the rest builds cash value that grows tied to a market index with a floor and a cap. Yes, there are internal charges — cost of insurance, admin fees. These are disclosed in the illustration. The question isn't "are there fees" — every financial product has fees. The question is: net of fees, what does this produce compared to your alternatives? Let's look at that comparison directly.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I need to think about it / I need to talk to my spouse</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">Of course — I'd never push a decision like this. What specific part do you want to think through? Sometimes there's one piece that isn't clear yet, and I can address it right now so your conversation with your spouse is easier. [Listen for the real objection.] If they genuinely need a spouse conversation: "Would it help to schedule a call with both of you together? I can walk through everything in 30 minutes and you can both ask questions at the same time."</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">My financial advisor told me IULs are bad</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">I respect your advisor. There's a common bias in the investment world against insurance products — partly because financial advisors often don't earn commissions on insurance, partly because IULs done wrong are actually a bad product. The key is how it's designed and who designs it. What I'd ask you: has your advisor ever specifically analyzed the tax-free income component of a properly structured IUL versus your current tax exposure in retirement? That's usually where the conversation changes. This isn't about replacing your advisor's strategy — it's about tax diversification they may not have on their menu.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">What if the insurance company goes out of business?</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">That's a real concern — and there's a real protection for it. Every state has a guaranty association that protects policyholders if an insurer becomes insolvent — typically up to $300,000–$500,000 in cash value and death benefits. Additionally, the carriers I work with are rated A or better by AM Best — companies with decades of claims-paying history and billions in assets. But the safeguard exists for worst-case scenarios. You're more protected here than a bank deposit over $250,000.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I want to wait until my financial situation improves</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">I understand that instinct — I really do. But let me show you something: the cost of a policy goes UP every year you wait, because you're older and insurance pricing is based on age and health. Whatever the premium is today, it will never be lower than today. Also — what if your health changes while you're waiting? The only thing that locks in your insurability is starting the policy. I'm not saying fund it at the maximum. I'm saying start it, even at $50–100 a month, to secure your age and health class now.</div>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I don't believe in life insurance — it's a scam</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <div class="response-text">Tell me more about that — because you're right that some types of insurance are a bad deal. Term insurance that expires with nothing to show for it — I understand the frustration. But what if I showed you a policy where the majority of your money comes back to you, with tax-free interest, during your lifetime? This isn't betting on death. This is a living financial asset that happens to also have a death benefit attached. Let me show you a 20-year comparison of what goes in versus what comes out — and you can decide if that fits your definition of a scam.</div>
+      </div>
+    </div>
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I heard IULs are a scam designed to pay agents huge commissions</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">That's a fair concern — I'm glad you brought it up so I can be transparent. Yes, agents are compensated on IUL policies. So are financial advisors on mutual funds, Realtors on home sales, and doctors on procedures. Compensation doesn't make something a scam — misrepresentation does. What you should know: commission comes from the carrier, not your premium. Your money goes into the policy regardless. My incentive to do right by you is simple — clients with well-designed policies stay and refer others. Clients with bad ones don't. Would you like me to show you the numbers on paper so you can judge it yourself?</p>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">IULs are too complicated — I don't understand how they work</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">You're right that IULs have moving parts — and anyone who says they're simple isn't being honest with you. But you don't need to understand every gear in your car's engine to drive it safely. Here's the three-sentence version: your premium goes into an account that earns interest tied to the market — but you can never lose money when the market drops. You can borrow from it tax-free while you're alive. And your family gets a death benefit when you pass. The complexity exists to protect you legally and tax-wise. I'm here to translate all of it. What specific part feels most confusing right now?</p>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I'd love an IUL but I can't afford the amount I want to put in</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">The most important thing isn't the amount — it's starting. An IUL is flexible, not a fixed payment like a car loan. You can start at $50 or $100 a month, lock in your age and health today, and increase your premium when your income grows. Every year you wait, you're paying for coverage at an older age — and that cost never comes down. Let me show you what even $75 a month looks like over 20 years. Then as things improve, you simply increase it. The right amount today is whatever you can actually sustain. What feels realistic right now?</p>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">My spouse/partner needs to be involved and they're skeptical</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">Completely reasonable — this is a household financial decision and both people should understand it. I actually prefer when both partners are in the conversation because it avoids misunderstandings later. Would it help if we scheduled a 30-minute call with both of you together? I'll walk through everything from scratch, answer both of your questions, and there's zero pressure. The goal is that you both feel confident — not that one of you got sold something. What's a time that works for both of you?</p>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">What if I miss a payment or need to stop paying?</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">This is one of the advantages of an IUL over whole life — it's flexible. If you go through a financial stretch and need to reduce or pause your premium, the cash value inside the policy can cover the monthly charges for a period of time, keeping the policy active. It's not a fixed commitment. Now — if the cash value runs out and you've stopped paying, the policy could lapse, which is why we design it with adequate funding. But it's built to bend rather than break. I can also show you the no-lapse guarantee rider option that adds a safety net. Does that help?</p>
+      </div>
+    </div>
+
+    <div class="objection-item">
+      <div class="objection-trigger" onclick="toggleObj(this)">
+        <div class="objection-q">I already have term insurance — isn't that enough?</div>
+        <div class="objection-arrow">▶</div>
+      </div>
+      <div class="objection-body">
+        <div class="response-label">Your Response</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--text)">Term is great for what it does — it's affordable protection for a specific window. The question is: what happens when the term expires? If you're still alive at 65 and your 20-year term ends, you have no coverage and you'd be buying new coverage at an older age and much higher cost. An IUL doesn't expire. It builds value while you're alive and pays your family when you pass — no matter when that is. Term protects against dying too soon. An IUL also protects against living longer than your savings. They serve different purposes. The question is whether you want coverage that pays only if you die young, or coverage that also builds an asset you can use while you're alive.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: APPLICATION ====== -->
+<div class="section" id="sec-application">
+  <div class="section-header">
+    <div class="section-tag">Section 08</div>
+    <div class="section-title">Application Process</div>
+    <div class="section-desc">Done together with the client. Takes 30–60 minutes. Underwriting typically takes 2 weeks to 1 month. Stay on top of follow-up requests — they time out.</div>
+  </div>
+
+  <div class="card card-gold" style="margin-bottom:24px">
+    <div class="card-title gold" style="font-size:18px;">Before Starting the Application</div>
+    <p style="font-size:14px;line-height:1.7;color:var(--text)">The agreed-upon illustration must be <strong>saved and signed</strong> before or at the time of application. This is the illustration you presented, agreed upon, and finalized. Use the correct file naming convention and save before proceeding.</p>
+  </div>
+
+  <a href="https://links.powerfinancial.co/widget/form/liE3rgNw9ohtMm4gYCJm" target="_blank" class="ext-link-card" style="margin-bottom:28px">
+    <div class="ext-link-icon">📋</div>
+    <div>
+      <div class="ext-link-title">Client Pre-Fill Form (GHL) — Send Before the Application Call</div>
+      <div class="ext-link-desc">Share this GHL form link with your client between meetings. They complete basic personal info so you can move faster on the application call.</div>
+    </div>
+  </a>
+
+  <div class="app-steps">
+    <div class="app-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Medical Information</div>
+        <div class="step-body">
+          The application will ask for full medical history. Have the client's discovery notes handy.
+          <div class="info-grid">
+            <div class="info-item"><strong>PCP Information</strong>Doctor's name, practice name, phone number, address</div>
+            <div class="info-item"><strong>Medications</strong>All current medications, dosage, and what they're prescribed for</div>
+            <div class="info-item"><strong>Last Doctor Visit</strong>Date and outcome of most recent physician visit</div>
+            <div class="info-item"><strong>Medical History</strong>Diagnosed conditions, surgeries, hospitalizations (10-year lookback)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Financial Information (AML Compliance)</div>
+        <div class="step-body">
+          Anti-Money Laundering guidelines require financial verification. This is required — not optional.
+          <div class="info-grid">
+            <div class="info-item"><strong>Net Worth</strong>Estimated total net worth</div>
+            <div class="info-item"><strong>Annual Income</strong>Gross annual income — W-2, 1099, or business</div>
+            <div class="info-item"><strong>Employer Information</strong>Company name, address, years employed, title</div>
+            <div class="info-item"><strong>Source of Funds</strong>How the premium will be funded (income, savings, business, etc.)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Existing Coverage Review</div>
+        <div class="step-body">
+          If replacing or supplementing existing life insurance, you must disclose it.
+          <div class="info-grid">
+            <div class="info-item"><strong>Carrier Name</strong>Name of existing insurance company</div>
+            <div class="info-item"><strong>Death Benefit Amount</strong>Face amount of existing policy</div>
+            <div class="info-item"><strong>Type of Policy</strong>Term, Whole Life, Group, etc.</div>
+            <div class="info-item"><strong>Reason for Additional Coverage</strong>Why are they applying for this policy in addition to or instead of existing?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Beneficiary Information</div>
+        <div class="step-body">
+          Collect for every beneficiary named (primary and contingent).
+          <div class="three-col" style="margin-top:10px">
+            <div class="info-item"><strong>Full Legal Name</strong>As it appears on government ID</div>
+            <div class="info-item"><strong>Date of Birth</strong>MM/DD/YYYY</div>
+            <div class="info-item"><strong>Phone Number</strong>Direct contact number</div>
+          </div>
+          <div class="three-col" style="margin-top:10px">
+            <div class="info-item"><strong>Relationship</strong>Spouse, child, parent, etc.</div>
+            <div class="info-item"><strong>Percentage</strong>Split if multiple beneficiaries (must total 100%)</div>
+            <div class="info-item"><strong>SSN (if required)</strong>Some carriers require SSN for beneficiary at issue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">Digital Signature</div>
+        <div class="step-body">
+          Most carriers now use digital signature. Send signature request to client via text or email.
+          <div class="alert-box" style="margin-top:16px;background:#fff;"><span class="alert-icon">💾</span><span style="color:var(--text)"><strong>Save the Finalized Application:</strong> Once the application is completely signed and finalized, you must save the file in the following manner before submitting:<br><br><strong style="font-family:monospace;color:var(--gold2)">CarrierName_IUL_Final_ClientName_App#_MMDDYYYY</strong></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-title">After Submission — What to Expect</div>
+        <div class="step-body">
+          <div class="info-grid">
+            <div class="info-item"><strong>Child Policies</strong>Often instant approval — clean medical history + simple application = same-day or next-day decision</div>
+            <div class="info-item"><strong>Healthy Adults</strong>If nothing triggers in the MIB report (Medical Information Bureau), fast-track approval is common</div>
+            <div class="info-item"><strong>Standard Timeline</strong>2 weeks to 1 month for full underwriting review</div>
+            <div class="info-item"><strong>MIB Report</strong>Carriers check this shared medical database. Any prior medical history or previous insurance applications are flagged here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-step">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <div class="step-title">Underwriting Follow-Up Requests</div>
+        <div class="step-body">
+          <p>The underwriting team may email you with additional questions. You must respond promptly — these requests have deadlines.</p>
+          <div class="script-box" style="margin-top:14px;font-style:normal">
+            Respond in a PDF document. The document must include:
+            <ul style="margin-top:10px;color:var(--text);list-style:none">
+              <li style="padding:4px 0">→ Client full name</li>
+              <li style="padding:4px 0">→ Policy number (from confirmation email)</li>
+              <li style="padding:4px 0">→ Your name (agent of record)</li>
+              <li style="padding:4px 0">→ Your agent writing number</li>
+              <li style="padding:4px 0">→ Date of response</li>
+              <li style="padding:4px 0">→ Clear answers to each question asked</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px">
+    <div class="card-title">🎬 Coming Soon — Carrier Application Walkthroughs</div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Step-by-step video guides for submitting applications on each carrier's portal. Links will be added when available.</p>
+    <div class="two-col" style="gap:16px">
+      <div class="card-sm"><strong style="color:var(--gold);font-size:15px;">F&amp;G</strong><button style="display:block;width:100%;margin-top:10px;background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 F&amp;G Walkthrough — Coming Soon</button></div>
+      <div class="card-sm"><strong style="color:var(--gold);font-size:15px;">NLG</strong><button style="display:block;width:100%;margin-top:10px;background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 NLG Walkthrough — Coming Soon</button></div>
+      <div class="card-sm"><strong style="color:var(--gold);font-size:15px;">Transamerica</strong><button style="display:block;width:100%;margin-top:10px;background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Transamerica Walkthrough — Coming Soon</button></div>
+      <div class="card-sm"><strong style="color:var(--gold);font-size:15px;">Ethos</strong><button style="display:block;width:100%;margin-top:10px;background:#faf8f5;border:1px solid var(--border);color:var(--muted);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:not-allowed;text-align:left;box-shadow:inset 0 1px 3px rgba(0,0,0,0.02);">🎥 Ethos Walkthrough — Coming Soon</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: CARRIERS ====== -->
+<div class="section" id="sec-carriers">
+  <div class="section-header">
+    <div class="section-tag">Section 09</div>
+    <div class="section-title">Carrier Quick Reference</div>
+    <div class="section-desc">Know your carriers. Each one has different minimums, strengths, and use cases. Don't guess — check this before building illustrations.</div>
+  </div>
+
+  <div class="card card-gold" style="margin-bottom:24px;border:none;background:transparent;padding:0;box-shadow:none;">
+    <div class="card-title" style="font-size:22px;margin-bottom:20px;color:var(--gold);font-weight:800;">📊 IUL Premium Minimums by Strategy</div>
+    
+    <div class="two-col" style="gap:20px">
+      <!-- Tier A -->
+      <div class="premium-tier">
+        <div class="premium-tier-header tier-a-color">Strategy A — Protection Focus</div>
+        <div class="premium-tier-row"><span class="label">Age 0–25</span><strong class="tier-a-color">~$20 – $30/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 26–40</span><strong class="tier-a-color">~$45 – $125/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 41–55</span><strong class="tier-a-color">~$125 – $200/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 55–62</span><strong class="tier-a-color">~$200 – $250/mo</strong></div>
+      </div>
+      
+      <!-- Tier B -->
+      <div class="premium-tier">
+        <div class="premium-tier-header tier-b-color">Strategy B — Cash Value Focus</div>
+        <div class="premium-tier-row"><span class="label">Age 0–18</span><strong class="tier-b-color">~$25 – $75/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 19–35</span><strong class="tier-b-color">~$75 – $200/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 36–45</span><strong class="tier-b-color">~$200 – $250/mo</strong></div>
+        <div class="premium-tier-row"><span class="label">Age 46–55+</span><strong class="tier-b-color">~$250 – $500+/mo</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:18px;font-weight:800;color:var(--gold);margin:32px 0 16px;border-bottom:2px solid var(--border);padding-bottom:8px;">👶 Child Policies (Ages 9 days – 17)</div>
+  <div class="carrier-grid">
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">F&G</div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$50/mo</span></div>
+      <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value" style="font-size:12px">2x coverage</span></div>
+      <div class="rank-badge">Best Value</div>
+    </div>
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">NLG</div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$30/mo</span></div>
+      <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value" style="font-size:12px">2x after $500k</span></div>
+      <div class="rank-badge">Most Accessible</div>
+    </div>
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">Transamerica</div>
+      <div class="carrier-stat"><span class="label">Option A Min.</span><span class="value">$20/mo</span></div>
+      <div class="carrier-stat"><span class="label">Option B Min.</span><span class="value">$25/mo</span></div>
+      <div class="carrier-stat"><span class="label">Parent Rule</span><span class="value" style="font-size:12px">2x always</span></div>
+      <div class="rank-badge">Budget Option</div>
+    </div>
+  </div>
+
+  <div style="font-size:18px;font-weight:800;color:var(--gold);margin:40px 0 16px;border-bottom:2px solid var(--border);padding-bottom:8px;">👤 Adult Policies — Minimum Face Amount</div>
+  <div class="carrier-grid">
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">F&G</div>
+      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$50,000</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value" style="text-align:right">All-around / CV Growth</span></div>
+    </div>
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">NLG</div>
+      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$50,000</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value" style="text-align:right">Budget & Living Benefits</span></div>
+    </div>
+    <div class="dynamic-carrier-card">
+      <div class="carrier-name">Transamerica</div>
+      <div class="carrier-stat"><span class="label">Min. Death Benefit</span><span class="value">$25,000</span></div>
+      <div class="carrier-stat"><span class="label">Best For</span><span class="value" style="text-align:right">Lowest Entry / Table C</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: CARRIER CONTACTS ====== -->
+<div class="section" id="sec-contacts">
+  <div class="section-header">
+    <div class="section-tag">Section 11</div>
+    <div class="section-title">Carrier Contacts</div>
+    <div class="section-desc">Your direct lines to sales desks, underwriting, and wholesalers. These are the people who help you get cases approved and questions answered fast.</div>
+  </div>
+  
+  <div class="card" style="margin-bottom:24px">
+    <div style="font-size:22px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:18px">F&amp;G — Fidelity &amp; Guaranty Life</div>
+    <div class="two-col">
+      <div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold);font-size:14px;">📞 Life Sales Support</strong><div style="font-size:14px;margin-top:6px;font-weight:600;">800-815-9332</div><div style="font-size:13px"><a href="mailto:life.sales@fglife.com" style="color:var(--accent)">life.sales@fglife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold);font-size:14px;">📞 Life New Business</strong><div style="font-size:14px;margin-top:6px;font-weight:600;">800-445-6758 Opt 2, Opt 1</div><div style="font-size:13px"><a href="mailto:LifeCaseMgmt@fglife.com" style="color:var(--accent)">LifeCaseMgmt@fglife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Blake Krisan</strong> — National Account Manager<div style="font-size:13px;margin-top:6px">515-422-1426 &middot; <a href="mailto:blake.krisan@fglife.com" style="color:var(--accent)">blake.krisan@fglife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Glen Gomez</strong> — Senior Internal Wholesaler<div style="font-size:13px;margin-top:6px">410-891-3762 &middot; <a href="mailto:glen.gomez@fglife.com" style="color:var(--accent)">glen.gomez@fglife.com</a></div></div>
+        <div class="card-sm"><strong style="color:var(--gold)">Rodolfo Sierra 🇲🇽</strong> — Habla Español, National Accounts VP<div style="font-size:13px;margin-top:6px"><a href="mailto:rodolfo.sierra@fglife.com" style="color:var(--accent)">rodolfo.sierra@fglife.com</a></div></div>
+      </div>
+      <div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Tomas Perez 🇲🇽</strong> — Habla Español, Bilingual National Accounts Mgr<div style="font-size:13px;margin-top:6px"><a href="mailto:Tomas.Perez@fglife.com" style="color:var(--accent)">Tomas.Perez@fglife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Ryan Marcum</strong> — National Account Manager<div style="font-size:13px;margin-top:6px"><a href="mailto:ryan.marcum@fglife.com" style="color:var(--accent)">ryan.marcum@fglife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Zachary Goforth</strong> — Senior Internal Wholesaler<div style="font-size:13px;margin-top:6px"><a href="mailto:Zach.Goforth@fglife.com" style="color:var(--accent)">Zach.Goforth@fglife.com</a></div></div>
+        <div class="card-sm"><strong style="color:var(--gold);font-size:14px;">📞 Annuities</strong><div style="font-size:14px;margin-top:6px;font-weight:600;">800-445-6758 opt 1, opt 1 &middot; <a href="mailto:SalesDesk@fglife.com" style="color:var(--accent)">SalesDesk@fglife.com</a></div><div style="font-size:13px;color:var(--muted);margin-top:6px;">New Business: 844-800-9146 | FAX: 402-328-2266</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <div style="font-size:22px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:18px">NLG — National Life Group</div>
+    <div class="two-col">
+      <div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold);font-size:14px;">📞 Sales Desk</strong><div style="font-size:14px;margin-top:6px;font-weight:600;">800-906-3310 Option 1 (English) / Option 2 (Spanish)</div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Brendan Healy</strong> — Internal Wholesaler<div style="font-size:13px;margin-top:6px">469-851-9654 &middot; <a href="mailto:BHealy@NationalLife.com" style="color:var(--accent)">BHealy@NationalLife.com</a></div></div>
+        <div class="card-sm"><strong style="color:var(--gold)">Maurice Bonner</strong> — Sr. Internal Wholesaler<div style="font-size:13px;margin-top:6px">214-907-1155 &middot; <a href="mailto:MBonner@NationalLife.com" style="color:var(--accent)">MBonner@NationalLife.com</a></div></div>
+      </div>
+      <div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Magali Zaragoza 🇲🇽</strong> — Internal Wholesaler (Spanish)<div style="font-size:13px;margin-top:6px"><a href="mailto:MZaragoza@NationalLife.com" style="color:var(--accent)">MZaragoza@NationalLife.com</a></div></div>
+        <div class="card-sm" style="margin-bottom:12px"><strong style="color:var(--gold)">Sam Howard</strong> — Key Accounts Associate<div style="font-size:13px;margin-top:6px"><a href="mailto:SHoward@NationalLife.com" style="color:var(--accent)">SHoward@NationalLife.com</a></div></div>
+        <div class="card-sm"><strong style="color:var(--gold)">Rush Wilbanks</strong> — Key Accounts Representative<div style="font-size:13px;margin-top:6px"><a href="mailto:RWilbanks@NationalLife.com" style="color:var(--accent)">RWilbanks@NationalLife.com</a></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="three-col" style="margin-bottom:24px">
+    <div class="card">
+      <div style="font-size:19px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:14px">Columbus Life</div>
+      <div class="card-sm" style="margin-bottom:10px"><strong style="color:var(--gold)">📞 Sales Desk</strong><div style="font-size:13px;margin-top:4px;font-weight:600;">800-677-9696 OPT 4</div><div style="font-size:13px;color:var(--muted);margin-top:2px;">FAX: 513-361-6757 | Gen: 513-361-6700</div></div>
+      <div class="card-sm" style="margin-bottom:10px"><strong style="color:var(--gold)">📞 New Business &amp; Underwriting</strong><div style="font-size:13px;margin-top:4px;font-weight:600;">800-677-9696 OPT 2</div><div style="font-size:13px;color:var(--muted);margin-top:2px;">FAX: 888-436-6591</div></div>
+      <div class="card-sm"><strong style="color:var(--gold)">📞 Client Services / Help Desk</strong><div style="font-size:13px;margin-top:4px;font-weight:600;">OPT 3 &middot; Help: 800-333-5356</div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:19px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:14px">Symetra</div>
+      <div class="card-sm" style="margin-bottom:10px"><strong style="color:var(--gold)">Nate Kohl</strong>, RVP<div style="font-size:13px;margin-top:4px">801-946-6953 &middot; <a href="mailto:nate.kohl@symetra.com" style="color:var(--accent)">nate.kohl@symetra.com</a></div></div>
+      <div class="card-sm" style="margin-bottom:10px"><strong style="color:var(--gold)">James Lau</strong>, RVP<div style="font-size:13px;margin-top:4px">949-519-5420 &middot; <a href="mailto:james.lau@symetra.com" style="color:var(--accent)">james.lau@symetra.com</a></div></div>
+      <div class="card-sm"><strong style="color:var(--gold)">Nadine Russo</strong>, Internal Sales Consultant<div style="font-size:13px;margin-top:4px">334-909-8246 &middot; <a href="mailto:nadine.russo@symetra.com" style="color:var(--accent)">nadine.russo@symetra.com</a></div><div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:600;">In-Force: 800-796-3872 ext. 21011</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:19px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:6px">Mutual of Omaha</div>
+    <div style="font-size:13px;color:var(--red);margin-bottom:14px;font-weight:700;">⚠️ See "Use with Caution" before placing IUL business here</div>
+    <div class="two-col">
+      <div class="card-sm"><strong style="color:var(--gold)">Derek Wiedenmeyer</strong> — Sales Director<div style="font-size:14px;margin-top:6px">913-706-8647 &middot; <a href="mailto:derek.wiedenmeyer@mutualofomaha.com" style="color:var(--accent)">derek.wiedenmeyer@mutualofomaha.com</a></div></div>
+      <div class="card-sm"><strong style="color:var(--gold)">Cindy Burks</strong> — Account Executive, Brokerage Life<div style="font-size:14px;margin-top:6px">402-351-8404 | 800-693-6083 ext 8404<br><a href="mailto:cindy.burks@mutualofomaha.com" style="color:var(--accent)">cindy.burks@mutualofomaha.com</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: RECOMMENDED READING ====== -->
+<div class="section" id="sec-books">
+  <div class="section-header">
+    <div class="section-tag">Section 12</div>
+    <div class="section-title">Recommended Reading</div>
+    <div class="section-desc">Read at least 3 before your first 30 days are up. Your clients feel the difference between an agent who has done the reading and one who has not.</div>
+  </div>
+  
+  <div class="card card-gold" style="margin-bottom:24px">
+    <div class="card-title gold" style="font-size:16px;">⚠️ Access Note — Google Drive Links</div>
+    <p style="font-size:14px;line-height:1.7;color:var(--text);">Some links below require permission. If you receive a "Request Access" prompt, submit the request — access will be granted by the team. These PDFs are for agent education only. Do not distribute externally.</p>
+  </div>
+  
+  <div class="two-col">
+    <a href="https://drive.google.com/drive/folders/1vkkMKDQjkI20pTwF-Q2g9aHsxb7HIbgr" target="_blank" class="ext-link-card"><div class="ext-link-icon">📕</div><div><div class="ext-link-title">Killing Sacred Cows — Garret Gunderson</div><div class="ext-link-desc">Challenges conventional financial wisdom. Why traditional savings advice fails most Americans. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/drive/folders/1vkkMKDQjkI20pTwF-Q2g9aHsxb7HIbgr" target="_blank" class="ext-link-card"><div class="ext-link-icon">📗</div><div><div class="ext-link-title">Money. Wealth. Life Insurance. — Jake Thompson</div><div class="ext-link-desc">The definitive case for permanent life insurance as a financial vehicle. Your most important client-education book. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/file/d/1UXTB7hE0uw6QeY8FDVZkNcMPCul0ycZP/view?usp=drive_link" target="_blank" class="ext-link-card"><div class="ext-link-icon">📘</div><div><div class="ext-link-title">The Retirement Miracle — Patrick Kelly</div><div class="ext-link-desc">Makes the case for tax-free retirement income. Perfect companion to your retirement income conversations. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/file/d/1pmc5MfBMf2giFFHMr6OSM6__5N8I1bjn/view?usp=drive_link" target="_blank" class="ext-link-card"><div class="ext-link-icon">📙</div><div><div class="ext-link-title">Tax-Free Income for Life — David McKnight</div><div class="ext-link-desc">The tax-free retirement strategy. Excellent for clients worried about future tax rates. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/file/d/15uBIl7tpw-Pd9BT94PWuDik118Y3wqtg/view?usp=drive_link" target="_blank" class="ext-link-card"><div class="ext-link-icon">📕</div><div><div class="ext-link-title">The Power of Zero — David McKnight</div><div class="ext-link-desc">Moving money to tax-free vehicles before rates rise. A cornerstone of the IUL value proposition. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/file/d/1q_bZqvNWkc09jLQqvuQQkSDsbEYVvPAe/view?usp=drive_link" target="_blank" class="ext-link-card"><div class="ext-link-icon">📗</div><div><div class="ext-link-title">What Would Billionaires Do?</div><div class="ext-link-desc">How the ultra-wealthy use financial instruments including life insurance to protect and grow wealth. 🔒 Permission required</div></div></a>
+    <a href="https://drive.google.com/file/d/1igpviyay-g-qkoMC5pV4UhyxTAkGlXkV/view?usp=drive_link" target="_blank" class="ext-link-card"><div class="ext-link-icon">📘</div><div><div class="ext-link-title">What Would the Rockefellers Do? — Garrett Gunderson</div><div class="ext-link-desc">How elite families use life insurance as a family banking system across generations. Blueprint for the family bank concept. 🔒 Permission required</div></div></a>
+    <a href="https://cdn.discordapp.com/attachments/1129449019488337990/1307901192180863086/Day_Trading_by_Gary_Vaynerchuk.pdf?ex=69fff2e7&is=69fea167&hm=c77d733957ae37a9eb1eb80b2eda8610cbf80afe8b89daefe051ffda728ed885&" target="_blank" class="ext-link-card"><div class="ext-link-icon">📙</div><div><div class="ext-link-title">Day Trading — Gary Vaynerchuk</div><div class="ext-link-desc">Understanding market trading perspectives helps agents speak the language of investment-minded clients.</div></div></a>
+    <a href="https://a.co/d/a55wBMW" target="_blank" class="ext-link-card"><div class="ext-link-icon">📕</div><div><div class="ext-link-title">The Financial Pocketknife: Beating the Dream Killers</div><div class="ext-link-desc">Amazon — Practical guide to financial resilience and fighting myths that keep people from building wealth.</div></div></a>
+    <a href="https://a.co/d/29SX1HV" target="_blank" class="ext-link-card"><div class="ext-link-icon">📗</div><div><div class="ext-link-title">7 Benefits of FIAs For Retirement</div><div class="ext-link-desc">Amazon — Understanding FIAs alongside IULs positions you as a well-rounded advisor.</div></div></a>
+  </div>
+  
+  <div class="card" style="margin-top:24px">
+    <div class="card-title" style="font-size:18px;">Additional Titles — Search Amazon or Your Local Library</div>
+    <div class="three-col" style="margin-top:16px;">
+      <div class="card-sm"><strong style="color:var(--gold);font-size:14px;">The LASER Fund — Douglas Andrew</strong><p style="font-size:13px;color:var(--text);margin-top:8px">How to create a tax-free retirement foundation using life insurance strategies.</p></div>
+      <div class="card-sm"><strong style="color:var(--gold);font-size:14px;">Millionaire by Thirty — Douglas Andrew</strong><p style="font-size:13px;color:var(--text);margin-top:8px">The quickest path to early financial independence. Great for young clients you are trying to motivate.</p></div>
+      <div class="card-sm"><strong style="color:var(--gold);font-size:14px;">Missed Fortune + Missed Fortune 101 — Douglas Andrew</strong><p style="font-size:13px;color:var(--text);margin-top:8px">Dispels money myth-conceptions. Essential for home equity and retirement conversations.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION: GLOSSARY ====== -->
+<div class="section" id="sec-glossary">
+  <div class="section-header">
+    <div class="section-tag">Section 13</div>
+    <div class="section-title">Industry Glossary</div>
+    <div class="section-desc">Know these terms cold. You should be able to explain every one of them to a client in plain English without hesitating.</div>
+  </div>
+
+  <input class="glossary-search" type="text" placeholder="Search terms..." oninput="filterGlossary(this.value)">
+
+  <div id="glossary-list">
+    
+    <div class="glossary-letter">0-9</div>
+    <div class="glossary-item"><div class="glossary-term">7-Pay Premium / 7-Pay Test</div><div class="glossary-def">IRS test to determine MEC status. A policy becomes a MEC if total premiums paid exceed the sum of 7 equal annual premiums that would fully pay up the policy. The "Max Allowed" column in your spreadsheet is this number × 7 years ÷ 7 = annual amount. Fund below this to preserve tax-free loan status.</div></div>
+
+    <div class="glossary-letter">A</div>
+    <div class="glossary-item"><div class="glossary-term">Accumulated Value</div><div class="glossary-def">The total cash accumulation component of the policy after all charges and credits — before surrender charges or loans. This is the "account balance" inside the policy.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Actuarial Guidelines (AG49 / AG49-A)</div><div class="glossary-def">Regulations issued by the National Association of Insurance Commissioners (NAIC) that govern how IUL policies can be illustrated to consumers. AG49 (2015) capped the maximum illustrated crediting rate based on historical index performance. AG49-A (2020) added further restrictions on multiplier bonuses and illustrated loan arbitrage. The result: illustrations must be conservative enough to reflect realistic outcomes. When clients ask why the illustration 'looks conservative,' AG49-A is the reason.</div></div>
+    <div class="glossary-item"><div class="glossary-term">AML (Anti-Money Laundering)</div><div class="glossary-def">Federal compliance requirement. Insurance companies must verify that premiums come from legitimate sources. You'll need income, net worth, and employer info from every applicant.</div></div>
+
+    <div class="glossary-letter">C</div>
+    <div class="glossary-item"><div class="glossary-term">Cap Rate</div><div class="glossary-def">The maximum interest rate that can be credited to your policy in a given segment period. If the index grows 18% but the cap is 10%, you receive 10%. Caps are set by the carrier and can change annually — though changes only take effect at the start of a new segment.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Cash Surrender Value (CSV)</div><div class="glossary-def">What the policyholder receives if they fully surrender the policy — accumulated value minus surrender charges and any outstanding loans. Different from accumulated value especially in early years.</div></div>
+    <div class="glossary-item"><div class="glossary-term">COI (Cost of Insurance)</div><div class="glossary-def">The monthly charge for the pure insurance protection component. Based on age, gender, health class, and net amount at risk (NAR). Increases as the insured gets older.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Compound Interest</div><div class="glossary-def">Interest calculated on the original principal AND all previously accumulated interest. The formula is: A = P(1 + r)^t. This is how IUL cash value grows — each year's interest becomes part of next year's base. At 7% compound over 30 years, $10,000 becomes ~$76,000. At 3% simple interest over the same period, it stays ~$19,000.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Corridor</div><div class="glossary-def">IRS-required minimum gap between the death benefit and the cash value. If cash value grows large enough to violate the corridor, the carrier automatically increases the death benefit. This keeps the policy classified as life insurance (not an investment).</div></div>
+    <div class="glossary-item"><div class="glossary-term">CVAT (Cash Value Accumulation Test)</div><div class="glossary-def">One of two IRS tests for qualifying as life insurance. Allows more premium early on. Often used for single-premium or short-pay designs. Usually paired with Option A death benefit.</div></div>
+
+    <div class="glossary-letter">D</div>
+    <div class="glossary-item"><div class="glossary-term">Death Benefit Option A (Level)</div><div class="glossary-def">Death benefit stays at the stated face amount. Lower cost of insurance since NAR decreases as cash value grows. Used during distribution phase or for protection-focused designs.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Death Benefit Option B (Increasing)</div><div class="glossary-def">Death benefit = face amount PLUS accumulated cash value. Higher COI (since NAR stays consistent) but allows more premium to flow in under GPT. Used during accumulation phase for cash value designs. Switch to Option A when distributions begin.</div></div>
+    <div class="glossary-item"><div class="glossary-term">DEFRA (Deficit Reduction Act, 1984)</div><div class="glossary-def">The federal legislation that established the formal definition of 'life insurance' under IRS Section 7702, introducing the GPT (Guideline Premium Test) and CVAT (Cash Value Accumulation Test) as the two qualifying tests.</div></div>
+    <div class="glossary-item"><div class="glossary-term">DIFF Column</div><div class="glossary-def">In the illustration spreadsheet — the difference between what a client is paying and the maximum allowed premium. Shows how much room they have to increase contributions without becoming a MEC.</div></div>
+
+    <div class="glossary-letter">E</div>
+    <div class="glossary-item"><div class="glossary-term">Equity Index</div><div class="glossary-def">A market index that tracks the performance of a group of stocks. Examples: S&amp;P 500 (500 largest U.S. companies), Nasdaq-100 (top 100 non-financial), Russell 2000 (small-cap). In an IUL, your cash value doesn't invest in these stocks — it earns credited interest based on how the index performs, subject to a floor (minimum 0%) and a cap (maximum crediting rate).</div></div>
+
+    <div class="glossary-letter">F</div>
+    <div class="glossary-item"><div class="glossary-term">Face Amount / Death Benefit</div><div class="glossary-def">The base amount of life insurance coverage on the policy — what the carrier pays to beneficiaries upon the insured's death. Also called 'face amount,' 'stated death benefit,' or 'specified amount.'</div></div>
+    <div class="glossary-item"><div class="glossary-term">FEX Policy</div><div class="glossary-def">Final Expense — a small face amount policy designed for budget-conscious clients. In the IUL context, structuring "like a FEX" means prioritizing protection over cash value, with a lower, sustainable premium.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Fixed Account</div><div class="glossary-def">An allocation option within the IUL that earns a declared fixed interest rate (typically 2–3%). Not tied to any index. Used as a safe holding account or for stability in the allocation mix.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Flat Extra</div><div class="glossary-def">An additional charge per $1,000 of death benefit applied when the insured has a health condition or engages in activities that exceed standard risk. Added on top of the standard table rating.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Flexible Premium</div><div class="glossary-def">A defining feature of Universal Life Insurance (including IUL) that allows the policyholder to vary the amount, timing, and frequency of premium payments — within carrier limits and IRS guidelines (GPT/CVAT).</div></div>
+    <div class="glossary-item"><div class="glossary-term">Floor</div><div class="glossary-def">The minimum interest credited in any segment. On most IUL products, the floor is 0% — meaning if the index drops 30%, you are credited 0%, not -30%. Your principal is protected from index losses.</div></div>
+
+    <div class="glossary-letter">G</div>
+    <div class="glossary-item"><div class="glossary-term">GLP (Guideline Level Premium)</div><div class="glossary-def">Under GPT — the maximum annual premium that can be paid in any policy year. This is the "Max Allowed" column in your illustration spreadsheet. Must not be exceeded or policy may become a MEC.</div></div>
+    <div class="glossary-item"><div class="glossary-term">GPT (Guideline Premium Test)</div><div class="glossary-def">The most commonly used IRS test for life insurance qualification. Sets maximum premium limits based on the death benefit. The Guideline Level Premium (GLP) is the max you can pay annually. Best for regular premium designs aimed at cash value growth with retirement income distributions.</div></div>
+    <div class="glossary-item"><div class="glossary-term">GSP (Guideline Single Premium)</div><div class="glossary-def">Under GPT — the maximum total (lifetime) premium allowed. Relevant if a client wants to make a large lump-sum contribution. Can never exceed this amount total.</div></div>
+
+    <div class="glossary-letter">H</div>
+    <div class="glossary-item"><div class="glossary-term">Hedge Fund</div><div class="glossary-def">A pooled private investment vehicle used by high-net-worth individuals and institutions. The IUL connection: the way a carrier funds index crediting is conceptually similar to hedging — the carrier invests premium in safe bonds and uses a small portion to buy index options. This replicates upside participation (capped) without downside exposure.</div></div>
+
+    <div class="glossary-letter">I</div>
+    <div class="glossary-item"><div class="glossary-term">Index (in the context of IUL)</div><div class="glossary-def">A benchmark that tracks the performance of a group of assets. In IUL, your cash value growth is tied to the performance of an external index. You are NOT invested in the index — the insurance company uses options to replicate the index's performance.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Index Fund</div><div class="glossary-def">A mutual fund or ETF that passively tracks a market index like the S&amp;P 500. Unlike an IUL, index funds have NO floor: a 30% crash means a 30% loss. No death benefit, no tax-free loan access, and gains are taxable.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Index Loan</div><div class="glossary-def">A policy loan type where the collateral (loaned amount) remains in the indexed account and continues earning indexed credits. When index returns exceed the loan interest rate, the net cost is positive — you earn more than you're charged.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Insurable Interest</div><div class="glossary-def">A legal requirement that the policy owner must have a recognized financial or relationship stake in the insured person's life. Required at policy issue. Parent over child = automatic. Spouses = automatic.</div></div>
+    <div class="glossary-item"><div class="glossary-term">IRS Section 7702</div><div class="glossary-def">The section of the Internal Revenue Code that defines what qualifies as a 'life insurance contract' for tax purposes. A policy must pass either the GPT or CVAT to qualify. Section 7702 is the legal foundation for every tax benefit an IUL offers: tax-deferred growth, tax-free policy loans, and income-tax-free death benefit.</div></div>
+
+    <div class="glossary-letter">L</div>
+    <div class="glossary-item"><div class="glossary-term">Lapse / Policy Lapse</div><div class="glossary-def">When a policy terminates because the cash value is insufficient to cover monthly charges. A lapsed policy with outstanding loans can trigger a taxable event — the loan balance becomes taxable income.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Loan Credit</div><div class="glossary-def">The amount of fixed and/or indexed interest credited to the portion of current value that is linked to a loan. In participating loan structures, this credit reduces or eliminates the net borrowing cost.</div></div>
+
+    <div class="glossary-letter">M</div>
+    <div class="glossary-item"><div class="glossary-term">MEC (Modified Endowment Contract)</div><div class="glossary-def">A policy that has been overfunded beyond IRS limits in the first 7 years. Once a MEC, all distributions (loans and withdrawals) are taxed as ordinary income and subject to 10% penalty before age 59½.</div></div>
+    <div class="glossary-item"><div class="glossary-term">MIB (Medical Information Bureau)</div><div class="glossary-def">A shared database used by insurance carriers to check an applicant's prior medical and insurance application history. Honesty in applications is essential — discrepancies are flagged.</div></div>
+
+    <div class="glossary-letter">N</div>
+    <div class="glossary-item"><div class="glossary-term">NAR (Net Amount at Risk)</div><div class="glossary-def">The difference between the current death benefit and the current accumulated value. The insurance company is "at risk" for this amount.</div></div>
+    <div class="glossary-item"><div class="glossary-term">No Lapse Guarantee (NLG)</div><div class="glossary-def">A rider that guarantees the policy stays in force — even if the cash value is zero — as long as minimum required premiums are paid.</div></div>
+
+    <div class="glossary-letter">P</div>
+    <div class="glossary-item"><div class="glossary-term">Participating Interest</div><div class="glossary-def">An interest crediting method where the policy participates in the gains of an indexed strategy even on funds that are currently out on loan.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Participating Loan / Wash Loan</div><div class="glossary-def">A loan where the policy credits interest on the collateral at the same rate (or near the same rate) charged on the loan — resulting in a near-zero net cost of borrowing.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Participation Rate</div><div class="glossary-def">The percentage of index growth that is credited to your policy. A 100% participation rate means you receive 100% of the (capped) index growth.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Point-to-Point Crediting</div><div class="glossary-def">The most common crediting method. Interest is calculated by comparing the index value at the START of the segment to the value at the END (one year later). Only the change over the full year is used — intra-year volatility is ignored.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Policy Maturity</div><div class="glossary-def">The date when the insurance contract ends and the full accumulated value is paid to the policyholder. For modern IULs, this is age 120 or 121.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Premium Call</div><div class="glossary-def">A notice from the carrier that additional premium is required to keep the policy in force. Occurs when cash value can no longer cover monthly charges.</div></div>
+
+    <div class="glossary-letter">Q</div>
+    <div class="glossary-item"><div class="glossary-term">Qualified vs. Non-Qualified Accounts</div><div class="glossary-def"><strong>Qualified accounts</strong> (401k, IRA, 403b, SEP): contributions are pre-tax; all withdrawals are taxed as ordinary income; subject to IRS contribution limits and RMDs starting at age 73. <strong>Non-qualified accounts</strong> (brokerage, IUL, annuities): funded with after-tax dollars; growth and access are taxed differently by product.</div></div>
+
+    <div class="glossary-letter">R</div>
+    <div class="glossary-item"><div class="glossary-term">Rule of 72</div><div class="glossary-def">A simple mental math formula to estimate how long it takes money to double at a given interest rate: divide 72 by the annual rate of return.</div></div>
+
+    <div class="glossary-letter">S</div>
+    <div class="glossary-item"><div class="glossary-term">S&amp;P 500 (Standard &amp; Poor's 500)</div><div class="glossary-def">A market index tracking the 500 largest publicly traded U.S. companies by market cap. The most widely used benchmark for U.S. stock market performance.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Segment</div><div class="glossary-def">The 1-year period during which the index is tracked for interest crediting purposes. A new segment begins on the "sweep date".</div></div>
+    <div class="glossary-item"><div class="glossary-term">Standard Loan</div><div class="glossary-def">A policy loan where the collateral is transferred out of the indexed accounts into a fixed-rate loan collateral account. The loan earns a fixed (often lower) rate while the loan interest is charged. Less favorable than an index loan for accumulation purposes.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Surrender Charge</div><div class="glossary-def">A fee charged if the policy is fully surrendered in the early years (typically years 1–10, grading to zero). Does not apply to policy loans or partial surrenders within allowed free withdrawal amounts.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Surrogate Policy</div><div class="glossary-def">When the client cannot be insured (criminal history, insulin, etc.), a surrogate policy insures a different person (spouse, child, partner) while the original client is the OWNER and BENEFICIARY.</div></div>
+
+    <div class="glossary-letter">T</div>
+    <div class="glossary-item"><div class="glossary-term">Tax-Advantaged (as it relates to IUL)</div><div class="glossary-def">An IUL offers three layers: (1) <strong>Tax-deferred growth</strong>. (2) <strong>Tax-free distributions</strong> (policy loans). (3) <strong>Income-tax-free death benefit</strong>.</div></div>
+    <div class="glossary-item"><div class="glossary-term">TEFRA (Tax Equity and Fiscal Responsibility Act, 1982)</div><div class="glossary-def">One of the first major federal laws to regulate life insurance as a tax-advantaged vehicle. TEFRA established that life insurance must maintain a minimum 'corridor' — a required gap between the death benefit and the cash value.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Total Charges</div><div class="glossary-def">The sum of all monthly deductions and premium deductions shown in the illustration. Includes COI, policy fee, per unit charge, rider charges, and asset charges.</div></div>
+
+    <div class="glossary-letter">V</div>
+    <div class="glossary-item"><div class="glossary-term">Variable Universal Life (VUL)</div><div class="glossary-def">A permanent life insurance policy where cash value is invested directly in sub-accounts (like mutual funds) — with FULL market exposure. Unlike an IUL, a VUL has NO floor. Requires a securities license to sell.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Volatile Equity Index</div><div class="glossary-def">A market index characterized by large, unpredictable swings in value — both up and down.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Volatility (Market)</div><div class="glossary-def">The degree to which a market index or investment fluctuates in value over time. High volatility = large, unpredictable swings up and down.</div></div>
+
+    <div class="glossary-letter">W</div>
+    <div class="glossary-item"><div class="glossary-term">Withdrawal (vs. Policy Loan)</div><div class="glossary-def">A permanent reduction of cash value and death benefit — unlike a loan, which is repaid and does not permanently reduce the policy. Withdrawals are taxed under LIFO (Last In, First Out) rules: gains come out first and are taxable as ordinary income. Early withdrawals can also jeopardize MEC status. <strong>Best practice: use policy loans, not withdrawals, for tax-free income.</strong></div></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  function toggleCheck(el, e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    el.classList.toggle('checked');
+  }
+
+  function selectStrategy(el) {
+    el.classList.toggle('selected');
+  }
+
+  function showTopic(id) {
+    document.querySelectorAll('.topic-content').forEach(function(tc) {
+      tc.style.display = 'none';
+      tc.classList.remove('active');
+    });
+    document.querySelectorAll('.topic-tab').forEach(function(t) {
+      t.classList.remove('active');
+    });
+    const el = document.getElementById('topic-' + id);
+    if (el) { el.style.display = 'block'; el.classList.add('active'); }
+    document.querySelectorAll('.topic-tab').forEach(function(t) {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + id + "'")) {
+        t.classList.add('active');
+      }
+    });
+  }
+  
+  function toggleObj(el) {
+    const body = el.nextElementSibling;
+    const arrow = el.querySelector('.objection-arrow');
+    if (body) body.classList.toggle('open');
+    if (arrow) arrow.classList.toggle('open');
+  }
+
+  function filterGlossary(val) {
+    const q = val.toLowerCase();
+    document.querySelectorAll('.glossary-item').forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(q) ? '' : 'none';
+    });
+    document.querySelectorAll('.glossary-letter').forEach(letter => {
+      const next = letter.nextElementSibling;
+      letter.style.display = (next && next.style.display !== 'none') ? '' : 'none';
+    });
+  }
+
+  function collectNotes() {
+    const fields = document.querySelectorAll('#sec-discovery input[type="text"], #sec-discovery input[type="date"], #sec-discovery input[type="number"], #sec-discovery textarea, #sec-discovery select');
+    let notes = 'PWRFIN IUL DISCOVERY NOTES\n' + new Date().toLocaleString() + '\n' + '='.repeat(50) + '\n\n';
+    fields.forEach(f => {
+      const label = f.closest('.form-field')?.querySelector('label')?.textContent?.trim() || f.placeholder || f.name || 'Field';
+      const val = f.value?.trim();
+      if (val) notes += label + ': ' + val + '\n';
+    });
+    const checked = document.querySelectorAll('#sec-discovery .checkbox-item.checked');
+    if (checked.length) {
+      notes += '\nChecked Items:\n';
+      checked.forEach(c => { notes += '  ✓ ' + c.textContent.trim() + '\n'; });
+    }
+    return notes;
+  }
+  function copyNotes() {
+    const notes = collectNotes();
+    navigator.clipboard.writeText(notes).then(() => {
+      alert('Notes copied to clipboard! Paste into Google Docs, Notes, or email.');
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = notes; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      alert('Notes copied! Paste into Google Docs, Notes, or email.');
+    });
+  }
+  function downloadNotes() {
+    const notes = collectNotes();
+    const clientName = document.querySelector('#sec-discovery input[placeholder="Full name"]')?.value?.trim() || 'Client';
+    const date = new Date().toISOString().slice(0,10);
+    const blob = new Blob([notes], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Discovery_Notes_' + clientName.replace(/\s+/g,'_') + '_' + date + '.txt';
+    a.click();
+  }
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const btn = document.getElementById('hamburger');
+    if (sidebar.classList.contains('mobile-open')) {
+      closeSidebar();
+    } else {
+      sidebar.classList.add('mobile-open');
+      overlay.classList.add('active');
+      btn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const btn = document.getElementById('hamburger');
+    sidebar.classList.remove('mobile-open');
+    overlay.classList.remove('active');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Navigation logic matches all section IDs
+  const sections = ['overview','discovery','strategy','illustration','presentation','education','objections','application','carriers','contacts','books','glossary'];
+  let sectionProgress = new Set();
+
+  function showSection(id) {
+    document.querySelectorAll('.topic-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.objection-body.open').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.objection-arrow.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+    
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active');
+    });
+    
+    sectionProgress.add(id);
+    updateProgress();
+    window.scrollTo(0, 0);
+    if (window.innerWidth <= 768) closeSidebar();
+  }
+
+  function updateProgress() {
+    const pct = Math.round((sectionProgress.size / sections.length) * 100);
+    const bar = document.getElementById('progressFill');
+    if (bar) bar.style.width = pct + '%';
+  }
+  
+  // Ensure the page starts on Overview tab when loaded
+  window.onload = function() {
+    showSection('overview');
+  };
+</script>
+</body>
+</html>
