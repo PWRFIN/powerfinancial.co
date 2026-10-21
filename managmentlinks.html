@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Management Links | Power Financial</title>
+<link rel="icon" href="/images/pwr-logo-est-2019.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#160A02; --ink-2:#1F1108; --card:#26160B; --card-hover:#30200F;
+  --gold:#C9A84C; --gold-warm:#E2B85A; --cream:#F7F2EA; --muted:#BFAE98;
+  --line:rgba(201,168,76,.22); --ember:#ff6b35;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{background:radial-gradient(circle at 50% -10%,rgba(201,168,76,.16),transparent 45%),var(--ink);color:var(--cream);font-family:Inter,system-ui,sans-serif;line-height:1.5;min-height:100vh}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f0cf72;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.wrap{width:min(1100px,calc(100% - 32px));margin:0 auto}
+
+/* Password gate */
+body.locked{overflow:hidden}
+body.locked>:not(.access-gate):not(script){display:none!important}
+.access-gate{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 20%,rgba(201,168,76,.2),transparent 40%),var(--ink)}
+.access-gate[hidden]{display:none}
+.access-card{width:min(100%,420px);padding:36px 28px;border:1px solid var(--line);border-radius:20px;background:var(--ink-2);text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.access-card img{width:110px;margin-bottom:14px}
+.access-card h1{font:800 1.9rem 'Playfair Display',serif;margin-bottom:8px}
+.access-card p{color:var(--muted);margin-bottom:22px}
+.access-form{display:grid;gap:12px}
+.access-form input{width:100%;min-height:48px;padding:12px 16px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.06);color:var(--cream);font:inherit}
+.btn-gold{min-height:48px;border:0;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-warm));color:var(--ink);font:700 1rem Inter,sans-serif;cursor:pointer}
+.access-error{min-height:20px;color:#ff9b8c;font-size:.9rem;margin:0!important}
+
+/* Header */
+.hero{padding:40px 0 20px;text-align:center}
+.hero img{width:96px;margin-bottom:10px}
+.eyebrow{color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.hero h1{font:800 clamp(2rem,6vw,3rem) 'Playfair Display',serif;margin:6px 0 8px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);max-width:560px;margin:0 auto}
+
+/* Sticky tools */
+.tools{position:sticky;top:0;z-index:20;background:rgba(22,10,2,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.search{position:relative}
+.search input{width:100%;min-height:48px;padding:12px 16px 12px 44px;border:1px solid var(--line);border-radius:12px;background:var(--ink-2);color:var(--cream);font:inherit;font-size:1rem}
+.search input::placeholder{color:#8f7f6b}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-top:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:36px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;color:var(--cream);text-decoration:none;font-size:.85rem;font-weight:500;white-space:nowrap}
+.chips a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Sections */
+main{padding:24px 0 60px}
+section{margin-bottom:36px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sec-head h2{font:700 1.45rem 'Playfair Display',serif}
+.sec-head p{color:var(--muted);font-size:.9rem}
+.due{display:inline-block;background:rgba(255,107,53,.15);color:#ff9a70;border:1px solid rgba(255,107,53,.4);border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:10px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--card);transition:background .15s,border-color .15s,transform .15s}
+.card:hover{background:var(--card-hover);border-color:rgba(201,168,76,.5);transform:translateY(-2px)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-size:1rem;font-weight:600;line-height:1.35}
+.card p{color:var(--muted);font-size:.86rem;flex:1}
+.tag{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.actions{display:flex;gap:8px}
+.open{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:9px;background:linear-gradient(135deg,var(--gold),var(--gold-warm));color:var(--ink);font-weight:700;font-size:.9rem;text-decoration:none}
+.copy{min-height:42px;min-width:84px;padding:0 12px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--cream);font:600 .85rem Inter,sans-serif;cursor:pointer}
+.copy:hover{border-color:var(--gold);color:var(--gold)}
+.copy.done{border-color:#5fbf8a;color:#7fe0a8}
+.empty{display:none;text-align:center;color:var(--muted);padding:40px 0}
+footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:#8f7f6b;font-size:.82rem}
+footer a{color:var(--gold)}
+[hidden]{display:none!important}
+@media (max-width:520px){.hero{padding-top:28px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="locked">
+
+<div class="access-gate" id="accessGate">
+  <div class="access-card">
+    <img src="/images/pwr-logo-est-2019.png" alt="Power Financial">
+    <h1>Management Links</h1>
+    <p>Enter the team password to see the links.</p>
+    <form class="access-form" id="accessForm">
+      <label for="accessPassword" class="sr-only">Team password</label>
+      <input id="accessPassword" type="password" autocomplete="current-password" placeholder="Team password" required autofocus>
+      <button type="submit" class="btn-gold">Open Links</button>
+      <p class="access-error" id="accessError" role="alert"></p>
+    </form>
+  </div>
+</div>
+
+<header class="hero wrap">
+  <img src="/images/pwr-logo-est-2019.png" alt="Power Financial">
+  <div class="eyebrow">Power Financial &bull; Leaders</div>
+  <h1>Management <span>Links</span></h1>
+  <p>Every form, script, calendar, and tool in one place. Tap <strong>Open</strong> to go, or <strong>Copy</strong> to send a link to an agent.</p>
+</header>
+
+<div class="tools">
+  <div class="wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label for="q" class="sr-only">Search links</label>
+      <input id="q" type="search" placeholder="Search links (try &ldquo;script&rdquo; or &ldquo;Diana&rdquo;)" autocomplete="off">
+    </div>
+    <nav class="chips" aria-label="Jump to section" id="chips"></nav>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+<p class="empty wrap" id="empty">No links match that search.</p>
+
+<footer>
+  <div class="wrap">Power Financial &bull; For team leaders only &bull; <a href="/thecookout">The Cookout</a></div>
+</footer>
+
+<script>
+const SECTIONS = [
+  { id:"recaps", title:"Weekly Team Recaps", note:"Downline managers send to upper management", due:"Due Sunday night", links:[
+    ["Veronica's Team Recap","Weekly recap form for Veronica's team.","Form","https://links.powerfinancial.co/widget/form/ioGzOiC6BtdMPqXB4XcJ"],
+    ["Sway's Team Recap","Weekly recap form for Sway's team.","Form","https://links.powerfinancial.co/widget/form/1hN8wEp6aaD9Zk5nBxEC"],
+    ["Laura's Team Recap","Weekly recap form for Laura's team.","Form","https://links.powerfinancial.co/widget/form/nI06U7AxRZzawBFvkotg"],
+    ["Diana's Team Recap","Weekly recap form for Diana's team.","Form","https://links.powerfinancial.co/widget/form/0B0bpiTmTf4enJYVkSTM"]
+  ]},
+  { id:"recruiting", title:"Recruiting & Onboarding", note:"Bring new agents in and get them started", links:[
+    ["Meet & Greet","For potential agents being added to the team.","Form","https://links.powerfinancial.co/widget/form/LeVroR7fwrqz5AYrwsV7"],
+    ["Join Power Financial (Spanish)","Sign-up form for Spanish-speaking recruits.","Form","https://links.powerfinancial.co/widget/form/z4CdHUJfqS6SCrv5Cqk2"],
+    ["Prelicensing How-To","Steps to get licensed.","Form","https://links.powerfinancial.co/widget/form/ah8fcDCqaeGyk8AQfYvM"],
+    ["New Agent Onboarding","Onboarding form for newly licensed agents.","Form","https://links.powerfinancial.co/widget/form/L9QYRaGjRRrtVDEwG2jc"],
+    ["E&O Request","Request Errors & Omissions coverage.","Form","https://links.powerfinancial.co/widget/form/aqL2H2ka70bSACpPyUWl"]
+  ]},
+  { id:"calendars", title:"Agent Calendars", note:"Book time with a leader", links:[
+    ["Julian's Calendar","Book a call with Julian.","Calendar","https://api.leadconnectorhq.com/widget/bookings/havewemet"],
+    ["Diana's Calendar","Book a call with Diana.","Calendar","https://api.leadconnectorhq.com/widget/booking/AuwiJg4dEJ6HTcrsn1eP"],
+    ["Veronica's Calendar","Book a call with Veronica.","Calendar","https://api.leadconnectorhq.com/widget/bookings/verocalendar"],
+    ["Sway's Calendar","Book a call with Sway.","Calendar","https://api.leadconnectorhq.com/widget/booking/0hOKYyxcekKbqbtK2w6W"]
+  ]},
+  { id:"scripts", title:"Scripts", note:"What to say on the phone and by text", links:[
+    ["Asset Security Plan: Mortgage Protection","Mortgage protection telesales script.","Doc","https://docs.google.com/document/d/12P_zj9u83StCXLgUzh1l2k-RJTPLL09aPkrad715WNI/edit?tab=t.0#heading=h.43l0boyfwbiy"],
+    ["Final Expense Script","Script for final expense calls.","Doc","https://docs.google.com/document/d/1sbKDsG4ZiizIusZDPADS1SdLAIzb3fBK5KUd1Olt_lU/edit?usp=sharing"],
+    ["General Life Script","Script for general life insurance calls.","Doc","https://docs.google.com/document/d/1d8jPP5ye5LhzPerwmLlioKKSUf3eyX1eC0bHdYJv0hM/edit?usp=sharing"],
+    ["Telesales Presentation","Presentation with minimal notes.","Doc","https://docs.google.com/document/d/1s2LnKvbvnpQpgOn-MHFW8XSutPJVVm_0PwD4FDMfcMI/edit?usp=sharing"],
+    ["Appointment Setting Script","Telesales and virtual appointment setting.","Doc","https://docs.google.com/document/d/1zX0OV8YKnwnW-9am1q0gUVr1JqkzvJT_/edit?usp=sharing&ouid=113391835026946415646&rtpof=true&sd=true"],
+    ["Pre-Approach Text","The “Krystal Lyte Method” text message.","Doc","https://docs.google.com/document/d/17VZCsh-96GHuuinSpP7oylsnT4Tskaeo1H7eUCiEtTc/edit?usp=sharing"]
+  ]},
+  { id:"training", title:"Training", note:"Learn and level up", links:[
+    ["Objections & Rebuttals","Video training on handling objections.","Video","https://youtu.be/uPkbunSi344"],
+    ["Small Business Tax Training","Slide deck on small business taxes.","Slides","https://docs.google.com/presentation/d/1E1WpKPfGVplyHzjPqYBx8u7ocypgENizNU5kYO3xZj4/edit"],
+    ["IUL Guide (English)","IUL agent field guide.","Guide","https://powerfinancial.co/iulguide/"],
+    ["IUL Guide (Spanish)","Guía de campo IUL en español.","Guide","https://powerfinancial.co/iulguide-es/"]
+  ]},
+  { id:"carriers", title:"Carriers & Tools", note:"Product info and calculators", links:[
+    ["Carrier Guide","Current carrier guide.","Guide","https://claude.ai/public/artifacts/5732917b-4d2f-43ce-9726-aa2a34d2736d"],
+    ["Carrier Organizer","Spreadsheet of carriers.","Sheet","https://docs.google.com/spreadsheets/d/1jVi60OBx-wmM5SY4dHbYXAU6QCbyzakJnO9kzGAFHt4/edit?gid=1252038342#gid=1252038342"],
+    ["IUL Spreadsheet","IUL numbers and comparisons.","Sheet","https://docs.google.com/spreadsheets/d/1YbWpZ2Oa_IdwG2yva_89oUqeHstIHRPrDiSchSrSGS4/edit?gid=808852319#gid=808852319"],
+    ["Power Retirement Calculators","Retirement calculators on our site.","Tool","https://powerfinancial.co/calculators"],
+    ["IRA Calculator","Outside IRA calculator.","Tool","https://www.calculator.net/ira-calculator.html"],
+    ["Carrier Guide (Old)","Older carrier guide, for reference.","Sheet","https://docs.google.com/spreadsheets/d/1vLPSAIVpZWlKPZNF76Xepoj1WA3TXOHQ4k_wVA55aFQ/edit?gid=891290248#gid=891290248"]
+  ]},
+  { id:"sites", title:"Websites & Community", note:"Our pages and hangouts", links:[
+    ["The Cookout","Power's weekly schedule and team page.","Site","https://powerfinancial.co/thecookout"],
+    ["Ciervo Wealth","Ciervo Wealth website.","Site","https://ciervowealth.com/"],
+    ["Power Discord","Join the team Discord channel.","Community","https://discord.gg/DFgbnhT2N5"],
+    ["Gamma","Sign up to make presentations.","Tool","https://gamma.app/signup?r=eqrihnnd1mdmqrl"]
+  ]}
+];
+
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const main = document.getElementById('main'), chips = document.getElementById('chips');
+
+SECTIONS.forEach(s => {
+  chips.insertAdjacentHTML('beforeend', `<a href="#${s.id}">${esc(s.title)}</a>`);
+  const cards = s.links.map(([t,d,tag,url]) => `
+    <article class="card" data-search="${esc((t+' '+d+' '+tag+' '+s.title).toLowerCase())}">
+      <div class="card-top"><h3>${esc(t)}</h3><span class="tag">${esc(tag)}</span></div>
+      <p>${esc(d)}</p>
+      <div class="actions">
+        <a class="open" href="${esc(url)}" target="_blank" rel="noopener">Open</a>
+        <button class="copy" type="button" data-url="${esc(url)}" aria-label="Copy link: ${esc(t)}">Copy</button>
+      </div>
+    </article>`).join('');
+  main.insertAdjacentHTML('beforeend', `
+    <section id="${s.id}">
+      <div class="sec-head"><h2>${esc(s.title)}</h2><p>${esc(s.note)} ${s.due ? `<span class="due">${esc(s.due)}</span>` : ''}</p></div>
+      <div class="grid">${cards}</div>
+    </section>`);
+});
+
+main.addEventListener('click', async e => {
+  const b = e.target.closest('.copy'); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.url); }
+  catch { const t=document.createElement('textarea'); t.value=b.dataset.url; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+  b.textContent='Copied!'; b.classList.add('done');
+  setTimeout(()=>{ b.textContent='Copy'; b.classList.remove('done'); }, 1600);
+});
+
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase(); let any = false;
+  document.querySelectorAll('section').forEach(sec => {
+    let shown = 0;
+    sec.querySelectorAll('.card').forEach(c => { const m = !q || c.dataset.search.includes(q); c.hidden = !m; if (m) shown++; });
+    sec.hidden = shown === 0; if (shown) any = true;
+  });
+  chips.hidden = !!q;
+  document.getElementById('empty').style.display = any ? 'none' : 'block';
+});
+
+/* Password gate (same team password as The Cookout) */
+(function(){
+  const gate=document.getElementById('accessGate'), form=document.getElementById('accessForm'),
+        pw=document.getElementById('accessPassword'), err=document.getElementById('accessError');
+  const HASH='a35e5db5bb0d51839f570891fcb4f3ef7e75f9f4319c1bcd96a91ec9de33050b', KEY='pwrMgmtAccess';
+  const unlock=()=>{ document.body.classList.remove('locked'); gate.hidden=true; try{sessionStorage.setItem(KEY,'granted');}catch(e){} };
+  try{ if(sessionStorage.getItem(KEY)==='granted') unlock(); }catch(e){}
+  form.addEventListener('submit', async ev => {
+    ev.preventDefault(); err.textContent='';
+    const d=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw.value));
+    const h=Array.from(new Uint8Array(d), b=>b.toString(16).padStart(2,'0')).join('');
+    if(h===HASH){ unlock(); return; }
+    err.textContent='That password is not correct. Please try again.'; pw.select();
+  });
+})();
+</script>
+</body>
+</html>
