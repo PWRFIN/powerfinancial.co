@@ -30,8 +30,11 @@ function renderScript(){
  const lines=personalized(steps[current].script).split('\n');let dashBlock=false;
  const lenderStart=lines.findIndex(line=>line.startsWith('(The LENDER might have changed already.'));
  if(lenderStart!==-1){let end=lenderStart;while(end<lines.length-1&&!lines[end].endsWith(')'))end++;lines.splice(lenderStart,end-lenderStart+1,lines.slice(lenderStart,end+1).join('\n'));}
+ const closeStart=lines.findIndex(line=>line.startsWith('Go right into ONE CALL CLOSE ('));
+ if(closeStart!==-1){let end=closeStart;while(end<lines.length-1&&!lines[end].endsWith(')'))end++;lines.splice(closeStart,end-closeStart+1,lines.slice(closeStart,end+1).join('\n'));}
  lines.forEach((line,i)=>{const span=document.createElement('span');const t=line.trim();
  if(t.startsWith('(The LENDER might have changed already.')){span.className='script-lender-note';const quote='Got it, so they sold your loan already? Not a problem.';const at=line.indexOf(quote);const strong=document.createElement('strong');strong.textContent=quote;span.append(document.createTextNode(line.slice(0,at)),strong,document.createTextNode(line.slice(at+quote.length)));dashBlock=false;}
+ else if(t.startsWith('Go right into ONE CALL CLOSE (')){span.className='script-lender-note';span.textContent=line;dashBlock=false;}
  else if(/^if they say\s+(yes|no)/i.test(t)){span.className='script-branch';const strong=document.createElement('strong');strong.textContent=line;span.append(strong);dashBlock=false;}
  else {span.textContent=line;if(/^[-–]\s*\S|^[-–]$/.test(t)){dashBlock=true;span.className='script-dash';}else if(dashBlock&&t){span.className='script-dash';}else if(/^\*+/.test(t)){span.className='script-coaching';}}
  if(!t||/[.!?]$/.test(t))dashBlock=false;
