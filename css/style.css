@@ -1019,3 +1019,15 @@ section[id], [id].guide-form { scroll-margin-top: 96px; }
 /* Hero headline: 14ch, italic word on the same left edge */
 .hero-h1 { max-width: 14ch; }
 .hero-h1 .italic { display: block; margin-left: 0; padding-left: 0; text-indent: 0; }
+
+/* Phone link + mobile bottom bar */
+.phone-link[hidden], [data-phone][hidden] { display: none !important; }
+.phone-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--text-dark); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.phone-link span { color: var(--gold); font-weight: 600; margin-left: 6px; }
+.hero-call { margin: 4px 0 0; }
+.mobile-bar { display: none; }
+@media (max-width: 759px) {
+  .mobile-bar { display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); background: var(--ink); border-top: 1px solid rgba(201,168,76,0.35); }
+  .mobile-bar .btn { flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; padding: 0 12px; }
+  body { padding-bottom: 72px; }
+}
