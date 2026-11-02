@@ -972,3 +972,50 @@ footer { background: var(--ink); padding: 72px 0 36px; }
 .footer-links a:hover {
   color: #d4af37;
 }
+
+/* ══════════════════════════════════
+   THE FAMILY LEDGER — spec overrides (legibility, tokens, type)
+══════════════════════════════════ */
+:root {
+  --paper: #FEFCF8;
+  --gold-ink: #7A5A12;
+  --correct: #A8452F;
+  --sage: #2F5A4B;
+  --text: #5A3520;
+  --text-dark: #D8CFC4;
+  --f-head: 'Playfair Display', Georgia, serif;
+  --f-body: 'Inter', system-ui, sans-serif;
+}
+body { font-size: 18px; line-height: 1.65; }
+h1, h2, h3, .editorial { text-wrap: balance; }
+section[id], [id].guide-form { scroll-margin-top: 96px; }
+
+/* Footer legal + carriers: 14px, #B9AEA2 on espresso (≈8.9:1) */
+.footer-disclaimer { font-size: 14px; color: #B9AEA2; max-width: 340px; }
+.p-name { font-size: 14px; color: #B9AEA2; }
+.footer-bottom p, .footer-bottom a, .footer-brand p { font-size: 15px; color: #B9AEA2; }
+.fc a, .fc .ci-val { font-size: 15px; color: var(--text-dark); }
+.fc h4, .p-label { font-size: 13px; color: var(--text-dark); }
+
+/* Team card text on dark */
+.advisor-bio, .advisor-quote { font-size: 16px; color: var(--text-dark); }
+.advisor-role, .advisor-approach span, .advisor-languages span { font-size: 13px; }
+.advisor-approach span { color: var(--gold); }
+.advisor-languages span { color: var(--text-dark); }
+.team-language-note { font-size: 15px; color: var(--text-dark); }
+
+/* Nav: five links at 15px, never wrapping */
+.nav-links { gap: 28px; }
+.nav-links a { font-size: 15px; white-space: nowrap; color: var(--text-dark); letter-spacing: 0.02em; display: inline-flex; align-items: center; min-height: 44px; }
+.nav-right .btn { white-space: nowrap; }
+
+/* Minimum sizes: labels 13px, small text 15px */
+.label, .hero-eyebrow span, .proof-label, .stat-l, .pq-attr, .advisor-role, .ff label, .guide-badge { font-size: 13px; }
+.hero-caption-attr, .t-ctx, .guide-note, .cred-txt span, .form-footnote, .consent-text, .consent-note, .calendar-fallback, .topbar { font-size: 15px; }
+.hero-eyebrow span, .proof-label, .hero-caption-attr, .stat-l { color: var(--text-dark); }
+.consent-text, .consent-note { color: var(--text-dark); }
+.proof-num { font-variant-numeric: tabular-nums; }
+
+/* Hero headline: 14ch, italic word on the same left edge */
+.hero-h1 { max-width: 14ch; }
+.hero-h1 .italic { display: block; margin-left: 0; padding-left: 0; text-indent: 0; }
