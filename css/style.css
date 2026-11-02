@@ -1054,3 +1054,6 @@ section[id], [id].guide-form { scroll-margin-top: 96px; }
 .cta-form-wrap .calendar-fallback a { color: var(--gold-ink); text-decoration: underline; }
 .booking-calendar { min-height: 1100px; overflow: hidden; }
 .services-head p, .how-left p, .how-step p { font-size: 18px; color: var(--text-body); }
+.cta-check { font-size: 13px; }
+.fq-context { font-size: 15px; }
+.t-stars { font-size: 14px; }
