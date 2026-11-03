@@ -1053,3 +1053,4 @@ section[id], [id].guide-form { scroll-margin-top: 96px; }
 .fq-context { font-size: 15px; }
 .t-stars { font-size: 14px; }
 footer .fc ul li a, footer .fc a { font-size: 15px; }
+.rating-txt { font-size: 15px; color: var(--text-body); font-variant-numeric: tabular-nums; }
