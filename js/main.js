@@ -140,7 +140,7 @@
           window.location.assign(destination || (formData.get('form_type') === 'guide-download' ? '/guide-thank-you' : '/contact-thank-you'));
         })
         .catch(function () {
-          alert('We could not send your request. Please try again or call 216-483-1992.');
+          alert('We could not send your request. Please try again or email operations@powerfinancial.co.');
           if (button) {
             button.disabled = false;
             button.textContent = originalText;
